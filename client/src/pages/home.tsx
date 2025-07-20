@@ -239,6 +239,7 @@ export default function Home() {
                 src="https://files.catbox.moe/63yqwo.png" 
                 alt="Rocket Launch" 
                 className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 animate-bounce-slow drop-shadow-2xl object-contain"
+                style={{transform: 'rotate(30deg)'}}
               />
             </div>
             
