@@ -235,12 +235,7 @@ export default function Home() {
             
             {/* Proper Rocket Icon */}
             <div className="relative z-10 transform group-hover:scale-110 transition-all duration-500 ease-out">
-              <Rocket className="w-32 md:w-40 lg:w-48 text-white animate-bounce-slow drop-shadow-2xl" />
-            </div>
-            
-            {/* Enhanced rocket trail */}
-            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-              <div className="w-2 h-12 bg-gradient-to-b from-orange-400 to-red-500 opacity-80 animate-pulse rounded-full"></div>
+              <Rocket className="w-40 md:w-52 lg:w-64 text-white animate-bounce-slow drop-shadow-2xl" />
             </div>
             
             {/* Subtle floating particles */}
