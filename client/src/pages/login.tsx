@@ -133,7 +133,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <Card className="bg-white/10 backdrop-blur-md border-white/20">
+        <Card className="bg-gray-900/90 backdrop-blur-md border-gray-700">
           <CardHeader>
             <CardTitle className="text-white text-center">
               {isLogin ? "Sign In" : "Create Account"}
@@ -154,7 +154,8 @@ export default function LoginPage() {
                             {...field}
                             type="email"
                             placeholder="your@email.com"
-                            className="bg-gray-800/80 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-purple-400/20"
+                            autoComplete="email"
+                            className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 h-12"
                           />
                         </FormControl>
                         <FormMessage />
@@ -173,7 +174,8 @@ export default function LoginPage() {
                               {...field}
                               type={showPassword ? "text" : "password"}
                               placeholder="Your password"
-                              className="bg-gray-800/80 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-purple-400/20 pr-10"
+                              autoComplete="current-password"
+                              className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 h-12 pr-10"
                             />
                             <Button
                               type="button"
@@ -212,7 +214,8 @@ export default function LoginPage() {
                           <Input
                             {...field}
                             placeholder="Your username"
-                            className="bg-gray-800/80 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-purple-400/20"
+                            autoComplete="username"
+                            className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 h-12"
                           />
                         </FormControl>
                         <FormMessage />
@@ -230,7 +233,8 @@ export default function LoginPage() {
                             {...field}
                             type="email"
                             placeholder="your@email.com"
-                            className="bg-gray-800/80 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-purple-400/20"
+                            autoComplete="email"
+                            className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 h-12"
                           />
                         </FormControl>
                         <FormMessage />
@@ -249,7 +253,8 @@ export default function LoginPage() {
                               {...field}
                               type={showPassword ? "text" : "password"}
                               placeholder="Choose a strong password"
-                              className="bg-gray-800/80 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-purple-400/20 pr-10"
+                              autoComplete="new-password"
+                              className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 h-12 pr-10"
                             />
                             <Button
                               type="button"
