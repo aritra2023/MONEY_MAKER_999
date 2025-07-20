@@ -233,19 +233,9 @@ export default function Home() {
             {/* Subtle glow effect */}
             <div className="absolute inset-0 bg-white opacity-15 blur-xl rounded-full transform scale-110 animate-pulse"></div>
             
-            {/* Modern Rocket Icon */}
+            {/* Proper Rocket Icon */}
             <div className="relative z-10 transform group-hover:scale-110 transition-all duration-500 ease-out">
-              <svg className="w-32 md:w-40 lg:w-48 animate-bounce-slow drop-shadow-2xl" viewBox="0 0 24 24" fill="white">
-                {/* Rocket body */}
-                <path d="M12 2L13.5 8.5H17L12 12L10.5 8.5H7.5L12 2Z" fill="white"/>
-                {/* Rocket fins */}
-                <path d="M8 12L10 16L12 14L10.5 8.5L8 12Z" fill="white"/>
-                <path d="M16 12L14 16L12 14L13.5 8.5L16 12Z" fill="white"/>
-                {/* Rocket window */}
-                <circle cx="12" cy="6" r="1.5" fill="#6b46c1"/>
-                {/* Rocket flames */}
-                <path d="M10 16L12 22L14 16L12 14L10 16Z" fill="#f97316"/>
-              </svg>
+              <Rocket className="w-32 md:w-40 lg:w-48 text-white animate-bounce-slow drop-shadow-2xl" />
             </div>
             
             {/* Enhanced rocket trail */}
