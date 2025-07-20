@@ -391,7 +391,7 @@ export default function Home() {
 
           <div className="border-t border-white border-opacity-10 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm opacity-60 mb-4 md:mb-0">
-              © 2024 mylogo. All rights reserved. Designed with ❤️
+              © 2024 SkyHit. All rights reserved. Designed with ❤️
             </p>
             
             <div className="flex space-x-6">
