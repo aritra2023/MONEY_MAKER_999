@@ -262,8 +262,9 @@ export default function Home() {
         </div>
 
       </section>
-      {/* Features Section */}
-      <section id="services" className="py-8 md:py-12 px-6 relative">
+      
+      {/* Why Choose Section - Moved Higher */}
+      <section className="py-16 md:py-20 px-6 relative">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Our Platform?</h2>
@@ -271,6 +272,38 @@ export default function Home() {
               We provide everything you need to accelerate your business growth with confidence and ease.
             </p>
           </div>
+          
+          <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+            <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-lg transition-all duration-300">
+                <BarChart3 className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Advanced Analytics</h3>
+              <p className="opacity-80 leading-relaxed">Get deep insights into your business performance with our comprehensive analytics dashboard and reporting tools.</p>
+            </div>
+            
+            <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-lg transition-all duration-300">
+                <Shield className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Enterprise Security</h3>
+              <p className="opacity-80 leading-relaxed">Your data is protected with bank-level security measures and compliance with industry standards.</p>
+            </div>
+            
+            <div className="text-center group hover:transform hover:scale-105 transition-all duration-300">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-lg transition-all duration-300">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Team Collaboration</h3>
+              <p className="opacity-80 leading-relaxed">Seamless collaboration tools that keep your team aligned and productive across all projects.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Features Section */}
+      <section id="services" className="py-8 md:py-12 px-6 relative">
+        <div className="max-w-6xl mx-auto">
 
           <div className="grid md:grid-cols-3 gap-8 md:gap-12">
             <div className="text-center group">
