@@ -4,9 +4,11 @@ import { users, type User, type InsertUser } from "@shared/schema";
 // you might need
 
 export interface IStorage {
-  getUser(id: number): Promise<User | undefined>;
+  getUser(id: string | number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
+  getUserByEmail?(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  validateUser?(email: string, password: string): Promise<User | null>;
 }
 
 export class MemStorage implements IStorage {
@@ -18,8 +20,8 @@ export class MemStorage implements IStorage {
     this.currentId = 1;
   }
 
-  async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
+  async getUser(id: string | number): Promise<User | undefined> {
+    return this.users.get(Number(id));
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
@@ -30,7 +32,7 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.currentId++;
-    const user: User = { ...insertUser, id };
+    const user: User = { ...insertUser, id: id.toString() };
     this.users.set(id, user);
     return user;
   }

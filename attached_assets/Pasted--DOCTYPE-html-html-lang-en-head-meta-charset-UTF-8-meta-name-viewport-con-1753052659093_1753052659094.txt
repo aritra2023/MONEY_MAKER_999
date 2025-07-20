@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkyHit Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: #0e0f2e;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="flex justify-between items-center px-6 py-4 bg-gradient-to-r from-indigo-900 to-purple-900 shadow-md">
+    <div class="text-2xl font-bold text-white">🚀 SkyHit</div>
+    <div class="space-x-4 text-sm">
+      <a href="#" class="hover:underline">Dashboard</a>
+      <a href="#" class="hover:underline">My Campaigns</a>
+      <a href="#" class="hover:underline">Premium</a>
+      <a href="#" class="hover:underline">Settings</a>
+      <a href="#" class="text-red-400 hover:underline">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Sidebar + Dashboard Layout -->
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#1a1c3b] p-6 space-y-4 hidden md:block">
+      <h2 class="text-lg font-semibold text-purple-400">Quick Access</h2>
+      <ul class="space-y-2 text-sm">
+        <li>📊 Traffic Sources</li>
+        <li>🧠 Bots / Proxies Used</li>
+        <li>💎 Credits Left</li>
+        <li><button class="bg-gradient-to-r from-purple-600 to-pink-500 px-4 py-2 mt-4 rounded-lg">Upgrade to Premium</button></li>
+      </ul>
+    </aside>
+
+    <!-- Main Panel -->
+    <main class="flex-1 p-6 space-y-8">
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-[#242449] p-4 rounded-xl shadow-lg">
+          <h3 class="text-xl font-bold mb-2">⚡ Live Traffic Status</h3>
+          <div class="h-40 bg-gray-800 rounded animate-pulse"></div>
+        </div>
+
+        <div class="bg-[#242449] p-4 rounded-xl shadow-lg">
+          <h3 class="text-xl font-bold mb-2">📈 Last 7-day Performance</h3>
+          <div class="h-40 bg-gray-800 rounded animate-pulse"></div>
+        </div>
+
+        <div class="bg-[#242449] p-4 rounded-xl shadow-lg">
+          <h3 class="text-xl font-bold mb-2">🌍 Website Preview</h3>
+          <iframe src="https://example.com" class="w-full h-40 rounded-lg"></iframe>
+        </div>
+
+        <div class="bg-[#242449] p-4 rounded-xl shadow-lg">
+          <h3 class="text-xl font-bold mb-2">💹 Stats</h3>
+          <ul class="text-sm space-y-2">
+            <li>👁 Views: 23,492</li>
+            <li>📍 Geo: India, US, UK</li>
+            <li>🔁 Clicks: 12,391</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Control Panel -->
+      <section class="text-center">
+        <button class="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-xl text-white text-lg font-bold shadow-lg">🚀 Start Traffic</button>
+        <button class="ml-4 bg-red-500 hover:bg-red-600 px-6 py-3 rounded-xl text-white text-lg font-bold shadow-lg">🛑 Stop Traffic</button>
+      </section>
+
+      <!-- Add/Remove Sites -->
+      <section class="bg-[#242449] p-6 rounded-xl">
+        <h3 class="text-xl font-bold mb-4">➕ Add / Remove Sites</h3>
+        <input type="text" placeholder="https://yoursite.com" class="w-full p-2 rounded text-black" />
+        <button class="mt-4 bg-blue-500 px-4 py-2 rounded hover:bg-blue-600">Add Site</button>
+      </section>
+
+      <!-- Premium Section -->
+      <section class="bg-gradient-to-r from-purple-700 to-indigo-700 p-6 rounded-xl">
+        <h3 class="text-2xl font-bold mb-4 text-yellow-300">🌟 Premium Features</h3>
+        <ul class="text-sm space-y-2">
+          <li>🌎 Geo-targeting (by country)</li>
+          <li>🔁 Proxy Rotation Controls</li>
+          <li>🧠 Human Behavior Emulation</li>
+          <li>📊 Heatmaps + Session Time Analytics</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>
