@@ -141,7 +141,6 @@ export default function Home() {
           </Button>
         </div>
       </nav>
-
       {/* Mobile Navigation Overlay */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 bg-purple-900 bg-opacity-95 z-40 md:hidden">
@@ -188,7 +187,6 @@ export default function Home() {
           </div>
         </div>
       )}
-
       {/* Hero Section */}
       <section className="text-center pt-32 md:pt-40 pb-20 md:pb-32 px-6 relative overflow-hidden">
         {/* Background decorative elements */}
@@ -264,7 +262,6 @@ export default function Home() {
         </div>
 
       </section>
-
       {/* Features Section */}
       <section id="services" className="py-8 md:py-12 px-6 relative">
         <div className="max-w-6xl mx-auto">
@@ -302,7 +299,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-16 md:py-20 px-6 relative">
         <div className="max-w-4xl mx-auto text-center">
@@ -349,14 +345,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Footer */}
       <footer id="contact" className="py-12 px-6 border-t border-white border-opacity-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="text-2xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">mylogo</span>
+                <span className="bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent text-[24px]">SkyHit</span>
               </div>
               <p className="opacity-80 text-sm leading-relaxed">
                 Empowering businesses worldwide with innovative solutions for sustainable growth and success.
