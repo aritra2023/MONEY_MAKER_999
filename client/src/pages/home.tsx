@@ -233,9 +233,13 @@ export default function Home() {
             {/* Subtle glow effect */}
             <div className="absolute inset-0 bg-white opacity-15 blur-xl rounded-full transform scale-110 animate-pulse"></div>
             
-            {/* Proper Rocket Icon */}
+            {/* Professional Rocket SVG */}
             <div className="relative z-10 transform group-hover:scale-110 transition-all duration-500 ease-out">
-              <Rocket className="w-72 md:w-96 lg:w-[480px] text-white animate-bounce-slow drop-shadow-2xl" />
+              <svg className="w-72 md:w-96 lg:w-[480px] text-white animate-bounce-slow drop-shadow-2xl" viewBox="0 0 512 512" fill="currentColor">
+                <path d="M156.734 120.271c.004-9.375 3.742-18.367 10.394-24.996l24.944-24.856c6.626-6.603 15.599-10.315 24.953-10.315s18.327 3.712 24.953 10.315l24.944 24.856c6.652 6.629 10.39 15.621 10.394 24.996 0 0 7.066 158.188 7.066 158.188 0 41.215-33.41 74.626-74.625 74.626-41.214 0-74.625-33.41-74.625-74.626 0 0 21.602-158.188 21.602-158.188z" />
+                <path d="M256 0C137.95 0 82.313 55.637 82.313 173.687c0 44.141 47.375 94.063 47.375 94.063s-21.602 158.188-21.602 158.188c0 41.215 33.41 74.625 74.625 74.625s74.625-33.41 74.625-74.625c0 0 7.066-158.188 7.066-158.188s47.375-49.922 47.375-94.063C311.377 55.637 374.05 0 256 0zm0 322.625c-20.609 0-37.312-16.704-37.312-37.313s16.703-37.312 37.312-37.312 37.313 16.703 37.313 37.312-16.704 37.313-37.313 37.313z" />
+                <path d="M438.625 442.375L384 488l-26.625-54.625L411 388.75l27.625 53.625zM73.375 442.375L128 488l26.625-54.625L101 388.75l-27.625 53.625z" />
+              </svg>
             </div>
             
             {/* Subtle floating particles */}
