@@ -154,7 +154,7 @@ export default function LoginPage() {
                             {...field}
                             type="email"
                             placeholder="your@email.com"
-                            className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+                            className="bg-gray-800/80 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-purple-400/20"
                           />
                         </FormControl>
                         <FormMessage />
@@ -173,7 +173,7 @@ export default function LoginPage() {
                               {...field}
                               type={showPassword ? "text" : "password"}
                               placeholder="Your password"
-                              className="bg-white/10 border-white/20 text-white placeholder:text-white/60 pr-10"
+                              className="bg-gray-800/80 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-purple-400/20 pr-10"
                             />
                             <Button
                               type="button"
@@ -212,7 +212,7 @@ export default function LoginPage() {
                           <Input
                             {...field}
                             placeholder="Your username"
-                            className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+                            className="bg-gray-800/80 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-purple-400/20"
                           />
                         </FormControl>
                         <FormMessage />
@@ -230,7 +230,7 @@ export default function LoginPage() {
                             {...field}
                             type="email"
                             placeholder="your@email.com"
-                            className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+                            className="bg-gray-800/80 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-purple-400/20"
                           />
                         </FormControl>
                         <FormMessage />
@@ -249,7 +249,7 @@ export default function LoginPage() {
                               {...field}
                               type={showPassword ? "text" : "password"}
                               placeholder="Choose a strong password"
-                              className="bg-white/10 border-white/20 text-white placeholder:text-white/60 pr-10"
+                              className="bg-gray-800/80 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-purple-400/20 pr-10"
                             />
                             <Button
                               type="button"
