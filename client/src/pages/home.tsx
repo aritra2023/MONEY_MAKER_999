@@ -245,12 +245,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Background decorative wave */}
-        <div className="absolute bottom-0 w-full h-32 md:h-40 bg-gradient-to-t from-purple-900 to-transparent rounded-t-[80%] opacity-50"></div>
       </section>
 
       {/* Features Section */}
-      <section id="services" className="py-16 md:py-24 px-6 relative">
+      <section id="services" className="py-8 md:py-12 px-6 relative">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Our Platform?</h2>
