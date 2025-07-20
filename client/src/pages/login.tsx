@@ -244,7 +244,20 @@ export default function LoginPage() {
                     </div>
                   </div>
                   <Button
-                    onClick={signupForm.handleSubmit(onSignupSubmit)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const values = {
+                        username: signupForm.watch("username") || "",
+                        email: signupForm.watch("email") || "",
+                        password: signupForm.watch("password") || ""
+                      };
+                      console.log("Form values:", values);
+                      if (!values.username || !values.email || !values.password) {
+                        alert("Please fill all fields");
+                        return;
+                      }
+                      signupMutation.mutate(values);
+                    }}
                     className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 py-3"
                     disabled={signupMutation.isPending}
                   >
