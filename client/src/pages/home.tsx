@@ -235,8 +235,16 @@ export default function Home() {
             
             {/* Modern Rocket Icon */}
             <div className="relative z-10 transform group-hover:scale-110 transition-all duration-500 ease-out">
-              <svg className="w-32 md:w-40 lg:w-48 animate-bounce-slow drop-shadow-2xl" viewBox="0 0 512 512" fill="white">
-                <path d="M462.3 62.7c-54.5-54.5-142.3-62.7-201.3-62.7C122.4 0 39.2 55.2 0 136.8c24 2 59.2 12 87.2 40s38 63.2 40 87.2C152.8 472.8 209.6 512 240.2 512c59 0 106.8-23.2 154.4-70.8 47.6-47.6 70.8-95.4 70.8-154.4 0-30.6-39.2-87.4-119.2-112.8 0-1.6 6.4-6.4 8-8 24.8-24.8 83.2-40 108-40 13.6 0 25.6 1.6 34.4 3.2z"/>
+              <svg className="w-32 md:w-40 lg:w-48 animate-bounce-slow drop-shadow-2xl" viewBox="0 0 24 24" fill="white">
+                {/* Rocket body */}
+                <path d="M12 2L13.5 8.5H17L12 12L10.5 8.5H7.5L12 2Z" fill="white"/>
+                {/* Rocket fins */}
+                <path d="M8 12L10 16L12 14L10.5 8.5L8 12Z" fill="white"/>
+                <path d="M16 12L14 16L12 14L13.5 8.5L16 12Z" fill="white"/>
+                {/* Rocket window */}
+                <circle cx="12" cy="6" r="1.5" fill="#6b46c1"/>
+                {/* Rocket flames */}
+                <path d="M10 16L12 22L14 16L12 14L10 16Z" fill="#f97316"/>
               </svg>
             </div>
             
