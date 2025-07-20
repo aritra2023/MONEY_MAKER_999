@@ -228,7 +228,7 @@ export default function Home() {
         </div>
 
         {/* Rocket Illustration */}
-        <div className="mt-16 md:mt-20 flex justify-center animate-slide-up" style={{animationDelay: '0.8s'}}>
+<div className="mt-12 md:mt-16 flex justify-center animate-slide-up" style={{animationDelay: '0.8s'}}>
           <div className="relative group">
             {/* Subtle glow effect */}
             <div className="absolute inset-0 bg-white opacity-15 blur-xl rounded-full transform scale-110 animate-pulse"></div>
