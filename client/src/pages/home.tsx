@@ -230,65 +230,25 @@ export default function Home() {
         {/* Rocket Illustration */}
         <div className="mt-16 md:mt-20 flex justify-center animate-slide-up" style={{animationDelay: '0.8s'}}>
           <div className="relative group">
-            {/* Multiple glow effects for depth */}
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-white to-purple-300 opacity-30 blur-2xl rounded-full transform scale-125 animate-pulse"></div>
-            <div className="absolute inset-0 bg-white opacity-20 blur-lg rounded-full transform scale-110 animate-pulse" style={{animationDelay: '0.5s'}}></div>
+            {/* Subtle glow effect */}
+            <div className="absolute inset-0 bg-white opacity-15 blur-xl rounded-full transform scale-110 animate-pulse"></div>
             
-            {/* Rocket body with gradient */}
+            {/* Modern Rocket Icon */}
             <div className="relative z-10 transform group-hover:scale-110 transition-all duration-500 ease-out">
-              <svg className="w-24 md:w-32 lg:w-40 animate-bounce-slow drop-shadow-2xl" viewBox="0 0 100 100" fill="none">
-                {/* Rocket body gradient */}
-                <defs>
-                  <linearGradient id="rocketGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#ffffff" />
-                    <stop offset="50%" stopColor="#e2e8f0" />
-                    <stop offset="100%" stopColor="#cbd5e1" />
-                  </linearGradient>
-                  <linearGradient id="flameGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#fbbf24" />
-                    <stop offset="50%" stopColor="#f97316" />
-                    <stop offset="100%" stopColor="#dc2626" />
-                  </linearGradient>
-                  <radialGradient id="windowGradient" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#1e40af" stopOpacity="0.9" />
-                  </radialGradient>
-                </defs>
-                
-                {/* Main rocket body */}
-                <ellipse cx="50" cy="55" rx="12" ry="25" fill="url(#rocketGradient)" stroke="#94a3b8" strokeWidth="0.5"/>
-                
-                {/* Rocket nose cone */}
-                <path d="M 38 30 L 50 15 L 62 30 Z" fill="url(#rocketGradient)" stroke="#94a3b8" strokeWidth="0.5"/>
-                
-                {/* Rocket fins */}
-                <path d="M 38 70 L 32 85 L 38 80 Z" fill="url(#rocketGradient)" stroke="#94a3b8" strokeWidth="0.5"/>
-                <path d="M 62 70 L 68 85 L 62 80 Z" fill="url(#rocketGradient)" stroke="#94a3b8" strokeWidth="0.5"/>
-                
-                {/* Rocket window */}
-                <circle cx="50" cy="45" r="4" fill="url(#windowGradient)" stroke="#1e40af" strokeWidth="0.5"/>
-                
-                {/* Detail lines */}
-                <line x1="38" y1="65" x2="62" y2="65" stroke="#94a3b8" strokeWidth="0.5"/>
-                <line x1="40" y1="50" x2="60" y2="50" stroke="#94a3b8" strokeWidth="0.3"/>
+              <svg className="w-32 md:w-40 lg:w-48 animate-bounce-slow drop-shadow-2xl" viewBox="0 0 512 512" fill="white">
+                <path d="M462.3 62.7c-54.5-54.5-142.3-62.7-201.3-62.7C122.4 0 39.2 55.2 0 136.8c24 2 59.2 12 87.2 40s38 63.2 40 87.2C152.8 472.8 209.6 512 240.2 512c59 0 106.8-23.2 154.4-70.8 47.6-47.6 70.8-95.4 70.8-154.4 0-30.6-39.2-87.4-119.2-112.8 0-1.6 6.4-6.4 8-8 24.8-24.8 83.2-40 108-40 13.6 0 25.6 1.6 34.4 3.2z"/>
               </svg>
             </div>
             
-            {/* Enhanced rocket trail with multiple flames */}
-            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-1">
-              <div className="w-2 h-12 bg-gradient-to-b from-yellow-300 via-orange-400 to-red-500 opacity-90 animate-pulse rounded-full transform rotate-2"></div>
-              <div className="w-3 h-16 bg-gradient-to-b from-yellow-200 via-orange-500 to-red-600 opacity-95 animate-pulse rounded-full" style={{animationDelay: '0.2s'}}></div>
-              <div className="w-2 h-12 bg-gradient-to-b from-yellow-300 via-orange-400 to-red-500 opacity-90 animate-pulse rounded-full transform -rotate-2" style={{animationDelay: '0.4s'}}></div>
+            {/* Enhanced rocket trail */}
+            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+              <div className="w-2 h-12 bg-gradient-to-b from-orange-400 to-red-500 opacity-80 animate-pulse rounded-full"></div>
             </div>
             
-            {/* Floating particles */}
-            <div className="absolute top-8 -left-4 w-2 h-2 bg-yellow-300 rounded-full opacity-60 animate-ping" style={{animationDelay: '1s'}}></div>
-            <div className="absolute top-12 -right-6 w-1 h-1 bg-orange-400 rounded-full opacity-70 animate-ping" style={{animationDelay: '1.5s'}}></div>
-            <div className="absolute top-4 right-8 w-1.5 h-1.5 bg-white rounded-full opacity-50 animate-ping" style={{animationDelay: '2s'}}></div>
-            
-            {/* Orbit rings */}
-            <div className="absolute inset-0 border border-white border-opacity-10 rounded-full animate-spin" style={{animationDuration: '20s'}}></div>
-            <div className="absolute inset-2 border border-purple-200 border-opacity-20 rounded-full animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
+            {/* Subtle floating particles */}
+            <div className="absolute top-12 -left-6 w-1 h-1 bg-white rounded-full opacity-40 animate-ping" style={{animationDelay: '1s'}}></div>
+            <div className="absolute top-16 -right-8 w-1 h-1 bg-purple-200 rounded-full opacity-50 animate-ping" style={{animationDelay: '1.8s'}}></div>
+            <div className="absolute top-8 right-12 w-1 h-1 bg-white rounded-full opacity-30 animate-ping" style={{animationDelay: '2.5s'}}></div>
           </div>
         </div>
 
