@@ -249,9 +249,9 @@ export default function Home() {
             {/* Custom Tilted Rocket Image */}
             <div className="relative z-10 transform group-hover:scale-110 transition-all duration-500 ease-out">
               <img 
-                src="https://files.catbox.moe/bqr44i.png" 
+                src="https://files.catbox.moe/63yqwo.png" 
                 alt="Rocket Launch" 
-                className="w-80 h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] animate-bounce-slow drop-shadow-2xl object-contain"
+                className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 animate-bounce-slow drop-shadow-2xl object-contain"
                 style={{transform: 'rotate(30deg)'}}
               />
             </div>
