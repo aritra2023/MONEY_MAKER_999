@@ -71,7 +71,7 @@ export default function Home() {
             <img 
               src="https://files.catbox.moe/hlexdm.png" 
               alt="Logo" 
-              className="h-16 md:h-20 w-auto"
+              className="h-12 md:h-14 w-auto"
             />
           </div>
           
