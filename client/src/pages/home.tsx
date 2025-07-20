@@ -69,7 +69,7 @@ export default function Home() {
         <div className="flex justify-between items-center p-6 px-4 md:px-10">
           <div className="animate-fade-in">
             <img 
-              src="https://files.catbox.moe/bqr44i.png" 
+              src="https://files.catbox.moe/hlexdm.png" 
               alt="Logo" 
               className="h-16 md:h-20 w-auto"
             />
