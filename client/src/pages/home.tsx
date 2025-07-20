@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useLocation } from "wouter";
 import { Menu, X, Rocket, Play, ChartLine, Shield, Users, Phone, Check } from "lucide-react";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [navbarVisible, setNavbarVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [, setLocation] = useLocation();
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -128,9 +130,12 @@ export default function Home() {
           {/* CTA Button */}
           <Button 
             className="hidden md:block bg-white text-purple-800 px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-purple-100 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-            onClick={createRippleEffect}
+            onClick={(e) => {
+              createRippleEffect(e);
+              setLocation("/login");
+            }}
           >
-            TRY FOR FREE
+            GET STARTED
           </Button>
         </div>
       </nav>
@@ -171,9 +176,12 @@ export default function Home() {
             </button>
             <Button 
               className="bg-white text-purple-800 px-8 py-3 rounded-full font-semibold hover:bg-purple-100 transition-colors duration-300 mt-4"
-              onClick={createRippleEffect}
+              onClick={(e) => {
+                createRippleEffect(e);
+                setLocation("/login");
+              }}
             >
-              TRY FOR FREE
+              GET STARTED
             </Button>
           </div>
         </div>
@@ -200,10 +208,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up" style={{animationDelay: '0.4s'}}>
             <Button 
               className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-3.5 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 min-w-[160px] relative overflow-hidden"
-              onClick={createRippleEffect}
+              onClick={(e) => {
+                createRippleEffect(e);
+                setLocation("/login");
+              }}
             >
               <Rocket className="w-4 h-4 mr-2" />
-              TRY FOR FREE
+              GET STARTED
             </Button>
             
             <Button 
@@ -310,7 +321,10 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   className="bg-white text-purple-800 px-8 py-4 rounded-full font-semibold hover:bg-purple-50 hover:scale-105 transition-all duration-300 shadow-lg min-w-[180px] relative overflow-hidden"
-                  onClick={createRippleEffect}
+                  onClick={(e) => {
+                    createRippleEffect(e);
+                    setLocation("/login");
+                  }}
                 >
                   <Rocket className="w-4 h-4 mr-2" />
                   Get Started Today
