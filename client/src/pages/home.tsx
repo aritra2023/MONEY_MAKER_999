@@ -67,10 +67,12 @@ export default function Home() {
         } bg-gradient-to-r from-purple-800/90 to-purple-900/90 backdrop-blur-sm`}
       >
         <div className="flex justify-between items-center p-6 px-4 md:px-10">
-          <div className="text-xl md:text-2xl font-bold tracking-tight animate-fade-in">
-            <span className="bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
-              mylogo
-            </span>
+          <div className="animate-fade-in">
+            <img 
+              src="https://files.catbox.moe/b78yt1.png" 
+              alt="Logo" 
+              className="h-8 md:h-10 w-auto"
+            />
           </div>
           
           {/* Desktop Navigation */}
