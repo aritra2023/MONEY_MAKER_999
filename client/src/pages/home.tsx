@@ -233,9 +233,13 @@ export default function Home() {
             {/* Subtle glow effect */}
             <div className="absolute inset-0 bg-white opacity-15 blur-xl rounded-full transform scale-110 animate-pulse"></div>
             
-            {/* Large Lucide Rocket */}
-            <div className="relative z-10 transform group-hover:scale-110 transition-all duration-500 ease-out" style={{width: '200px', height: '200px'}}>
-              <Rocket className="w-full h-full text-white animate-bounce-slow drop-shadow-2xl" style={{width: '200px', height: '200px'}} />
+            {/* Custom Tilted Rocket Image */}
+            <div className="relative z-10 transform group-hover:scale-110 transition-all duration-500 ease-out">
+              <img 
+                src="https://files.catbox.moe/63yqwo.png" 
+                alt="Rocket Launch" 
+                className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 animate-bounce-slow drop-shadow-2xl object-contain"
+              />
             </div>
             
             {/* Subtle floating particles */}
