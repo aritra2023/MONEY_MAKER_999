@@ -235,7 +235,7 @@ export default function Home() {
             
             {/* Proper Rocket Icon */}
             <div className="relative z-10 transform group-hover:scale-110 transition-all duration-500 ease-out">
-              <Rocket className="w-56 md:w-72 lg:w-80 text-white animate-bounce-slow drop-shadow-2xl" />
+              <Rocket className="w-72 md:w-96 lg:w-[480px] text-white animate-bounce-slow drop-shadow-2xl" />
             </div>
             
             {/* Subtle floating particles */}
