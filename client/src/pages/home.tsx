@@ -185,30 +185,6 @@ export default function Home() {
         <div className="absolute top-32 left-10 w-20 h-20 bg-purple-400 opacity-10 rounded-full animate-bounce-slow"></div>
         <div className="absolute top-52 right-16 w-12 h-12 bg-white opacity-5 rounded-full animate-bounce-slow" style={{animationDelay: '1s'}}></div>
         
-        {/* White doodles and shapes */}
-        <div className="absolute top-20 left-1/4 w-8 h-8 border-2 border-white opacity-10 rounded-full animate-ping" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-40 right-1/4 w-6 h-6 bg-white opacity-5 transform rotate-45" style={{animationDelay: '3s'}}></div>
-        <div className="absolute top-60 left-1/6 w-4 h-4 border border-white opacity-15 transform rotate-12"></div>
-        <div className="absolute top-80 right-1/6 w-3 h-12 bg-white opacity-8 transform rotate-45"></div>
-        <div className="absolute top-96 left-1/3 w-2 h-2 bg-white opacity-12 rounded-full animate-pulse" style={{animationDelay: '4s'}}></div>
-        
-        {/* Geometric patterns */}
-        <div className="absolute top-24 right-20 w-16 h-1 bg-white opacity-8 transform rotate-45"></div>
-        <div className="absolute top-72 left-20 w-10 h-1 bg-white opacity-6 transform -rotate-45"></div>
-        <div className="absolute top-44 left-1/2 w-5 h-5 border border-white opacity-10 transform rotate-45"></div>
-        
-        {/* Dotted patterns */}
-        <div className="absolute top-36 right-1/3 flex space-x-1">
-          <div className="w-1 h-1 bg-white opacity-15 rounded-full"></div>
-          <div className="w-1 h-1 bg-white opacity-12 rounded-full"></div>
-          <div className="w-1 h-1 bg-white opacity-8 rounded-full"></div>
-        </div>
-        <div className="absolute top-88 left-1/5 flex space-x-1">
-          <div className="w-1 h-1 bg-white opacity-10 rounded-full"></div>
-          <div className="w-1 h-1 bg-white opacity-8 rounded-full"></div>
-          <div className="w-1 h-1 bg-white opacity-6 rounded-full"></div>
-        </div>
-        
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in">
             Get Your Business<br />
