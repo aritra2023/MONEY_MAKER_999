@@ -219,10 +219,16 @@ export default function Home() {
           {/* Trust indicators */}
           <div className="mt-12 animate-slide-up" style={{animationDelay: '0.6s'}}>
             <p className="text-sm opacity-70 mb-4">Trusted by 10,000+ businesses worldwide</p>
-            <div className="flex justify-center items-center space-x-8 opacity-60">
-              <div className="text-xs font-medium bg-white bg-opacity-10 px-4 py-2 rounded-full">Company A</div>
-              <div className="text-xs font-medium bg-white bg-opacity-10 px-4 py-2 rounded-full">Company B</div>
-              <div className="text-xs font-medium bg-white bg-opacity-10 px-4 py-2 rounded-full">Company C</div>
+            <div className="flex justify-center items-center space-x-6 opacity-60">
+              <div className="bg-white bg-opacity-10 p-3 rounded-full hover:bg-opacity-20 transition-all duration-300">
+                <Rocket className="w-5 h-5 text-white" />
+              </div>
+              <div className="bg-white bg-opacity-10 p-3 rounded-full hover:bg-opacity-20 transition-all duration-300">
+                <Rocket className="w-5 h-5 text-white" />
+              </div>
+              <div className="bg-white bg-opacity-10 p-3 rounded-full hover:bg-opacity-20 transition-all duration-300">
+                <Rocket className="w-5 h-5 text-white" />
+              </div>
             </div>
           </div>
         </div>
