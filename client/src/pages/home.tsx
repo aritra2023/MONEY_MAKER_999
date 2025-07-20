@@ -234,8 +234,8 @@ export default function Home() {
             <div className="absolute inset-0 bg-white opacity-15 blur-xl rounded-full transform scale-110 animate-pulse"></div>
             
             {/* Large Lucide Rocket */}
-            <div className="relative z-10 transform group-hover:scale-110 transition-all duration-500 ease-out">
-              <Rocket className="w-96 md:w-[32rem] lg:w-[40rem] text-white animate-bounce-slow drop-shadow-2xl" />
+            <div className="relative z-10 transform group-hover:scale-110 transition-all duration-500 ease-out" style={{width: '200px', height: '200px'}}>
+              <Rocket className="w-full h-full text-white animate-bounce-slow drop-shadow-2xl" style={{width: '200px', height: '200px'}} />
             </div>
             
             {/* Subtle floating particles */}
