@@ -1,27 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 import { 
   LogOut, 
   Plus, 
-  Download,
-  Globe,
-  Users,
-  Settings,
+  Play,
+  Pause,
   BarChart3,
-  ExternalLink
+  Globe,
+  TrendingUp,
+  Users,
+  Target,
+  Activity,
+  Settings,
+  Moon,
+  Sun,
+  Bell,
+  Search,
+  Filter,
+  MoreVertical,
+  Eye,
+  MousePointer,
+  Clock,
+  Zap
 } from "lucide-react";
 
 export default function Dashboard() {
-  const [activeTab, setActiveTab] = useState("dashboard");
   const [websites, setWebsites] = useState<string[]>([]);
   const [newWebsite, setNewWebsite] = useState("");
-  const [hitsAvailable] = useState(1000);
-  const [hitsReceived] = useState(0);
-  const [hitsRequested] = useState(0);
-  const [hitsProvided] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [darkMode, setDarkMode] = useState(true);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleAddWebsite = () => {
     if (newWebsite.trim() && !websites.includes(newWebsite.trim())) {
@@ -34,325 +52,286 @@ export default function Dashboard() {
     setWebsites(websites.filter(w => w !== website));
   };
 
+  const handleToggleTraffic = () => {
+    setIsRunning(!isRunning);
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     window.location.href = "/";
   };
 
+  const stats = [
+    { label: "Active Campaigns", value: websites.length, icon: Target, color: "text-blue-400", bg: "bg-blue-500/10" },
+    { label: "Traffic Status", value: isRunning ? "Running" : "Stopped", icon: Activity, color: isRunning ? "text-green-400" : "text-red-400", bg: isRunning ? "bg-green-500/10" : "bg-red-500/10" },
+    { label: "Total Hits", value: "1,234", icon: Eye, color: "text-purple-400", bg: "bg-purple-500/10" },
+    { label: "Click Rate", value: "3.2%", icon: MousePointer, color: "text-orange-400", bg: "bg-orange-500/10" }
+  ];
+
+  const recentActivity = [
+    { action: "Traffic started", website: "example.com", time: "2 minutes ago", status: "success" },
+    { action: "Website added", website: "newsite.com", time: "5 minutes ago", status: "info" },
+    { action: "Campaign paused", website: "testsite.com", time: "10 minutes ago", status: "warning" },
+    { action: "Hit milestone", website: "mysite.com", time: "15 minutes ago", status: "success" }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-800 via-purple-900 to-indigo-900 text-white">
-      {/* Header with your logo and navigation */}
-      <header className="bg-purple-800/90 backdrop-blur-sm border-b border-purple-700/30">
-        <div className="flex justify-between items-center px-6 py-4">
-          <div className="flex items-center space-x-6">
-            <img 
-              src="https://files.catbox.moe/hlexdm.png" 
-              alt="Logo" 
-              className="h-10 w-auto"
-            />
-            <nav className="hidden md:flex space-x-6 text-sm text-purple-200">
-              <a href="#" className="hover:text-white">How it Works?</a>
-              <a href="#" className="hover:text-white">FAQ</a>
-              <a href="#" className="hover:text-white">Menu</a>
-              <a href="#" className="hover:text-white">Pages</a>
-              <a href="#" className="hover:text-white">Legal</a>
-              <a href="#" className="hover:text-white">Media</a>
-              <a href="#" className="hover:text-white">SEO Tools</a>
-            </nav>
+    <div className={`min-h-screen transition-all duration-300 ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
+      {/* Sidebar */}
+      <div className={`fixed left-0 top-0 h-full w-64 ${darkMode ? 'bg-gray-800' : 'bg-white'} border-r ${darkMode ? 'border-gray-700' : 'border-gray-200'} z-30`}>
+        {/* Logo Section */}
+        <div className="p-6 border-b border-gray-700">
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+              <Zap className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-lg font-bold">TrafficFlow</h1>
+              <p className="text-xs text-gray-400">Pro Dashboard</p>
+            </div>
           </div>
-          <div className="flex items-center space-x-4">
-            <span className="text-sm text-purple-200">Hello, Aritra Mahatma!</span>
-            <Button 
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-2">
+          <div className="space-y-1">
+            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 py-2">Main</h3>
+            <a href="#" className="flex items-center px-3 py-2 rounded-lg bg-purple-500/20 text-purple-400">
+              <BarChart3 className="w-5 h-5 mr-3" />
+              Dashboard
+            </a>
+            <a href="#" className="flex items-center px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white">
+              <Globe className="w-5 h-5 mr-3" />
+              Websites
+            </a>
+            <a href="#" className="flex items-center px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white">
+              <TrendingUp className="w-5 h-5 mr-3" />
+              Analytics
+            </a>
+            <a href="#" className="flex items-center px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white">
+              <Users className="w-5 h-5 mr-3" />
+              Team
+            </a>
+          </div>
+          
+          <div className="space-y-1 pt-4">
+            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 py-2">Tools</h3>
+            <a href="#" className="flex items-center px-3 py-2 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white">
+              <Settings className="w-5 h-5 mr-3" />
+              Settings
+            </a>
+          </div>
+        </nav>
+
+        {/* User Profile */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+              <span className="text-sm font-medium text-white">A</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium truncate">Aritra Mahatma</p>
+              <p className="text-xs text-gray-400">Pro User</p>
+            </div>
+            <Button
               onClick={handleLogout}
-              className="bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-2"
+              variant="ghost"
+              size="sm"
+              className="text-gray-400 hover:text-white"
             >
-              SIGN OUT
+              <LogOut className="w-4 h-4" />
             </Button>
           </div>
         </div>
-      </header>
-
-      {/* Navigation Tabs */}
-      <div className="bg-purple-700/50 border-b border-purple-600/30">
-        <div className="px-6">
-          <nav className="flex space-x-8">
-            <button 
-              onClick={() => setActiveTab("dashboard")}
-              className={`px-4 py-3 text-sm font-medium border-b-2 ${
-                activeTab === "dashboard" 
-                  ? "border-pink-400 text-pink-300 bg-purple-600/50" 
-                  : "border-transparent text-purple-200 hover:text-white"
-              }`}
-            >
-              Dashboard
-            </button>
-            <button 
-              onClick={() => setActiveTab("downloads")}
-              className={`px-4 py-3 text-sm font-medium border-b-2 flex items-center space-x-2 ${
-                activeTab === "downloads" 
-                  ? "border-pink-400 text-pink-300 bg-purple-600/50" 
-                  : "border-transparent text-purple-200 hover:text-white"
-              }`}
-            >
-              <Download className="w-4 h-4" />
-              <span>Download & Earn Hits</span>
-            </button>
-            <button 
-              onClick={() => setActiveTab("websites")}
-              className={`px-4 py-3 text-sm font-medium border-b-2 flex items-center space-x-2 ${
-                activeTab === "websites" 
-                  ? "border-pink-400 text-pink-300 bg-purple-600/50" 
-                  : "border-transparent text-purple-200 hover:text-white"
-              }`}
-            >
-              <Globe className="w-4 h-4" />
-              <span>Websites</span>
-            </button>
-            <button 
-              onClick={() => setActiveTab("referrals")}
-              className={`px-4 py-3 text-sm font-medium border-b-2 flex items-center space-x-2 ${
-                activeTab === "referrals" 
-                  ? "border-pink-400 text-pink-300 bg-purple-600/50" 
-                  : "border-transparent text-purple-200 hover:text-white"
-              }`}
-            >
-              <Users className="w-4 h-4" />
-              <span>My Referrals</span>
-            </button>
-            <button 
-              onClick={() => setActiveTab("settings")}
-              className={`px-4 py-3 text-sm font-medium border-b-2 flex items-center space-x-2 ${
-                activeTab === "settings" 
-                  ? "border-pink-400 text-pink-300 bg-purple-600/50" 
-                  : "border-transparent text-purple-200 hover:text-white"
-              }`}
-            >
-              <Settings className="w-4 h-4" />
-              <span>My Settings</span>
-            </button>
-          </nav>
-        </div>
       </div>
 
-      {/* Content Area */}
-      <div className="px-6 py-6">
-        {/* Donation Banner */}
-        <div className="bg-purple-700/30 border border-purple-500/50 rounded-lg p-4 mb-6 backdrop-blur-sm">
-          <p className="text-sm text-purple-100">
-            <span className="font-medium">Donate us through PayPal or Bitcoin</span> to support our developers, help desk team and cloud services.
-          </p>
-        </div>
-
-        {/* Warning Banner */}
-        <div className="bg-yellow-500/20 border border-yellow-400/50 rounded-lg p-4 mb-6 backdrop-blur-sm">
-          <p className="text-sm text-yellow-100">
-            <span className="font-medium">⚠️ Please add domains or URLs to increase traffic, run our traffic exchange software with a valid token for consistent traffic. </span>
-            <a href="#" className="text-blue-300 hover:underline font-medium">CLICK HERE!</a>
-          </p>
-        </div>
-
-        {activeTab === "dashboard" && (
-          <>
-            {/* Traffic Statistics */}
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-pink-400 mb-6 flex items-center">
-                <BarChart3 className="mr-2" />
-                Traffic Statistics
-              </h2>
-
-              {/* Video/Image Placeholder */}
-              <div className="bg-black rounded-lg mb-6 relative overflow-hidden">
-                <div className="aspect-video flex items-center justify-center">
-                  <div className="text-white text-center">
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <div className="w-8 h-8 bg-white/40 rounded"></div>
-                    </div>
-                    <p className="text-lg">Traffic Exchange Preview</p>
-                  </div>
-                </div>
-                <div className="absolute bottom-4 right-4">
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white text-sm">
-                    Shop Now
-                  </Button>
-                </div>
+      {/* Main Content */}
+      <div className="ml-64">
+        {/* Top Header */}
+        <header className={`${darkMode ? 'bg-gray-800' : 'bg-white'} border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} px-6 py-4`}>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold">Traffic Control Center</h1>
+              <p className="text-sm text-gray-400">Manage your website traffic campaigns</p>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              {/* Search */}
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <Input
+                  placeholder="Search campaigns..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className={`pl-10 w-64 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-100 border-gray-300'}`}
+                />
               </div>
 
-              {/* Statistics Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <Card className="bg-white/10 backdrop-blur-md border-purple-500/30 text-center">
-                  <CardContent className="p-6">
-                    <div className="text-3xl font-bold text-pink-400 mb-2">
-                      {hitsAvailable.toLocaleString()}
-                      <span className="text-lg ml-1">💎</span>
-                    </div>
-                    <h3 className="font-semibold text-white mb-1">Hits Available</h3>
-                    <p className="text-sm text-purple-300">Hits owned by you</p>
-                  </CardContent>
-                </Card>
+              {/* Theme Toggle */}
+              <Button
+                onClick={() => setDarkMode(!darkMode)}
+                variant="ghost"
+                size="sm"
+                className="text-gray-400 hover:text-white"
+              >
+                {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </Button>
 
-                <Card className="bg-white/10 backdrop-blur-md border-purple-500/30 text-center">
-                  <CardContent className="p-6">
-                    <div className="text-3xl font-bold text-pink-400 mb-2">
-                      {hitsReceived}
-                      <span className="text-lg ml-1">🔥</span>
-                    </div>
-                    <h3 className="font-semibold text-white mb-1">Hits Received</h3>
-                    <p className="text-sm text-purple-300">Hits received to your site</p>
-                  </CardContent>
-                </Card>
+              {/* Notifications */}
+              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white relative">
+                <Bell className="w-4 h-4" />
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+              </Button>
 
-                <Card className="bg-white/10 backdrop-blur-md border-purple-500/30 text-center">
-                  <CardContent className="p-6">
-                    <div className="text-3xl font-bold text-pink-400 mb-2">
-                      {hitsRequested}
-                      <span className="text-lg ml-1">🎯</span>
-                    </div>
-                    <h3 className="font-semibold text-white mb-1">Hits Requested</h3>
-                    <p className="text-sm text-purple-300">Hits requested from your sites</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-white/10 backdrop-blur-md border-purple-500/30 text-center">
-                  <CardContent className="p-6">
-                    <div className="text-3xl font-bold text-pink-400 mb-2">
-                      {hitsProvided}
-                      <span className="text-lg ml-1">🔗</span>
-                    </div>
-                    <h3 className="font-semibold text-white mb-1">Hits Provided</h3>
-                    <p className="text-sm text-purple-300">Hits provided to other sites</p>
-                  </CardContent>
-                </Card>
+              {/* Current Time */}
+              <div className="text-sm text-gray-400 flex items-center">
+                <Clock className="w-4 h-4 mr-2" />
+                {currentTime.toLocaleTimeString()}
               </div>
             </div>
-          </>
-        )}
+          </div>
+        </header>
 
-        {activeTab === "websites" && (
-          <div className="max-w-4xl">
-            <h2 className="text-2xl font-bold text-white mb-6">Website Management</h2>
-            
-            <Card className="bg-white/10 backdrop-blur-md border-purple-500/30 mb-6">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-semibold mb-4 text-white">Add New Website</h3>
-                <div className="flex space-x-4">
-                  <Input
-                    type="url"
-                    placeholder="Enter website URL (e.g., https://example.com)"
-                    value={newWebsite}
-                    onChange={(e) => setNewWebsite(e.target.value)}
-                    className="flex-1 bg-purple-900/50 border-purple-500/50 text-white placeholder:text-purple-300"
-                  />
-                  <Button 
-                    onClick={handleAddWebsite}
-                    className="bg-purple-600 hover:bg-purple-700"
+        {/* Dashboard Content */}
+        <main className="p-6 space-y-6">
+          {/* Quick Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map((stat, index) => (
+              <Card key={index} className={`${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-400">{stat.label}</p>
+                      <p className="text-2xl font-bold mt-1">{stat.value}</p>
+                    </div>
+                    <div className={`p-3 rounded-full ${stat.bg}`}>
+                      <stat.icon className={`w-6 h-6 ${stat.color}`} />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Main Control Panel */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Traffic Control */}
+            <Card className={`${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  Traffic Control
+                  <Button
+                    onClick={handleToggleTraffic}
+                    className={`${isRunning ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'}`}
                   >
-                    <Plus className="mr-2 w-4 h-4" />
-                    Add Website
+                    {isRunning ? <Pause className="w-4 h-4 mr-2" /> : <Play className="w-4 h-4 mr-2" />}
+                    {isRunning ? 'Stop' : 'Start'}
                   </Button>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span>Traffic Generation</span>
+                    <span>{isRunning ? '85%' : '0%'}</span>
+                  </div>
+                  <Progress value={isRunning ? 85 : 0} className="h-2" />
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                    <p className="text-sm text-gray-400">Active Sessions</p>
+                    <p className="text-xl font-bold">{isRunning ? '12' : '0'}</p>
+                  </div>
+                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                    <p className="text-sm text-gray-400">Hits/Hour</p>
+                    <p className="text-xl font-bold">{isRunning ? '1,247' : '0'}</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/10 backdrop-blur-md border-purple-500/30">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-semibold mb-4 text-white">Your Websites</h3>
-                {websites.length === 0 ? (
-                  <div className="text-center py-8 text-purple-300">
-                    No websites added yet. Add your first website above to start receiving traffic.
-                  </div>
-                ) : (
-                  <div className="space-y-3">
-                    {websites.map((website, index) => (
-                      <div 
+            {/* Website Manager */}
+            <Card className={`${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
+              <CardHeader>
+                <CardTitle>Website Manager</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex space-x-2">
+                  <Input
+                    placeholder="https://example.com"
+                    value={newWebsite}
+                    onChange={(e) => setNewWebsite(e.target.value)}
+                    className={`flex-1 ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-100 border-gray-300'}`}
+                  />
+                  <Button onClick={handleAddWebsite} className="bg-purple-500 hover:bg-purple-600">
+                    <Plus className="w-4 h-4" />
+                  </Button>
+                </div>
+
+                <div className="space-y-2 max-h-48 overflow-y-auto">
+                  {websites.length === 0 ? (
+                    <p className="text-center text-gray-400 py-8">No websites added yet</p>
+                  ) : (
+                    websites.map((website, index) => (
+                      <div
                         key={index}
-                        className="flex items-center justify-between p-4 bg-purple-800/30 rounded-lg border border-purple-500/30"
+                        className={`flex items-center justify-between p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}
                       >
                         <div className="flex items-center space-x-3">
-                          <Globe className="w-5 h-5 text-purple-300" />
-                          <span className="font-medium text-white">{website}</span>
-                          <Badge className="bg-green-600 text-white">Active</Badge>
+                          <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                          <span className="text-sm">{website}</span>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <Button variant="outline" size="sm" className="border-purple-400 text-purple-200 hover:bg-purple-700">
-                            <ExternalLink className="w-4 h-4" />
-                          </Button>
+                          <Badge variant="outline" className="text-xs">Active</Badge>
                           <Button
                             onClick={() => handleRemoveWebsite(website)}
-                            variant="destructive"
+                            variant="ghost"
                             size="sm"
+                            className="text-red-400 hover:text-red-300"
                           >
-                            Remove
+                            <MoreVertical className="w-4 h-4" />
                           </Button>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                )}
+                    ))
+                  )}
+                </div>
               </CardContent>
             </Card>
           </div>
-        )}
 
-        {activeTab === "downloads" && (
-          <div className="max-w-4xl">
-            <h2 className="text-2xl font-bold text-white mb-6">Download & Earn Hits</h2>
-            <Card className="bg-white/10 backdrop-blur-md border-purple-500/30">
-              <CardContent className="p-6">
-                <p className="text-purple-200 mb-4">Download our traffic exchange software to earn more hits for your websites.</p>
-                <Button className="bg-blue-600 hover:bg-blue-700">
-                  <Download className="mr-2 w-4 h-4" />
-                  Download Traffic Exchange
+          {/* Recent Activity */}
+          <Card className={`${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
+            <CardHeader>
+              <CardTitle className="flex items-center justify-between">
+                Recent Activity
+                <Button variant="ghost" size="sm">
+                  <Filter className="w-4 h-4" />
                 </Button>
-              </CardContent>
-            </Card>
-          </div>
-        )}
-
-        {activeTab === "referrals" && (
-          <div className="max-w-4xl">
-            <h2 className="text-2xl font-bold text-white mb-6">My Referrals</h2>
-            <Card className="bg-white/10 backdrop-blur-md border-purple-500/30">
-              <CardContent className="p-6">
-                <p className="text-purple-200 mb-4">Invite friends and earn bonus hits when they join.</p>
-                <div className="text-center py-8 text-purple-300">
-                  No referrals yet. Share your referral link to start earning bonus hits.
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
-
-        {activeTab === "settings" && (
-          <div className="max-w-4xl">
-            <h2 className="text-2xl font-bold text-white mb-6">Account Settings</h2>
-            <Card className="bg-white/10 backdrop-blur-md border-purple-500/30">
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-purple-200 mb-2">Email</label>
-                    <Input 
-                      type="email" 
-                      defaultValue="user@example.com" 
-                      readOnly 
-                      className="bg-purple-900/50 border-purple-500/50 text-white"
-                    />
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {recentActivity.map((activity, index) => (
+                  <div key={index} className="flex items-center space-x-4">
+                    <div className={`w-3 h-3 rounded-full ${
+                      activity.status === 'success' ? 'bg-green-400' :
+                      activity.status === 'warning' ? 'bg-yellow-400' :
+                      'bg-blue-400'
+                    }`}></div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">{activity.action}</p>
+                      <p className="text-xs text-gray-400">{activity.website}</p>
+                    </div>
+                    <span className="text-xs text-gray-400">{activity.time}</span>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-purple-200 mb-2">Username</label>
-                    <Input 
-                      defaultValue="ArirtraMahatma" 
-                      className="bg-purple-900/50 border-purple-500/50 text-white"
-                    />
-                  </div>
-                  <Button className="bg-purple-600 hover:bg-purple-700">
-                    Update Settings
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </main>
       </div>
     </div>
   );
