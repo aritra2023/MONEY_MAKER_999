@@ -119,7 +119,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900">
       {/* Header Navigation */}
-      <nav className="flex items-center justify-between px-6 py-4 bg-white/10 backdrop-blur-md border-b border-white/20">
+      <nav className="flex items-center justify-between px-6 py-4 bg-purple-800 border-b border-purple-700">
         <div className="flex items-center space-x-8">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg flex items-center justify-center">
@@ -163,68 +163,68 @@ export default function Dashboard() {
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card className="bg-white/10 backdrop-blur-md border border-white/20 text-white">
+          <Card className="bg-white text-gray-900 border border-gray-200 shadow-lg">
             <CardContent className="p-6 text-center">
-              <Target className="w-8 h-8 text-purple-300 mx-auto mb-2" />
+              <Target className="w-8 h-8 text-purple-600 mx-auto mb-2" />
               <div className="text-2xl font-bold mb-1">{campaigns.length}</div>
-              <div className="text-sm text-white/60">Total Campaigns</div>
+              <div className="text-sm text-gray-600">Total Campaigns</div>
             </CardContent>
           </Card>
-          <Card className="bg-white/10 backdrop-blur-md border border-white/20 text-white">
+          <Card className="bg-white text-gray-900 border border-gray-200 shadow-lg">
             <CardContent className="p-6 text-center">
-              <Play className="w-8 h-8 text-green-400 mx-auto mb-2" />
+              <Play className="w-8 h-8 text-green-600 mx-auto mb-2" />
               <div className="text-2xl font-bold mb-1">{totalActiveCampaigns}</div>
-              <div className="text-sm text-white/60">Active Campaigns</div>
+              <div className="text-sm text-gray-600">Active Campaigns</div>
             </CardContent>
           </Card>
-          <Card className="bg-white/10 backdrop-blur-md border border-white/20 text-white">
+          <Card className="bg-white text-gray-900 border border-gray-200 shadow-lg">
             <CardContent className="p-6 text-center">
-              <Globe className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+              <Globe className="w-8 h-8 text-blue-600 mx-auto mb-2" />
               <div className="text-2xl font-bold mb-1">{totalHitsToday}</div>
-              <div className="text-sm text-white/60">Hits Generated Today</div>
+              <div className="text-sm text-gray-600">Hits Generated Today</div>
             </CardContent>
           </Card>
-          <Card className="bg-white/10 backdrop-blur-md border border-white/20 text-white">
+          <Card className="bg-white text-gray-900 border border-gray-200 shadow-lg">
             <CardContent className="p-6 text-center">
-              <Clock className="w-8 h-8 text-orange-400 mx-auto mb-2" />
+              <Clock className="w-8 h-8 text-orange-600 mx-auto mb-2" />
               <div className="text-2xl font-bold mb-1">{campaigns.filter(c => c.isActive).length > 0 ? 'Running' : 'Idle'}</div>
-              <div className="text-sm text-white/60">System Status</div>
+              <div className="text-sm text-gray-600">System Status</div>
             </CardContent>
           </Card>
         </div>
 
         {/* Campaign Creation */}
-        <Card className="bg-white/10 backdrop-blur-md border border-white/20 text-white mb-8">
+        <Card className="bg-white text-gray-900 border border-gray-200 shadow-lg mb-8">
           <CardHeader>
-            <CardTitle className="flex items-center text-white">
-              <Plus className="w-6 h-6 mr-3 text-purple-300" />
+            <CardTitle className="flex items-center text-gray-900">
+              <Plus className="w-6 h-6 mr-3 text-purple-600" />
               Create New Traffic Campaign
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
               <div>
-                <label className="block text-sm text-white/70 mb-2">Website URL</label>
+                <label className="block text-sm text-gray-700 mb-2">Website URL</label>
                 <Input
                   placeholder="https://example.com"
                   value={newWebsite}
                   onChange={(e) => setNewWebsite(e.target.value)}
-                  className="bg-white/5 border-white/20 text-white placeholder:text-white/40"
+                  className="bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500"
                 />
               </div>
               <div>
-                <label className="block text-sm text-white/70 mb-2">Target Hits</label>
+                <label className="block text-sm text-gray-700 mb-2">Target Hits</label>
                 <Input
                   type="number"
                   min="1"
                   max="10000"
                   value={targetHits}
                   onChange={(e) => setTargetHits(parseInt(e.target.value) || 100)}
-                  className="bg-white/5 border-white/20 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                 />
               </div>
               <div>
-                <label className="block text-sm text-white/70 mb-2">Duration (Hours)</label>
+                <label className="block text-sm text-gray-700 mb-2">Duration (Hours)</label>
                 <Input
                   type="number"
                   min="0.5"
@@ -232,16 +232,16 @@ export default function Dashboard() {
                   step="0.5"
                   value={duration}
                   onChange={(e) => setDuration(parseFloat(e.target.value) || 1)}
-                  className="bg-white/5 border-white/20 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                 />
               </div>
               <div>
-                <label className="block text-sm text-white/70 mb-2">Traffic Type</label>
+                <label className="block text-sm text-gray-700 mb-2">Traffic Type</label>
                 <Select value={hitType} onValueChange={(value) => setHitType(value as any)}>
-                  <SelectTrigger className="bg-white/5 border-white/20 text-white">
+                  <SelectTrigger className="bg-gray-50 border-gray-300 text-gray-900">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-white">
                     <SelectItem value="page-view">Page Views</SelectItem>
                     <SelectItem value="unique-visitor">Unique Visitors</SelectItem>
                     <SelectItem value="click">Clicks</SelectItem>
@@ -262,36 +262,36 @@ export default function Dashboard() {
         </Card>
 
         {/* Campaigns List */}
-        <Card className="bg-white/10 backdrop-blur-md border border-white/20 text-white">
+        <Card className="bg-white text-gray-900 border border-gray-200 shadow-lg">
           <CardHeader>
-            <CardTitle className="flex items-center text-white">
-              <Target className="w-6 h-6 mr-3 text-purple-300" />
+            <CardTitle className="flex items-center text-gray-900">
+              <Target className="w-6 h-6 mr-3 text-purple-600" />
               Active Campaigns
             </CardTitle>
           </CardHeader>
           <CardContent>
             {campaigns.length === 0 ? (
               <div className="text-center py-12">
-                <Globe className="w-16 h-16 text-white/30 mx-auto mb-4" />
-                <p className="text-white/60 text-lg mb-2">No campaigns created yet</p>
-                <p className="text-sm text-white/40">Create your first traffic campaign above to get started</p>
+                <Globe className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <p className="text-gray-600 text-lg mb-2">No campaigns created yet</p>
+                <p className="text-sm text-gray-500">Create your first traffic campaign above to get started</p>
               </div>
             ) : (
               <div className="space-y-4">
                 {campaigns.map((campaign) => (
                   <div
                     key={campaign.id}
-                    className="p-6 bg-white/5 rounded-lg border border-white/10"
+                    className="p-6 bg-gray-50 rounded-lg border border-gray-200"
                   >
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-4">
                         <div className={`w-3 h-3 rounded-full ${campaign.isActive ? 'bg-green-400 animate-pulse' : 'bg-gray-400'}`}></div>
                         <div>
-                          <h3 className="font-semibold text-white">{campaign.website}</h3>
-                          <div className="flex items-center space-x-4 text-sm text-white/60">
+                          <h3 className="font-semibold text-gray-900">{campaign.website}</h3>
+                          <div className="flex items-center space-x-4 text-sm text-gray-600">
                             <span>Target: {campaign.targetHits.toLocaleString()} {campaign.hitType}s</span>
                             <span>Duration: {campaign.duration}h</span>
-                            <Badge className={`${campaign.isActive ? 'bg-green-500/20 text-green-400' : 'bg-gray-500/20 text-gray-400'}`}>
+                            <Badge className={`${campaign.isActive ? 'bg-green-100 text-green-800 border-green-200' : 'bg-gray-100 text-gray-800 border-gray-200'}`}>
                               {campaign.isActive ? 'Active' : 'Inactive'}
                             </Badge>
                           </div>
@@ -340,19 +340,19 @@ export default function Dashboard() {
                     {/* Progress Bar */}
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span className="text-white/70">Progress</span>
-                        <span className="text-white">{campaign.currentHits}/{campaign.targetHits} hits ({Math.round((campaign.currentHits / campaign.targetHits) * 100)}%)</span>
+                        <span className="text-gray-700">Progress</span>
+                        <span className="text-gray-900">{campaign.currentHits}/{campaign.targetHits} hits ({Math.round((campaign.currentHits / campaign.targetHits) * 100)}%)</span>
                       </div>
-                      <div className="w-full bg-white/20 rounded-full h-2">
+                      <div className="w-full bg-gray-200 rounded-full h-2">
                         <div 
-                          className={`h-2 rounded-full transition-all duration-300 ${campaign.isActive ? 'bg-green-400' : 'bg-gray-400'}`}
+                          className={`h-2 rounded-full transition-all duration-300 ${campaign.isActive ? 'bg-green-500' : 'bg-gray-500'}`}
                           style={{ width: `${Math.min((campaign.currentHits / campaign.targetHits) * 100, 100)}%` }}
                         ></div>
                       </div>
                     </div>
 
                     {campaign.isActive && campaign.startTime && (
-                      <div className="mt-3 text-sm text-white/60">
+                      <div className="mt-3 text-sm text-gray-600">
                         Started: {campaign.startTime.toLocaleString()}
                         {campaign.duration && (
                           <span className="ml-4">
