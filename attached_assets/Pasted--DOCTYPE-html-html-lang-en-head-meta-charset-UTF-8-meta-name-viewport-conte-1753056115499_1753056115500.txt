@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adsterra Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: #0d0221;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body class="min-h-screen p-6">
+
+  <header class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-purple-400">Welcome, User</h1>
+    <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded">Logout</button>
+  </header>
+
+  <!-- Quick Stats -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+    <div class="glass p-4 rounded-lg shadow-lg text-center">
+      <h2 class="text-xl font-semibold">Today’s Hits</h2>
+      <p class="text-2xl text-purple-300 font-bold mt-2">1540</p>
+    </div>
+    <div class="glass p-4 rounded-lg shadow-lg text-center">
+      <h2 class="text-xl font-semibold">Top Country</h2>
+      <p class="text-2xl text-purple-300 font-bold mt-2">India</p>
+    </div>
+    <div class="glass p-4 rounded-lg shadow-lg text-center">
+      <h2 class="text-xl font-semibold">Bot Status</h2>
+      <p class="text-2xl text-green-400 font-bold mt-2">Active</p>
+    </div>
+    <div class="glass p-4 rounded-lg shadow-lg text-center">
+      <h2 class="text-xl font-semibold">Ad Loads</h2>
+      <p class="text-2xl text-purple-300 font-bold mt-2">92%</p>
+    </div>
+  </div>
+
+  <!-- URL Manager -->
+  <div class="glass p-6 rounded-lg mb-6">
+    <h2 class="text-2xl font-bold mb-4 text-purple-300">URL Traffic Manager</h2>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <input type="text" placeholder="Enter site URL" class="flex-1 p-2 rounded bg-gray-900 border border-purple-500 text-white" />
+      <button class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded">Add URL</button>
+      <button class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Start</button>
+      <button class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded">Stop</button>
+    </div>
+  </div>
+
+  <!-- Banner Preview -->
+  <div class="glass p-6 rounded-lg mb-6">
+    <h2 class="text-2xl font-bold mb-4 text-purple-300">Banner Preview</h2>
+    <img src="https://source.unsplash.com/random/400x200?violet,tech" class="rounded-lg shadow-md" alt="Banner Image">
+  </div>
+
+  <!-- Live Console -->
+  <div class="glass p-6 rounded-lg mb-6">
+    <h2 class="text-2xl font-bold mb-4 text-purple-300">Bot Console</h2>
+    <div class="bg-black text-green-400 font-mono p-4 h-40 overflow-y-auto rounded">
+      Hit started on https://your-site.com<br>
+      Ad loaded successfully<br>
+      Proxy rotated<br>
+      Waiting 5s before next hit...
+    </div>
+  </div>
+
+  <!-- Premium Panel -->
+  <div class="glass p-6 rounded-lg mb-6">
+    <h2 class="text-2xl font-bold mb-4 text-purple-300">Upgrade to Premium</h2>
+    <p class="mb-3">Unlock features like residential proxies, faster threads, cloaked ad loading and country targeting.</p>
+    <button class="bg-yellow-500 hover:bg-yellow-600 px-6 py-2 rounded text-black font-bold">Upgrade Now</button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-10 text-center text-gray-400 text-sm">
+    © 2025 AutoTrafficPro. All rights reserved.
+  </footer>
+
+</body>
+</html>
