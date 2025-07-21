@@ -1,29 +1,27 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   LogOut, 
   Plus, 
-  Play, 
-  Square,
+  Download,
   Globe,
+  Users,
   Settings,
   BarChart3,
-  Target,
-  Shield,
-  Activity,
-  Clock,
-  Users
+  ExternalLink
 } from "lucide-react";
 
 export default function Dashboard() {
+  const [activeTab, setActiveTab] = useState("dashboard");
   const [websites, setWebsites] = useState<string[]>([]);
   const [newWebsite, setNewWebsite] = useState("");
-  const [isRunning, setIsRunning] = useState(false);
-  const [selectedWebsite, setSelectedWebsite] = useState("");
+  const [hitsAvailable] = useState(1000);
+  const [hitsReceived] = useState(0);
+  const [hitsRequested] = useState(0);
+  const [hitsProvided] = useState(0);
 
   const handleAddWebsite = () => {
     if (newWebsite.trim() && !websites.includes(newWebsite.trim())) {
@@ -34,19 +32,6 @@ export default function Dashboard() {
 
   const handleRemoveWebsite = (website: string) => {
     setWebsites(websites.filter(w => w !== website));
-    if (selectedWebsite === website) {
-      setSelectedWebsite("");
-    }
-  };
-
-  const handleStartTraffic = () => {
-    if (selectedWebsite) {
-      setIsRunning(true);
-    }
-  };
-
-  const handleStopTraffic = () => {
-    setIsRunning(false);
   };
 
   const handleLogout = () => {
@@ -56,162 +41,209 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-800 via-purple-900 to-indigo-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-purple-800 via-purple-900 to-indigo-900">
       {/* Header */}
-      <header className="bg-gradient-to-r from-purple-800/90 to-purple-900/90 backdrop-blur-sm border-b border-purple-700/30">
-        <div className="flex justify-between items-center p-6">
-          <div className="flex items-center space-x-4">
+      <header className="bg-white shadow-sm border-b">
+        <div className="flex justify-between items-center px-6 py-4">
+          <div className="flex items-center space-x-6">
             <img 
               src="https://files.catbox.moe/hlexdm.png" 
               alt="Logo" 
-              className="h-12 w-auto"
+              className="h-8 w-auto"
             />
-            <h1 className="text-2xl font-bold">Traffic Booster Dashboard</h1>
+            <nav className="hidden md:flex space-x-6 text-sm text-gray-600">
+              <a href="#" className="hover:text-purple-600">How it Works?</a>
+              <a href="#" className="hover:text-purple-600">FAQ</a>
+              <a href="#" className="hover:text-purple-600">Menu</a>
+              <a href="#" className="hover:text-purple-600">Pages</a>
+              <a href="#" className="hover:text-purple-600">Legal</a>
+              <a href="#" className="hover:text-purple-600">Media</a>
+              <a href="#" className="hover:text-purple-600">SEO Tools</a>
+            </nav>
           </div>
-          <Button 
-            onClick={handleLogout}
-            variant="outline" 
-            className="border-purple-400 text-purple-200 hover:bg-purple-700"
-          >
-            <LogOut className="mr-2 w-4 h-4" />
-            Logout
-          </Button>
+          <div className="flex items-center space-x-4">
+            <span className="text-sm text-gray-600">Hello, Aritra Mahatma!</span>
+            <Button 
+              onClick={handleLogout}
+              className="bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-2"
+            >
+              SIGN OUT
+            </Button>
+          </div>
         </div>
       </header>
 
-      <div className="p-6 max-w-7xl mx-auto">
-        <Tabs defaultValue="traffic" className="space-y-6">
-          <TabsList className="bg-purple-800/50 border-purple-700">
-            <TabsTrigger value="traffic" className="data-[state=active]:bg-purple-600">
-              <Globe className="mr-2 w-4 h-4" />
-              Traffic Control
-            </TabsTrigger>
-            <TabsTrigger value="websites" className="data-[state=active]:bg-purple-600">
-              <Settings className="mr-2 w-4 h-4" />
-              Website Manager
-            </TabsTrigger>
-            <TabsTrigger value="analytics" className="data-[state=active]:bg-purple-600">
-              <BarChart3 className="mr-2 w-4 h-4" />
-              Analytics
-            </TabsTrigger>
-          </TabsList>
+      {/* Navigation Tabs */}
+      <div className="bg-white border-b">
+        <div className="px-6">
+          <nav className="flex space-x-8">
+            <button 
+              onClick={() => setActiveTab("dashboard")}
+              className={`px-4 py-3 text-sm font-medium border-b-2 ${
+                activeTab === "dashboard" 
+                  ? "border-pink-500 text-pink-600 bg-pink-50" 
+                  : "border-transparent text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              Dashboard
+            </button>
+            <button 
+              onClick={() => setActiveTab("downloads")}
+              className={`px-4 py-3 text-sm font-medium border-b-2 flex items-center space-x-2 ${
+                activeTab === "downloads" 
+                  ? "border-pink-500 text-pink-600 bg-pink-50" 
+                  : "border-transparent text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              <Download className="w-4 h-4" />
+              <span>Download & Earn Hits</span>
+            </button>
+            <button 
+              onClick={() => setActiveTab("websites")}
+              className={`px-4 py-3 text-sm font-medium border-b-2 flex items-center space-x-2 ${
+                activeTab === "websites" 
+                  ? "border-pink-500 text-pink-600 bg-pink-50" 
+                  : "border-transparent text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              <Globe className="w-4 h-4" />
+              <span>Websites</span>
+            </button>
+            <button 
+              onClick={() => setActiveTab("referrals")}
+              className={`px-4 py-3 text-sm font-medium border-b-2 flex items-center space-x-2 ${
+                activeTab === "referrals" 
+                  ? "border-pink-500 text-pink-600 bg-pink-50" 
+                  : "border-transparent text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              <Users className="w-4 h-4" />
+              <span>My Referrals</span>
+            </button>
+            <button 
+              onClick={() => setActiveTab("settings")}
+              className={`px-4 py-3 text-sm font-medium border-b-2 flex items-center space-x-2 ${
+                activeTab === "settings" 
+                  ? "border-pink-500 text-pink-600 bg-pink-50" 
+                  : "border-transparent text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              <Settings className="w-4 h-4" />
+              <span>My Settings</span>
+            </button>
+          </nav>
+        </div>
+      </div>
 
-          {/* Traffic Control Tab */}
-          <TabsContent value="traffic" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Website Selection */}
-              <Card className="bg-white/10 backdrop-blur-md border-purple-500/30">
-                <CardHeader>
-                  <CardTitle className="flex items-center text-purple-200">
-                    <Target className="mr-2 w-5 h-5" />
-                    Select Target Website
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <select 
-                    value={selectedWebsite}
-                    onChange={(e) => setSelectedWebsite(e.target.value)}
-                    className="w-full p-3 rounded-lg bg-purple-900/50 border border-purple-500/50 text-white"
-                  >
-                    <option value="">Choose a website...</option>
-                    {websites.map((website, index) => (
-                      <option key={index} value={website}>{website}</option>
-                    ))}
-                  </select>
-                  
-                  {selectedWebsite && (
-                    <div className="p-4 bg-purple-800/30 rounded-lg border border-purple-500/30">
-                      <p className="text-sm text-purple-300 mb-2">Selected Target:</p>
-                      <p className="font-medium text-white">{selectedWebsite}</p>
+      {/* Content Area */}
+      <div className="px-6 py-6">
+        {/* Donation Banner */}
+        <div className="bg-gray-100 border border-gray-300 rounded-lg p-4 mb-6 flex items-center">
+          <div className="flex-1">
+            <p className="text-sm text-gray-700">
+              <span className="font-medium">Donate us through PayPal or Bitcoin</span> to support our developers, help desk team and cloud services.
+            </p>
+          </div>
+        </div>
+
+        {/* Warning Banner */}
+        <div className="bg-yellow-100 border border-yellow-300 rounded-lg p-4 mb-6">
+          <p className="text-sm text-yellow-800">
+            <span className="font-medium">⚠️ Please add domains or URLs to increase traffic, run our traffic exchange software with a valid token for consistent traffic. </span>
+            <a href="#" className="text-blue-600 hover:underline font-medium">CLICK HERE!</a>
+          </p>
+        </div>
+
+        {activeTab === "dashboard" && (
+          <>
+            {/* Traffic Statistics */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-pink-600 mb-6 flex items-center">
+                <BarChart3 className="mr-2" />
+                Traffic Statistics
+              </h2>
+
+              {/* Video/Image Placeholder */}
+              <div className="bg-black rounded-lg mb-6 relative overflow-hidden">
+                <div className="aspect-video flex items-center justify-center">
+                  <div className="text-white text-center">
+                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <div className="w-8 h-8 bg-white/40 rounded"></div>
                     </div>
-                  )}
-                </CardContent>
-              </Card>
-
-              {/* Traffic Controls */}
-              <Card className="bg-white/10 backdrop-blur-md border-purple-500/30">
-                <CardHeader>
-                  <CardTitle className="flex items-center text-purple-200">
-                    <Activity className="mr-2 w-5 h-5" />
-                    Traffic Controls
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex space-x-4">
-                    <Button 
-                      onClick={handleStartTraffic}
-                      disabled={!selectedWebsite || isRunning}
-                      className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-gray-600"
-                    >
-                      <Play className="mr-2 w-4 h-4" />
-                      Start Traffic
-                    </Button>
-                    <Button 
-                      onClick={handleStopTraffic}
-                      disabled={!isRunning}
-                      variant="destructive"
-                      className="flex-1"
-                    >
-                      <Square className="mr-2 w-4 h-4" />
-                      Stop Traffic
-                    </Button>
+                    <p className="text-lg">Traffic Exchange Preview</p>
                   </div>
-                  
-                  <div className="text-center">
-                    <Badge 
-                      variant={isRunning ? "default" : "secondary"}
-                      className={isRunning ? "bg-green-600" : "bg-gray-600"}
-                    >
-                      Status: {isRunning ? "Running" : "Stopped"}
-                    </Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Live Console */}
-            <Card className="bg-white/10 backdrop-blur-md border-purple-500/30">
-              <CardHeader>
-                <CardTitle className="flex items-center text-purple-200">
-                  <Clock className="mr-2 w-5 h-5" />
-                  Live Activity Console
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-black/80 rounded-lg p-4 h-40 overflow-y-auto font-mono text-sm">
-                  {isRunning && selectedWebsite ? (
-                    <div className="text-green-400 space-y-1">
-                      <div>[{new Date().toLocaleTimeString()}] Traffic generation started for {selectedWebsite}</div>
-                      <div>[{new Date().toLocaleTimeString()}] Initializing traffic bots...</div>
-                      <div>[{new Date().toLocaleTimeString()}] System ready - waiting for traffic requests</div>
-                    </div>
-                  ) : (
-                    <div className="text-gray-400">
-                      Console ready. Select a website and start traffic generation to see live activity.
-                    </div>
-                  )}
                 </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+                <div className="absolute bottom-4 right-4">
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white text-sm">
+                    Shop Now
+                  </Button>
+                </div>
+              </div>
 
-          {/* Website Manager Tab */}
-          <TabsContent value="websites" className="space-y-6">
-            <Card className="bg-white/10 backdrop-blur-md border-purple-500/30">
-              <CardHeader>
-                <CardTitle className="flex items-center text-purple-200">
-                  <Globe className="mr-2 w-5 h-5" />
-                  Website Manager
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex space-x-2">
+              {/* Statistics Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <Card className="text-center">
+                  <CardContent className="p-6">
+                    <div className="text-3xl font-bold text-pink-600 mb-2">
+                      {hitsAvailable.toLocaleString()}
+                      <span className="text-lg ml-1">💎</span>
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Hits Available</h3>
+                    <p className="text-sm text-gray-600">Hits owned by you</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="text-center">
+                  <CardContent className="p-6">
+                    <div className="text-3xl font-bold text-pink-600 mb-2">
+                      {hitsReceived}
+                      <span className="text-lg ml-1">🔥</span>
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Hits Received</h3>
+                    <p className="text-sm text-gray-600">Hits received to your site</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="text-center">
+                  <CardContent className="p-6">
+                    <div className="text-3xl font-bold text-pink-600 mb-2">
+                      {hitsRequested}
+                      <span className="text-lg ml-1">🎯</span>
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Hits Requested</h3>
+                    <p className="text-sm text-gray-600">Hits requested from your sites</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="text-center">
+                  <CardContent className="p-6">
+                    <div className="text-3xl font-bold text-pink-600 mb-2">
+                      {hitsProvided}
+                      <span className="text-lg ml-1">🔗</span>
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Hits Provided</h3>
+                    <p className="text-sm text-gray-600">Hits provided to other sites</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </>
+        )}
+
+        {activeTab === "websites" && (
+          <div className="max-w-4xl">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Website Management</h2>
+            
+            <Card className="mb-6">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Add New Website</h3>
+                <div className="flex space-x-4">
                   <Input
                     type="url"
                     placeholder="Enter website URL (e.g., https://example.com)"
                     value={newWebsite}
                     onChange={(e) => setNewWebsite(e.target.value)}
-                    className="flex-1 bg-purple-900/50 border-purple-500/50 text-white placeholder:text-purple-300"
+                    className="flex-1"
                   />
                   <Button 
                     onClick={handleAddWebsite}
@@ -221,21 +253,32 @@ export default function Dashboard() {
                     Add Website
                   </Button>
                 </div>
+              </CardContent>
+            </Card>
 
-                <div className="space-y-3">
-                  <h3 className="text-lg font-medium text-purple-200">Managed Websites</h3>
-                  {websites.length === 0 ? (
-                    <div className="text-center py-8 text-purple-300">
-                      No websites added yet. Add your first website above.
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      {websites.map((website, index) => (
-                        <div 
-                          key={index}
-                          className="flex items-center justify-between p-3 bg-purple-800/30 rounded-lg border border-purple-500/30"
-                        >
-                          <span className="text-white">{website}</span>
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Your Websites</h3>
+                {websites.length === 0 ? (
+                  <div className="text-center py-8 text-gray-500">
+                    No websites added yet. Add your first website above to start receiving traffic.
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {websites.map((website, index) => (
+                      <div 
+                        key={index}
+                        className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border"
+                      >
+                        <div className="flex items-center space-x-3">
+                          <Globe className="w-5 h-5 text-gray-400" />
+                          <span className="font-medium">{website}</span>
+                          <Badge variant="outline">Active</Badge>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Button variant="outline" size="sm">
+                            <ExternalLink className="w-4 h-4" />
+                          </Button>
                           <Button
                             onClick={() => handleRemoveWebsite(website)}
                             variant="destructive"
@@ -244,87 +287,66 @@ export default function Dashboard() {
                             Remove
                           </Button>
                         </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Analytics Tab */}
-          <TabsContent value="analytics" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="bg-white/10 backdrop-blur-md border-purple-500/30">
-                <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center text-purple-200 text-base">
-                    <Users className="mr-2 w-4 h-4" />
-                    Active Sessions
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold text-white">
-                    {isRunning ? "1" : "0"}
+                      </div>
+                    ))}
                   </div>
-                  <p className="text-sm text-purple-300">Currently running</p>
-                </CardContent>
-              </Card>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
-              <Card className="bg-white/10 backdrop-blur-md border-purple-500/30">
-                <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center text-purple-200 text-base">
-                    <Globe className="mr-2 w-4 h-4" />
-                    Websites
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold text-white">{websites.length}</div>
-                  <p className="text-sm text-purple-300">Total managed</p>
-                </CardContent>
-              </Card>
+        {activeTab === "downloads" && (
+          <div className="max-w-4xl">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Download & Earn Hits</h2>
+            <Card>
+              <CardContent className="p-6">
+                <p className="text-gray-600 mb-4">Download our traffic exchange software to earn more hits for your websites.</p>
+                <Button className="bg-blue-600 hover:bg-blue-700">
+                  <Download className="mr-2 w-4 h-4" />
+                  Download Traffic Exchange
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
-              <Card className="bg-white/10 backdrop-blur-md border-purple-500/30">
-                <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center text-purple-200 text-base">
-                    <Shield className="mr-2 w-4 h-4" />
-                    System Status
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold text-green-400">Online</div>
-                  <p className="text-sm text-purple-300">All systems operational</p>
-                </CardContent>
-              </Card>
-            </div>
-
-            <Card className="bg-white/10 backdrop-blur-md border-purple-500/30">
-              <CardHeader>
-                <CardTitle className="text-purple-200">System Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-purple-300">Current Session</span>
-                  <Badge variant="outline" className="border-purple-400 text-purple-200">
-                    Active
-                  </Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-purple-300">Last Activity</span>
-                  <span className="text-white">{new Date().toLocaleString()}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-purple-300">Traffic Status</span>
-                  <Badge 
-                    variant={isRunning ? "default" : "secondary"}
-                    className={isRunning ? "bg-green-600" : "bg-gray-600"}
-                  >
-                    {isRunning ? "Running" : "Idle"}
-                  </Badge>
+        {activeTab === "referrals" && (
+          <div className="max-w-4xl">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">My Referrals</h2>
+            <Card>
+              <CardContent className="p-6">
+                <p className="text-gray-600 mb-4">Invite friends and earn bonus hits when they join.</p>
+                <div className="text-center py-8 text-gray-500">
+                  No referrals yet. Share your referral link to start earning bonus hits.
                 </div>
               </CardContent>
             </Card>
-          </TabsContent>
-        </Tabs>
+          </div>
+        )}
+
+        {activeTab === "settings" && (
+          <div className="max-w-4xl">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Account Settings</h2>
+            <Card>
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <Input type="email" value="user@example.com" disabled />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                    <Input value="ArirtraMahatma" />
+                  </div>
+                  <Button className="bg-purple-600 hover:bg-purple-700">
+                    Update Settings
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );
