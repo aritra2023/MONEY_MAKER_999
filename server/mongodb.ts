@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-import type { User, InsertUser } from '@shared/schema';
+import type { User, InsertUser, Campaign, InsertCampaign } from '@shared/schema';
 import type { IStorage } from './storage';
 
 // MongoDB User Schema
@@ -10,7 +10,21 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
 }, { timestamps: true });
 
+// MongoDB Campaign Schema
+const campaignSchema = new mongoose.Schema({
+  id: { type: String, required: true, unique: true },
+  userId: { type: String, required: true },
+  website: { type: String, required: true },
+  targetHits: { type: Number, required: true },
+  currentHits: { type: Number, default: 0 },
+  duration: { type: Number, required: true },
+  hitType: { type: String, required: true },
+  isActive: { type: Boolean, default: false },
+  startTime: { type: Date },
+}, { timestamps: true });
+
 const UserModel = mongoose.model('User', userSchema);
+const CampaignModel = mongoose.model('Campaign', campaignSchema);
 
 export class MongoStorage implements IStorage {
   private connected = false;
@@ -131,6 +145,155 @@ export class MongoStorage implements IStorage {
     } catch (error) {
       console.error('Error validating user:', error);
       return null;
+    }
+  }
+
+  // Campaign methods
+  async getCampaign(id: string): Promise<Campaign | undefined> {
+    await this.connect();
+    
+    try {
+      const campaign = await CampaignModel.findOne({ id }).lean();
+      if (!campaign) return undefined;
+      
+      return {
+        id: campaign.id,
+        userId: campaign.userId,
+        website: campaign.website,
+        targetHits: campaign.targetHits,
+        currentHits: campaign.currentHits,
+        duration: campaign.duration,
+        hitType: campaign.hitType,
+        isActive: campaign.isActive,
+        startTime: campaign.startTime,
+        createdAt: campaign.createdAt,
+      } as Campaign;
+    } catch (error) {
+      console.error('Error getting campaign:', error);
+      return undefined;
+    }
+  }
+
+  async getCampaignsByUser(userId: string): Promise<Campaign[]> {
+    await this.connect();
+    
+    try {
+      const campaigns = await CampaignModel.find({ userId }).lean();
+      return campaigns.map(campaign => ({
+        id: campaign.id,
+        userId: campaign.userId,
+        website: campaign.website,
+        targetHits: campaign.targetHits,
+        currentHits: campaign.currentHits,
+        duration: campaign.duration,
+        hitType: campaign.hitType,
+        isActive: campaign.isActive,
+        startTime: campaign.startTime,
+        createdAt: campaign.createdAt,
+      })) as Campaign[];
+    } catch (error) {
+      console.error('Error getting campaigns by user:', error);
+      return [];
+    }
+  }
+
+  async createCampaign(campaignData: InsertCampaign & { id: string; userId: string }): Promise<Campaign> {
+    await this.connect();
+    
+    try {
+      const campaign = new CampaignModel({
+        id: campaignData.id,
+        userId: campaignData.userId,
+        website: campaignData.website,
+        targetHits: campaignData.targetHits,
+        duration: campaignData.duration,
+        hitType: campaignData.hitType,
+        currentHits: 0,
+        isActive: false,
+      });
+      
+      const savedCampaign = await campaign.save();
+      
+      return {
+        id: savedCampaign.id,
+        userId: savedCampaign.userId,
+        website: savedCampaign.website,
+        targetHits: savedCampaign.targetHits,
+        currentHits: savedCampaign.currentHits,
+        duration: savedCampaign.duration,
+        hitType: savedCampaign.hitType,
+        isActive: savedCampaign.isActive,
+        startTime: savedCampaign.startTime,
+        createdAt: savedCampaign.createdAt,
+      } as Campaign;
+    } catch (error) {
+      console.error('Error creating campaign:', error);
+      throw error;
+    }
+  }
+
+  async updateCampaign(id: string, updates: Partial<Campaign>): Promise<Campaign | undefined> {
+    await this.connect();
+    
+    try {
+      const campaign = await CampaignModel.findOneAndUpdate(
+        { id },
+        updates,
+        { new: true }
+      ).lean();
+      
+      if (!campaign) return undefined;
+      
+      return {
+        id: campaign.id,
+        userId: campaign.userId,
+        website: campaign.website,
+        targetHits: campaign.targetHits,
+        currentHits: campaign.currentHits,
+        duration: campaign.duration,
+        hitType: campaign.hitType,
+        isActive: campaign.isActive,
+        startTime: campaign.startTime,
+        createdAt: campaign.createdAt,
+      } as Campaign;
+    } catch (error) {
+      console.error('Error updating campaign:', error);
+      return undefined;
+    }
+  }
+
+  async deleteCampaign(id: string): Promise<boolean> {
+    await this.connect();
+    
+    try {
+      const result = await CampaignModel.deleteOne({ id });
+      return result.deletedCount > 0;
+    } catch (error) {
+      console.error('Error deleting campaign:', error);
+      return false;
+    }
+  }
+
+  async getActiveCampaigns(): Promise<Campaign[]> {
+    await this.connect();
+    
+    try {
+      const campaigns = await CampaignModel.find({ isActive: true }).lean();
+      return campaigns.map(campaign => ({
+        id: campaign.id,
+        userId: campaign.userId,
+        website: campaign.website,
+        targetHits: campaign.targetHits,
+        currentHits: campaign.currentHits,
+        duration: campaign.duration,
+        hitType: campaign.hitType,
+        isActive: campaign.isActive,
+        startTime: campaign.startTime,
+        createdAt: campaign.createdAt,
+      })) as Campaign[];
+    } catch (error) {
+      console.error('Error getting active campaigns:', error);
+      return [];
     }
   }
 }

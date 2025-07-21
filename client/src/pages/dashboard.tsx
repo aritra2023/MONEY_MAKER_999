@@ -38,7 +38,7 @@ interface Campaign {
 }
 
 export default function Dashboard() {
-  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
+  const [campaigns, setCampaigns] = useState<any[]>([]);
   const [newWebsite, setNewWebsite] = useState("");
   const [targetHits, setTargetHits] = useState(100);
   const [duration, setDuration] = useState(1);
@@ -50,68 +50,132 @@ export default function Dashboard() {
     return () => clearInterval(timer);
   }, []);
 
-  // Simulate traffic generation for active campaigns
+  // Load campaigns from backend and auto-refresh
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCampaigns(prev => prev.map(campaign => {
-        if (campaign.isActive && campaign.currentHits < campaign.targetHits) {
-          const timeElapsed = campaign.startTime ? 
-            (new Date().getTime() - campaign.startTime.getTime()) / (1000 * 60 * 60) : 0;
-          
-          if (timeElapsed < campaign.duration) {
-            // Generate hits at a realistic rate
-            const hitsPerSecond = campaign.targetHits / (campaign.duration * 3600);
-            const increment = Math.random() < hitsPerSecond * 5 ? 1 : 0;
-            return { ...campaign, currentHits: Math.min(campaign.currentHits + increment, campaign.targetHits) };
-          } else {
-            // Campaign completed or timed out
-            return { ...campaign, isActive: false };
-          }
-        }
-        return campaign;
-      }));
-    }, 5000);
+    const loadCampaigns = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) return;
 
+        const response = await fetch('/api/campaigns', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setCampaigns(data);
+        }
+      } catch (error) {
+        console.error('Failed to load campaigns:', error);
+      }
+    };
+
+    loadCampaigns();
+    // Auto-refresh every 5 seconds for real-time updates
+    const interval = setInterval(loadCampaigns, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  const handleCreateCampaign = () => {
+  const handleCreateCampaign = async () => {
     if (!newWebsite.trim() || targetHits <= 0 || duration <= 0) return;
 
-    const newCampaign: Campaign = {
-      id: Date.now().toString(),
-      website: newWebsite.trim(),
-      targetHits,
-      duration,
-      hitType,
-      isActive: false,
-      currentHits: 0
-    };
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return;
 
-    setCampaigns([...campaigns, newCampaign]);
-    setNewWebsite("");
-    setTargetHits(100);
-    setDuration(1);
+      const response = await fetch('/api/campaigns', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          website: newWebsite.trim(),
+          targetHits,
+          duration,
+          hitType,
+        }),
+      });
+
+      if (response.ok) {
+        const newCampaign = await response.json();
+        setCampaigns([...campaigns, newCampaign]);
+        setNewWebsite("");
+        setTargetHits(100);
+        setDuration(1);
+        setHitType('page-view');
+      }
+    } catch (error) {
+      console.error('Failed to create campaign:', error);
+    }
   };
 
-  const handleStartCampaign = (campaignId: string) => {
-    setCampaigns(prev => prev.map(campaign => 
-      campaign.id === campaignId 
-        ? { ...campaign, isActive: true, startTime: new Date() }
-        : campaign
-    ));
+  const handleStartCampaign = async (campaignId: string) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      const response = await fetch(`/api/campaigns/${campaignId}/start`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const updatedCampaign = await response.json();
+        setCampaigns(campaigns.map(campaign => 
+          campaign.id === campaignId ? updatedCampaign : campaign
+        ));
+      }
+    } catch (error) {
+      console.error('Failed to start campaign:', error);
+    }
   };
 
-  const handleStopCampaign = (campaignId: string) => {
-    setCampaigns(prev => prev.map(campaign => 
-      campaign.id === campaignId 
-        ? { ...campaign, isActive: false }
-        : campaign
-    ));
+  const handleStopCampaign = async (campaignId: string) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      const response = await fetch(`/api/campaigns/${campaignId}/stop`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const updatedCampaign = await response.json();
+        setCampaigns(campaigns.map(campaign => 
+          campaign.id === campaignId ? updatedCampaign : campaign
+        ));
+      }
+    } catch (error) {
+      console.error('Failed to stop campaign:', error);
+    }
   };
 
-  const handleDeleteCampaign = (campaignId: string) => {
-    setCampaigns(prev => prev.filter(campaign => campaign.id !== campaignId));
+  const handleDeleteCampaign = async (campaignId: string) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      const response = await fetch(`/api/campaigns/${campaignId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        setCampaigns(campaigns.filter(campaign => campaign.id !== campaignId));
+      }
+    } catch (error) {
+      console.error('Failed to delete campaign:', error);
+    }
   };
 
   const handleLogout = () => {

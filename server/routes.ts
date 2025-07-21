@@ -1,11 +1,13 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { mongoStorage } from "./mongodb";
-import { insertUserSchema } from "@shared/schema";
+import { insertUserSchema, insertCampaignSchema } from "@shared/schema";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
+import { TrafficGenerator } from "./traffic-generator";
 
 const JWT_SECRET = process.env.JWT_SECRET || "fallback-secret-key";
+const trafficGenerator = new TrafficGenerator(mongoStorage);
 
 // Login schema
 const loginSchema = z.object({
@@ -100,6 +102,99 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Get user error:", error);
       res.status(500).json({ error: "Failed to get user" });
+    }
+  });
+
+  // Campaign routes
+  app.get("/api/campaigns", authenticateToken, async (req: any, res) => {
+    try {
+      const campaigns = await mongoStorage.getCampaignsByUser(req.userId);
+      res.json(campaigns);
+    } catch (error) {
+      console.error("Get campaigns error:", error);
+      res.status(500).json({ error: "Failed to fetch campaigns" });
+    }
+  });
+
+  app.post("/api/campaigns", authenticateToken, async (req: any, res) => {
+    try {
+      const campaignData = insertCampaignSchema.parse(req.body);
+      const campaignId = `campaign-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+      
+      const campaign = await mongoStorage.createCampaign({
+        ...campaignData,
+        id: campaignId,
+        userId: req.userId,
+      });
+
+      res.status(201).json(campaign);
+    } catch (error) {
+      console.error("Create campaign error:", error);
+      res.status(500).json({ error: "Failed to create campaign" });
+    }
+  });
+
+  app.post("/api/campaigns/:id/start", authenticateToken, async (req: any, res) => {
+    try {
+      const campaign = await mongoStorage.getCampaign(req.params.id);
+      if (!campaign || campaign.userId !== req.userId) {
+        return res.status(404).json({ error: "Campaign not found" });
+      }
+
+      const updatedCampaign = await mongoStorage.updateCampaign(req.params.id, {
+        isActive: true,
+        startTime: new Date(),
+      });
+
+      if (updatedCampaign) {
+        trafficGenerator.startCampaign(req.params.id);
+      }
+
+      res.json(updatedCampaign);
+    } catch (error) {
+      console.error("Start campaign error:", error);
+      res.status(500).json({ error: "Failed to start campaign" });
+    }
+  });
+
+  app.post("/api/campaigns/:id/stop", authenticateToken, async (req: any, res) => {
+    try {
+      const campaign = await mongoStorage.getCampaign(req.params.id);
+      if (!campaign || campaign.userId !== req.userId) {
+        return res.status(404).json({ error: "Campaign not found" });
+      }
+
+      const updatedCampaign = await mongoStorage.updateCampaign(req.params.id, {
+        isActive: false,
+      });
+
+      trafficGenerator.stopCampaign(req.params.id);
+
+      res.json(updatedCampaign);
+    } catch (error) {
+      console.error("Stop campaign error:", error);
+      res.status(500).json({ error: "Failed to stop campaign" });
+    }
+  });
+
+  app.delete("/api/campaigns/:id", authenticateToken, async (req: any, res) => {
+    try {
+      const campaign = await mongoStorage.getCampaign(req.params.id);
+      if (!campaign || campaign.userId !== req.userId) {
+        return res.status(404).json({ error: "Campaign not found" });
+      }
+
+      trafficGenerator.stopCampaign(req.params.id);
+      const deleted = await mongoStorage.deleteCampaign(req.params.id);
+
+      if (deleted) {
+        res.json({ message: "Campaign deleted successfully" });
+      } else {
+        res.status(404).json({ error: "Campaign not found" });
+      }
+    } catch (error) {
+      console.error("Delete campaign error:", error);
+      res.status(500).json({ error: "Failed to delete campaign" });
     }
   });
 
