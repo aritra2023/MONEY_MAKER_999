@@ -24,9 +24,7 @@ import {
   RefreshCw,
   Eye,
   MousePointer,
-  Rocket,
-  ChevronLeft,
-  ChevronRight
+  Rocket
 } from "lucide-react";
 
 interface Campaign {
@@ -157,14 +155,6 @@ export default function Dashboard() {
         <nav className="bg-white/95 backdrop-blur-sm border border-gray-200 shadow-lg rounded-2xl">
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
-              {/* Left Navigation Button */}
-              <Button 
-                className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              >
-                <ChevronLeft className="w-4 h-4 mr-2" />
-                Previous
-              </Button>
-
               {/* Logo - Like pre-login */}
               <div className="flex items-center space-x-3">
                 <Rocket className="w-8 h-8 text-purple-600" />
@@ -200,14 +190,6 @@ export default function Dashboard() {
                   Sign Out
                 </Button>
               </div>
-
-              {/* Right Navigation Button */}
-              <Button 
-                className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              >
-                Next
-                <ChevronRight className="w-4 h-4 ml-2" />
-              </Button>
             </div>
           </div>
         </nav>
