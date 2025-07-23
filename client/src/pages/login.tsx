@@ -230,7 +230,7 @@ export default function LoginPage() {
                     <input
                       type="checkbox"
                       id="remember"
-                      className="w-4 h-4 text-purple-600 bg-gray-800 border-gray-600 rounded focus:ring-purple-500 focus:ring-2"
+                      className="w-4 h-4 bg-gray-800 border-gray-600 rounded focus:ring-purple-400 focus:ring-2 accent-purple-500"
                     />
                     <label htmlFor="remember" className="text-sm text-white">
                       Remember me
