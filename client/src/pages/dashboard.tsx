@@ -189,33 +189,7 @@ export default function Dashboard() {
         </div>
       </nav>
 
-      {/* Dashboard Navigation Tabs - Integrated in main navbar */}
-      <nav className="bg-white border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center space-x-2">
-            <a href="#" className="flex items-center space-x-2 px-4 py-3 bg-purple-600 text-white font-medium text-sm rounded-lg shadow-sm">
-              <BarChart3 className="w-4 h-4" />
-              <span>Dashboard</span>
-            </a>
-            <a href="#" className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-lg">
-              <Download className="w-4 h-4" />
-              <span>Download & Earn Hits</span>
-            </a>
-            <a href="#" className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-lg">
-              <Globe className="w-4 h-4" />
-              <span>Websites</span>
-            </a>
-            <a href="#" className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-lg">
-              <Users className="w-4 h-4" />
-              <span>My Referrals</span>
-            </a>
-            <a href="#" className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-lg">
-              <Settings className="w-4 h-4" />
-              <span>My Settings</span>
-            </a>
-          </div>
-        </div>
-      </nav>
+      
 
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
