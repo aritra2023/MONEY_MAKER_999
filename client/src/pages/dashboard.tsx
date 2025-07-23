@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
 import { 
   LogOut, 
   Plus, 
@@ -165,6 +166,36 @@ export default function Dashboard() {
       }
     } catch (error) {
       console.error('Failed to start campaign:', error);
+    }
+  };
+
+  const handlePauseCampaign = async (campaignId: string) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      const response = await fetch(`/api/campaigns/${campaignId}/stop`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        // Reload campaigns to get updated state
+        const updatedResponse = await fetch('/api/campaigns', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+        
+        if (updatedResponse.ok) {
+          const data = await updatedResponse.json();
+          setCampaigns(data);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to pause campaign:', error);
     }
   };
 
@@ -437,13 +468,13 @@ export default function Dashboard() {
                     <div key={campaign.id} className="bg-gray-50 rounded-xl p-6 space-y-4 border border-gray-200">
                       <div className="flex justify-between items-center">
                         <div className="flex items-center space-x-3">
-                          <div className={`w-3 h-3 rounded-full ${campaign.isActive ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></div>
+                          <div className={`w-3 h-3 rounded-full ${campaign.isActive ? 'bg-violet-500 animate-pulse' : 'bg-gray-400'}`}></div>
                           <span className="font-bold text-gray-800 text-lg">{campaign.website}</span>
-                          <Badge className={`${campaign.isActive ? 'bg-green-500' : 'bg-gray-500'} text-white`}>
-                            {campaign.isActive ? 'LIVE' : 'STOPPED'}
+                          <Badge className={`${campaign.isActive ? 'bg-violet-500' : 'bg-gray-500'} text-white`}>
+                            {campaign.isActive ? 'LIVE' : 'PAUSED'}
                           </Badge>
                         </div>
-                        <div className="flex items-center space-x-3">
+                        <div className="flex items-center justify-between">
                           <Button 
                             size="sm" 
                             variant="outline" 
@@ -453,27 +484,32 @@ export default function Dashboard() {
                             <ExternalLink className="w-4 h-4 mr-2" />
                             Visit
                           </Button>
-                          {campaign.isActive ? (
-                            <Button 
-                              size="sm" 
-                              variant="outline" 
-                              className="border-red-300 text-red-600 hover:bg-red-50 rounded-full px-4 py-2 text-sm font-medium"
-                              onClick={() => handleDeleteCampaign(campaign.id)}
-                            >
-                              <Square className="w-4 h-4 mr-2" />
-                              Stop
-                            </Button>
-                          ) : (
-                            <Button 
-                              size="sm" 
-                              variant="outline" 
-                              className="border-green-300 text-green-600 hover:bg-green-50 rounded-full px-4 py-2 text-sm font-medium"
-                              onClick={() => handleRunCampaign(campaign.id)}
-                            >
-                              <Play className="w-4 h-4 mr-2" />
-                              Run
-                            </Button>
-                          )}
+                          
+                          <div className="flex items-center space-x-3">
+                            <span className="text-sm text-gray-600">
+                              {campaign.isActive ? 'Running' : 'Paused'}
+                            </span>
+                            <Switch
+                              checked={campaign.isActive}
+                              onCheckedChange={(checked) => {
+                                if (checked) {
+                                  handleRunCampaign(campaign.id);
+                                } else {
+                                  handlePauseCampaign(campaign.id);
+                                }
+                              }}
+                              className="data-[state=checked]:bg-violet-600 data-[state=unchecked]:bg-gray-300"
+                            />
+                          </div>
+                          
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="border-violet-300 text-violet-600 hover:bg-violet-50 rounded-full px-3 py-2 text-sm font-medium"
+                            onClick={() => handleDeleteCampaign(campaign.id)}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
                         </div>
                       </div>
                       
