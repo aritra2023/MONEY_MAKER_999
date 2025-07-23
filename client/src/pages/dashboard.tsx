@@ -213,9 +213,8 @@ export default function Dashboard() {
 
 
       {/* Sticky Top Website Navbar with curved container design */}
-      <div className="sticky top-0 z-50 px-8 py-4">
-        <nav className="bg-white/95 backdrop-blur-sm border border-gray-200 shadow-lg rounded-2xl">
-          <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-lg">
+        <nav className="max-w-7xl mx-auto px-8 py-4">
             <div className="flex items-center justify-between">
               {/* Logo - Like pre-login */}
               <div className="flex items-center space-x-3">
@@ -253,7 +252,6 @@ export default function Dashboard() {
                 </Button>
               </div>
             </div>
-          </div>
         </nav>
       </div>
 
@@ -446,7 +444,7 @@ export default function Dashboard() {
         {/* Campaign Control Panel */}
         <div className="mb-12">
           <div className="flex items-center space-x-3 mb-8">
-            <Activity className="w-8 h-8 text-purple-600" />
+            <Settings className="w-8 h-8 text-purple-600" />
             <h2 className="text-3xl font-bold text-gray-800">Campaign Control Panel</h2>
           </div>
           
