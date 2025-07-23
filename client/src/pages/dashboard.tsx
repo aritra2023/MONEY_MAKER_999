@@ -495,10 +495,10 @@ export default function Dashboard() {
                           />
                           
                           <button 
-                            className="text-violet-600 hover:text-violet-800 p-2"
+                            className="text-violet-600 hover:text-violet-800 p-3 hover:bg-violet-50 rounded-full transition-colors"
                             onClick={() => handleDeleteCampaign(campaign.id)}
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-5 h-5" />
                           </button>
                         </div>
                       </div>

@@ -237,17 +237,18 @@ export default function LoginPage() {
                     )}
                   />
                   
-                  {/* Remember Me Toggle Switch */}
-                  <div className="flex items-center justify-between">
+                  {/* Remember Me Checkbox */}
+                  <div className="flex items-center space-x-3">
+                    <input
+                      id="remember"
+                      type="checkbox"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                      className="w-4 h-4 text-purple-600 bg-gray-800 border-gray-600 rounded focus:ring-purple-500 focus:ring-2"
+                    />
                     <label htmlFor="remember" className="text-sm text-white">
                       Remember me
                     </label>
-                    <Switch
-                      id="remember"
-                      checked={rememberMe}
-                      onCheckedChange={setRememberMe}
-                      className="data-[state=checked]:bg-purple-600 data-[state=unchecked]:bg-gray-600"
-                    />
                   </div>
                   
                   <Button
