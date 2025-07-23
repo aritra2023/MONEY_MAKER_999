@@ -120,20 +120,38 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Enhanced Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Floating orbs */}
+        <div className="absolute top-20 left-20 w-32 h-32 bg-purple-400/20 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute top-40 right-32 w-48 h-48 bg-indigo-400/20 rounded-full blur-2xl animate-bounce-slow"></div>
+        <div className="absolute bottom-32 left-32 w-40 h-40 bg-pink-400/20 rounded-full blur-xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 right-20 w-24 h-24 bg-purple-300/30 rounded-full blur-lg animate-bounce-slow" style={{animationDelay: '2s'}}></div>
+        
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
+        
+        {/* Floating particles */}
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/40 rounded-full animate-ping"></div>
+        <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-purple-300/60 rounded-full animate-ping" style={{animationDelay: '1.5s'}}></div>
+        <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-indigo-300/50 rounded-full animate-ping" style={{animationDelay: '2.5s'}}></div>
+        <div className="absolute bottom-1/4 right-1/3 w-1 h-1 bg-pink-300/60 rounded-full animate-ping" style={{animationDelay: '0.5s'}}></div>
+      </div>
+
+      <div className="w-full max-w-md relative z-10">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-20 h-20 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full flex items-center justify-center shadow-xl mx-auto mb-4">
+          <div className="w-20 h-20 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full flex items-center justify-center shadow-2xl mx-auto mb-4 transform hover:scale-110 transition-all duration-300">
             <Rocket className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white">SkyHit</h1>
+          <h1 className="text-3xl font-bold text-white bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">SkyHit</h1>
           <p className="text-purple-200 mt-2">
             {isLogin ? "Welcome back" : "Join us today"}
           </p>
         </div>
 
-        <Card className="bg-gray-900/90 backdrop-blur-md border-gray-700">
+        <Card className="bg-gray-900/90 backdrop-blur-md border-gray-700/50 rounded-3xl shadow-2xl border">
           <CardHeader>
             <CardTitle className="text-white text-center">
               {isLogin ? "Sign In" : "Create Account"}
@@ -155,7 +173,7 @@ export default function LoginPage() {
                             type="email"
                             placeholder="your@email.com"
                             autoComplete="email"
-                            className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 h-12"
+                            className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 h-12 rounded-xl"
                           />
                         </FormControl>
                         <FormMessage />
@@ -175,7 +193,7 @@ export default function LoginPage() {
                               type={showPassword ? "text" : "password"}
                               placeholder="Your password"
                               autoComplete="current-password"
-                              className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 h-12 pr-10"
+                              className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 h-12 pr-10 rounded-xl"
                             />
                             <Button
                               type="button"
@@ -194,7 +212,7 @@ export default function LoginPage() {
                   />
                   <Button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
+                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 rounded-xl h-12 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                     disabled={loginMutation.isPending}
                   >
                     {loginMutation.isPending ? "Signing in..." : "Sign In"}
@@ -211,7 +229,7 @@ export default function LoginPage() {
                       placeholder="Your username"
                       value={signupForm.watch("username") || ""}
                       onChange={(e) => signupForm.setValue("username", e.target.value)}
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20"
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 h-12"
                     />
                   </div>
                   <div>
@@ -221,7 +239,7 @@ export default function LoginPage() {
                       placeholder="your@email.com"
                       value={signupForm.watch("email") || ""}
                       onChange={(e) => signupForm.setValue("email", e.target.value)}
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20"
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 h-12"
                     />
                   </div>
                   <div>
@@ -232,7 +250,7 @@ export default function LoginPage() {
                         placeholder="Choose a strong password"
                         value={signupForm.watch("password") || ""}
                         onChange={(e) => signupForm.setValue("password", e.target.value)}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 pr-12"
+                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 pr-12 h-12"
                       />
                       <button
                         type="button"
@@ -258,7 +276,7 @@ export default function LoginPage() {
                       }
                       signupMutation.mutate(values);
                     }}
-                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 py-3"
+                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 py-3 rounded-xl h-12 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                     disabled={signupMutation.isPending}
                   >
                     {signupMutation.isPending ? "Creating account..." : "Create Account"}
