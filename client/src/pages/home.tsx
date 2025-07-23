@@ -67,12 +67,11 @@ export default function Home() {
         } bg-gradient-to-r from-purple-800/90 to-purple-900/90 backdrop-blur-sm`}
       >
         <div className="flex justify-between items-center p-6 px-4 md:px-10">
-          <div className="animate-fade-in">
-            <img 
-              src="https://files.catbox.moe/hlexdm.png" 
-              alt="Logo" 
-              className="h-12 md:h-14 w-auto"
-            />
+          <div className="animate-fade-in flex items-center space-x-2">
+            <Rocket className="w-8 h-8 text-white" />
+            <span className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+              SkyHit
+            </span>
           </div>
           
           {/* Desktop Navigation */}
