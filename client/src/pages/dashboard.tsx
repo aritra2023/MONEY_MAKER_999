@@ -147,7 +147,7 @@ export default function Dashboard() {
   const totalHitsToday = campaigns.reduce((sum, c) => sum + c.currentHits, 0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 relative overflow-hidden">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Large floating orbs */}
@@ -228,74 +228,74 @@ export default function Dashboard() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="bg-white/20 backdrop-blur-xl border-white/30 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+            <Card className="bg-white border-gray-200 hover:shadow-2xl transition-all duration-300 rounded-2xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-white">✨ {totalHitsToday.toLocaleString()}</div>
-                    <div className="text-white/70 font-medium">Hits Available</div>
+                    <div className="text-3xl font-bold text-purple-600">✨ {totalHitsToday.toLocaleString()}</div>
+                    <div className="text-gray-600 font-medium">Hits Available</div>
                   </div>
-                  <Zap className="w-12 h-12 text-yellow-400" />
+                  <Zap className="w-12 h-12 text-yellow-500" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/20 backdrop-blur-xl border-white/30 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+            <Card className="bg-white border-gray-200 hover:shadow-2xl transition-all duration-300 rounded-2xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-white">📩 {campaigns.reduce((sum, c) => sum + c.currentHits, 0).toLocaleString()}</div>
-                    <div className="text-white/70 font-medium">Hits Received</div>
+                    <div className="text-3xl font-bold text-purple-600">📩 {campaigns.reduce((sum, c) => sum + c.currentHits, 0).toLocaleString()}</div>
+                    <div className="text-gray-600 font-medium">Hits Received</div>
                   </div>
-                  <Download className="w-12 h-12 text-green-400" />
+                  <Download className="w-12 h-12 text-green-500" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/20 backdrop-blur-xl border-white/30 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+            <Card className="bg-white border-gray-200 hover:shadow-2xl transition-all duration-300 rounded-2xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-white">🌐 {campaigns.length}</div>
-                    <div className="text-white/70 font-medium">No. of Domains</div>
+                    <div className="text-3xl font-bold text-purple-600">🌐 {campaigns.length}</div>
+                    <div className="text-gray-600 font-medium">No. of Domains</div>
                   </div>
-                  <Globe className="w-12 h-12 text-blue-400" />
+                  <Globe className="w-12 h-12 text-blue-500" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/20 backdrop-blur-xl border-white/30 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+            <Card className="bg-white border-gray-200 hover:shadow-2xl transition-all duration-300 rounded-2xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-white">🔗 {campaigns.length * 2}</div>
-                    <div className="text-white/70 font-medium">No. of Links</div>
+                    <div className="text-3xl font-bold text-purple-600">🔗 {campaigns.length * 2}</div>
+                    <div className="text-gray-600 font-medium">No. of Links</div>
                   </div>
-                  <ExternalLink className="w-12 h-12 text-purple-400" />
+                  <ExternalLink className="w-12 h-12 text-purple-500" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/20 backdrop-blur-xl border-white/30 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+            <Card className="bg-white border-gray-200 hover:shadow-2xl transition-all duration-300 rounded-2xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-white">👥 12</div>
-                    <div className="text-white/70 font-medium">Referrals</div>
+                    <div className="text-3xl font-bold text-purple-600">👥 12</div>
+                    <div className="text-gray-600 font-medium">Referrals</div>
                   </div>
-                  <Users className="w-12 h-12 text-pink-400" />
+                  <Users className="w-12 h-12 text-pink-500" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/20 backdrop-blur-xl border-white/30 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+            <Card className="bg-white border-gray-200 hover:shadow-2xl transition-all duration-300 rounded-2xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-white">🔁 {totalActiveCampaigns}</div>
-                    <div className="text-white/70 font-medium">Active Sessions</div>
+                    <div className="text-3xl font-bold text-purple-600">🔁 {totalActiveCampaigns}</div>
+                    <div className="text-gray-600 font-medium">Active Sessions</div>
                   </div>
-                  <RefreshCw className="w-12 h-12 text-cyan-400" />
+                  <RefreshCw className="w-12 h-12 text-cyan-500" />
                 </div>
               </CardContent>
             </Card>
@@ -309,40 +309,40 @@ export default function Dashboard() {
             <h2 className="text-3xl font-bold text-white font-['Poppins']">Campaign Launch Center</h2>
           </div>
           
-          <Card className="bg-white/20 backdrop-blur-xl border-white/30 rounded-2xl">
+          <Card className="bg-white border-gray-200 rounded-2xl shadow-lg">
             <CardContent className="p-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-white font-medium mb-2">Target Website</label>
+                    <label className="block text-gray-700 font-medium mb-2">Target Website</label>
                     <Input
                       value={newWebsite}
                       onChange={(e) => setNewWebsite(e.target.value)}
                       placeholder="Enter your website URL..."
-                      className="bg-white/10 border-white/30 text-white placeholder:text-white/50 rounded-xl"
+                      className="bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 rounded-xl focus:border-purple-500 focus:ring-purple-500"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-white font-medium mb-2">Target Volume: {targetHits} hits</label>
+                    <label className="block text-gray-700 font-medium mb-2">Target Volume: {targetHits} hits</label>
                     <input
                       type="range"
                       min="1"
                       max="10000"
                       value={targetHits}
                       onChange={(e) => setTargetHits(Number(e.target.value))}
-                      className="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer slider"
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider accent-purple-600"
                     />
-                    <div className="flex justify-between text-white/70 text-sm mt-1">
+                    <div className="flex justify-between text-gray-500 text-sm mt-1">
                       <span>1</span>
                       <span>10,000</span>
                     </div>
                   </div>
                   
                   <div>
-                    <label className="block text-white font-medium mb-2">Duration</label>
+                    <label className="block text-gray-700 font-medium mb-2">Duration</label>
                     <Select value={duration.toString()} onValueChange={(value) => setDuration(Number(value))}>
-                      <SelectTrigger className="bg-white/10 border-white/30 text-white rounded-xl">
+                      <SelectTrigger className="bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:border-purple-500 focus:ring-purple-500">
                         <SelectValue placeholder="Select duration" />
                       </SelectTrigger>
                       <SelectContent>
@@ -357,9 +357,9 @@ export default function Dashboard() {
                   </div>
                   
                   <div>
-                    <label className="block text-white font-medium mb-2">Traffic Quality</label>
+                    <label className="block text-gray-700 font-medium mb-2">Traffic Quality</label>
                     <Select value={hitType} onValueChange={(value: any) => setHitType(value)}>
-                      <SelectTrigger className="bg-white/10 border-white/30 text-white rounded-xl">
+                      <SelectTrigger className="bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:border-purple-500 focus:ring-purple-500">
                         <SelectValue placeholder="Select traffic type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -373,8 +373,8 @@ export default function Dashboard() {
                 
                 <div className="flex flex-col justify-center items-center space-y-6">
                   <div className="text-center">
-                    <h3 className="text-2xl font-bold text-white mb-2">Ready to Launch?</h3>
-                    <p className="text-white/70">Start driving quality traffic to your website</p>
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Ready to Launch?</h3>
+                    <p className="text-gray-600">Start driving quality traffic to your website</p>
                   </div>
                   
                   <Button
@@ -386,13 +386,13 @@ export default function Dashboard() {
                     Launch Campaign
                   </Button>
                   
-                  <div className="flex items-center space-x-4 text-white/60 text-sm">
+                  <div className="flex items-center space-x-4 text-gray-500 text-sm">
                     <div className="flex items-center space-x-1">
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span>Instant Start</span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                       <span>Real-time Analytics</span>
                     </div>
                   </div>
@@ -409,26 +409,26 @@ export default function Dashboard() {
             <h2 className="text-3xl font-bold text-white font-['Poppins']">Campaign Control Panel</h2>
           </div>
           
-          <Card className="bg-white/20 backdrop-blur-xl border-white/30 rounded-2xl">
+          <Card className="bg-white border-gray-200 rounded-2xl shadow-lg">
             <CardContent className="p-8">
               {campaigns.length === 0 ? (
                 <div className="text-center py-16">
-                  <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Target className="w-12 h-12 text-white/70" />
+                  <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Target className="w-12 h-12 text-gray-400" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">No campaigns running</h3>
-                  <p className="text-white/70 max-w-md mx-auto">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">No campaigns running</h3>
+                  <p className="text-gray-600 max-w-md mx-auto">
                     Launch your first traffic campaign to start driving visitors to your website.
                   </p>
                 </div>
               ) : (
                 <div className="space-y-6">
                   {campaigns.map((campaign) => (
-                    <div key={campaign.id} className="bg-white/10 rounded-xl p-6 space-y-4 border border-white/20">
+                    <div key={campaign.id} className="bg-gray-50 rounded-xl p-6 space-y-4 border border-gray-200">
                       <div className="flex justify-between items-center">
                         <div className="flex items-center space-x-3">
-                          <div className={`w-3 h-3 rounded-full ${campaign.isActive ? 'bg-green-400 animate-pulse' : 'bg-red-400'}`}></div>
-                          <span className="font-bold text-white text-lg">{campaign.website}</span>
+                          <div className={`w-3 h-3 rounded-full ${campaign.isActive ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></div>
+                          <span className="font-bold text-gray-800 text-lg">{campaign.website}</span>
                           <Badge className={`${campaign.isActive ? 'bg-green-500' : 'bg-gray-500'} text-white`}>
                             {campaign.isActive ? 'LIVE' : 'STOPPED'}
                           </Badge>
@@ -437,7 +437,7 @@ export default function Dashboard() {
                           <Button 
                             size="sm" 
                             variant="outline" 
-                            className="border-white/30 text-white hover:bg-white/10"
+                            className="border-gray-300 text-gray-700 hover:bg-gray-100"
                             onClick={() => window.open(campaign.website, '_blank')}
                           >
                             <ExternalLink className="w-4 h-4 mr-2" />
@@ -446,7 +446,7 @@ export default function Dashboard() {
                           <Button 
                             size="sm" 
                             variant="outline" 
-                            className="border-red-300 text-red-300 hover:bg-red-500/20"
+                            className="border-red-300 text-red-600 hover:bg-red-50"
                             onClick={() => handleDeleteCampaign(campaign.id)}
                           >
                             <Trash2 className="w-4 h-4 mr-2" />
@@ -457,24 +457,24 @@ export default function Dashboard() {
                       
                       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                         <div className="text-center">
-                          <div className="text-2xl font-bold text-white">{campaign.currentHits.toLocaleString()}</div>
-                          <div className="text-white/70 text-sm">Hits Received</div>
+                          <div className="text-2xl font-bold text-purple-600">{campaign.currentHits.toLocaleString()}</div>
+                          <div className="text-gray-600 text-sm">Hits Received</div>
                         </div>
                         <div className="text-center">
-                          <div className="text-2xl font-bold text-white">{campaign.targetHits.toLocaleString()}</div>
-                          <div className="text-white/70 text-sm">Target Hits</div>
+                          <div className="text-2xl font-bold text-purple-600">{campaign.targetHits.toLocaleString()}</div>
+                          <div className="text-gray-600 text-sm">Target Hits</div>
                         </div>
                         <div className="text-center">
-                          <div className="text-2xl font-bold text-white">{Math.round((campaign.currentHits / campaign.targetHits) * 100)}%</div>
-                          <div className="text-white/70 text-sm">Progress</div>
+                          <div className="text-2xl font-bold text-purple-600">{Math.round((campaign.currentHits / campaign.targetHits) * 100)}%</div>
+                          <div className="text-gray-600 text-sm">Progress</div>
                         </div>
                       </div>
                       
-                      <div className="w-full bg-white/20 rounded-full h-3">
+                      <div className="w-full bg-gray-200 rounded-full h-3">
                         <div 
                           className={`h-3 rounded-full transition-all duration-500 ${
                             campaign.isActive 
-                              ? 'bg-gradient-to-r from-green-400 to-blue-400 animate-pulse' 
+                              ? 'bg-gradient-to-r from-green-500 to-blue-500 animate-pulse' 
                               : 'bg-gradient-to-r from-gray-400 to-gray-500'
                           }`}
                           style={{ width: `${Math.min((campaign.currentHits / campaign.targetHits) * 100, 100)}%` }}
@@ -482,7 +482,7 @@ export default function Dashboard() {
                       </div>
 
                       {campaign.isActive && campaign.startTime && (
-                        <div className="flex justify-between text-sm text-white/70">
+                        <div className="flex justify-between text-sm text-gray-600">
                           <span>Started: {campaign.startTime ? new Date(campaign.startTime).toLocaleTimeString() : 'Not started'}</span>
                           {campaign.duration && (
                             <span>
