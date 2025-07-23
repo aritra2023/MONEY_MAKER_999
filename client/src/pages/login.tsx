@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { Rocket, Eye, EyeOff } from "lucide-react";
+import { Rocket, Eye, EyeOff, Mail, User, Lock, Sparkles, ArrowRight, Shield, Zap } from "lucide-react";
 import { useLocation } from "wouter";
 
 const loginSchema = z.object({
@@ -120,165 +120,260 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="w-20 h-20 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full flex items-center justify-center shadow-xl mx-auto mb-4">
-            <Rocket className="w-10 h-10 text-white" />
-          </div>
-          <h1 className="text-3xl font-bold text-white">SkyHit</h1>
-          <p className="text-purple-200 mt-2">
-            {isLogin ? "Welcome back" : "Join us today"}
-          </p>
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-600 opacity-20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-600 opacity-15 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-400 opacity-10 rounded-full blur-2xl animate-bounce-slow"></div>
+      </div>
 
-        <Card className="bg-gray-900/90 backdrop-blur-md border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-white text-center">
-              {isLogin ? "Sign In" : "Create Account"}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {isLogin ? (
-              <Form {...loginForm}>
-                <form onSubmit={loginForm.handleSubmit(onLoginSubmit)} className="space-y-4">
-                  <FormField
-                    control={loginForm.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">Email</FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            type="email"
-                            placeholder="your@email.com"
-                            autoComplete="email"
-                            className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 h-12"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={loginForm.control}
-                    name="password"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">Password</FormLabel>
-                        <FormControl>
-                          <div className="relative">
+      <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+        <div className="w-full max-w-lg">
+          {/* Logo */}
+          <div className="text-center mb-12 animate-fade-in">
+            <div className="relative w-24 h-24 mx-auto mb-6">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full animate-spin-slow"></div>
+              <div className="absolute inset-2 bg-gradient-to-br from-purple-900 to-purple-800 rounded-full flex items-center justify-center">
+                <Rocket className="w-8 h-8 text-white" />
+              </div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full opacity-30 blur-sm animate-pulse"></div>
+            </div>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-white via-purple-100 to-purple-200 bg-clip-text text-transparent mb-2">
+              SkyHit
+            </h1>
+            <p className="text-purple-200 text-lg font-medium">
+              {isLogin ? "Welcome back to the future" : "Join the rocket ship to success"}
+            </p>
+          </div>
+
+          <Card className="bg-black/40 backdrop-blur-xl border-purple-800/50 shadow-2xl rounded-3xl overflow-hidden animate-slide-up">
+            {/* Header with gradient */}
+            <div className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 p-6 border-b border-purple-800/30">
+              <CardTitle className="text-white text-center text-2xl font-bold flex items-center justify-center gap-2">
+                {isLogin ? (
+                  <>
+                    <Lock className="w-6 h-6 text-purple-400" />
+                    Sign In
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-6 h-6 text-purple-400" />
+                    Create Account
+                  </>
+                )}
+              </CardTitle>
+              <p className="text-purple-200 text-center mt-2 text-sm">
+                {isLogin ? "Access your control center" : "Start your journey with us"}
+              </p>
+            </div>
+            
+            <CardContent className="p-8 space-y-6">
+              {isLogin ? (
+                <Form {...loginForm}>
+                  <form onSubmit={loginForm.handleSubmit(onLoginSubmit)} className="space-y-6">
+                    <FormField
+                      control={loginForm.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem className="space-y-3">
+                          <FormLabel className="text-white font-medium flex items-center gap-2">
+                            <Mail className="w-4 h-4 text-purple-400" />
+                            Email Address
+                          </FormLabel>
+                          <FormControl>
                             <Input
                               {...field}
-                              type={showPassword ? "text" : "password"}
-                              placeholder="Your password"
-                              autoComplete="current-password"
-                              className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 h-12 pr-10"
+                              type="email"
+                              placeholder="your@email.com"
+                              autoComplete="email"
+                              className="bg-black/20 border-purple-700/50 text-white placeholder:text-purple-300/60 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 h-14 rounded-xl backdrop-blur-sm transition-all duration-300 hover:bg-black/30"
                             />
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="sm"
-                              className="absolute right-0 top-0 h-full px-3 text-white/60 hover:text-white"
-                              onClick={() => setShowPassword(!showPassword)}
-                            >
-                              {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                            </Button>
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
-                    disabled={loginMutation.isPending}
-                  >
-                    {loginMutation.isPending ? "Signing in..." : "Sign In"}
-                  </Button>
-                </form>
-              </Form>
-            ) : (
-              <div>
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-white text-sm font-medium mb-2">Username</label>
+                          </FormControl>
+                          <FormMessage className="text-red-400" />
+                        </FormItem>
+                      )}
+                    />
+                    
+                    <FormField
+                      control={loginForm.control}
+                      name="password"
+                      render={({ field }) => (
+                        <FormItem className="space-y-3">
+                          <FormLabel className="text-white font-medium flex items-center gap-2">
+                            <Lock className="w-4 h-4 text-purple-400" />
+                            Password
+                          </FormLabel>
+                          <FormControl>
+                            <div className="relative">
+                              <Input
+                                {...field}
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Enter your password"
+                                autoComplete="current-password"
+                                className="bg-black/20 border-purple-700/50 text-white placeholder:text-purple-300/60 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 h-14 rounded-xl backdrop-blur-sm transition-all duration-300 hover:bg-black/30 pr-12"
+                              />
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                className="absolute right-0 top-0 h-full px-4 text-purple-400 hover:text-white hover:bg-transparent"
+                                onClick={() => setShowPassword(!showPassword)}
+                              >
+                                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                              </Button>
+                            </div>
+                          </FormControl>
+                          <FormMessage className="text-red-400" />
+                        </FormItem>
+                      )}
+                    />
+
+                    <div className="pt-4">
+                      <Button
+                        type="submit"
+                        className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600 hover:from-purple-700 hover:via-purple-800 hover:to-blue-700 text-white font-semibold py-4 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl shadow-purple-500/25 flex items-center justify-center gap-2"
+                        disabled={loginMutation.isPending}
+                      >
+                        {loginMutation.isPending ? (
+                          <>
+                            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                            Signing in...
+                          </>
+                        ) : (
+                          <>
+                            <ArrowRight className="w-5 h-5" />
+                            Sign In
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </form>
+                </Form>
+              ) : (
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <label className="text-white font-medium flex items-center gap-2">
+                      <User className="w-4 h-4 text-purple-400" />
+                      Username
+                    </label>
                     <input
                       type="text"
-                      placeholder="Your username"
+                      placeholder="Choose a unique username"
                       value={signupForm.watch("username") || ""}
                       onChange={(e) => signupForm.setValue("username", e.target.value)}
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20"
+                      className="w-full px-4 py-4 bg-black/20 border border-purple-700/50 rounded-xl text-white placeholder:text-purple-300/60 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 backdrop-blur-sm transition-all duration-300 hover:bg-black/30"
                     />
                   </div>
-                  <div>
-                    <label className="block text-white text-sm font-medium mb-2">Email</label>
+                  
+                  <div className="space-y-3">
+                    <label className="text-white font-medium flex items-center gap-2">
+                      <Mail className="w-4 h-4 text-purple-400" />
+                      Email Address
+                    </label>
                     <input
                       type="email"
                       placeholder="your@email.com"
                       value={signupForm.watch("email") || ""}
                       onChange={(e) => signupForm.setValue("email", e.target.value)}
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20"
+                      className="w-full px-4 py-4 bg-black/20 border border-purple-700/50 rounded-xl text-white placeholder:text-purple-300/60 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 backdrop-blur-sm transition-all duration-300 hover:bg-black/30"
                     />
                   </div>
-                  <div>
-                    <label className="block text-white text-sm font-medium mb-2">Password</label>
+                  
+                  <div className="space-y-3">
+                    <label className="text-white font-medium flex items-center gap-2">
+                      <Lock className="w-4 h-4 text-purple-400" />
+                      Password
+                    </label>
                     <div className="relative">
                       <input
                         type={showPassword ? "text" : "password"}
-                        placeholder="Choose a strong password"
+                        placeholder="Create a strong password"
                         value={signupForm.watch("password") || ""}
                         onChange={(e) => signupForm.setValue("password", e.target.value)}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 pr-12"
+                        className="w-full px-4 py-4 bg-black/20 border border-purple-700/50 rounded-xl text-white placeholder:text-purple-300/60 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 backdrop-blur-sm transition-all duration-300 hover:bg-black/30 pr-12"
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-purple-400 hover:text-white transition-colors"
                       >
                         {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                       </button>
                     </div>
                   </div>
-                  <Button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const values = {
-                        username: signupForm.watch("username") || "",
-                        email: signupForm.watch("email") || "",
-                        password: signupForm.watch("password") || ""
-                      };
-                      console.log("Form values:", values);
-                      if (!values.username || !values.email || !values.password) {
-                        alert("Please fill all fields");
-                        return;
-                      }
-                      signupMutation.mutate(values);
-                    }}
-                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 py-3"
-                    disabled={signupMutation.isPending}
-                  >
-                    {signupMutation.isPending ? "Creating account..." : "Create Account"}
-                  </Button>
+
+                  <div className="pt-4">
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const values = {
+                          username: signupForm.watch("username") || "",
+                          email: signupForm.watch("email") || "",
+                          password: signupForm.watch("password") || ""
+                        };
+                        if (!values.username || !values.email || !values.password) {
+                          toast({
+                            title: "Missing Information",
+                            description: "Please fill in all fields",
+                            variant: "destructive",
+                          });
+                          return;
+                        }
+                        signupMutation.mutate(values);
+                      }}
+                      className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600 hover:from-purple-700 hover:via-purple-800 hover:to-blue-700 text-white font-semibold py-4 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl shadow-purple-500/25 flex items-center justify-center gap-2"
+                      disabled={signupMutation.isPending}
+                    >
+                      {signupMutation.isPending ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          Creating account...
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="w-5 h-5" />
+                          Create Account
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {/* Security badges */}
+              <div className="flex items-center justify-center space-x-6 pt-4 border-t border-purple-800/30">
+                <div className="flex items-center gap-2 text-purple-300 text-sm">
+                  <Shield className="w-4 h-4" />
+                  Secure
+                </div>
+                <div className="flex items-center gap-2 text-purple-300 text-sm">
+                  <Zap className="w-4 h-4" />
+                  Fast
+                </div>
+                <div className="flex items-center gap-2 text-purple-300 text-sm">
+                  <Rocket className="w-4 h-4" />
+                  Modern
                 </div>
               </div>
-            )}
 
-            <div className="text-center">
-              <button
-                onClick={() => setIsLogin(!isLogin)}
-                className="text-purple-200 hover:text-white transition-colors"
-              >
-                {isLogin
-                  ? "Don't have an account? Sign up"
-                  : "Already have an account? Sign in"}
-              </button>
-            </div>
-          </CardContent>
-        </Card>
+              {/* Toggle between login and signup */}
+              <div className="text-center pt-4">
+                <button
+                  onClick={() => setIsLogin(!isLogin)}
+                  className="text-purple-200 hover:text-white transition-all duration-300 font-medium relative group"
+                >
+                  <span className="relative z-10">
+                    {isLogin
+                      ? "Don't have an account? Sign up"
+                      : "Already have an account? Sign in"}
+                  </span>
+                  <div className="absolute inset-0 bg-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 -m-2"></div>
+                </button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
