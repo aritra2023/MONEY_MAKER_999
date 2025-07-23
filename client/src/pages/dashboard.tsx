@@ -220,7 +220,7 @@ export default function Dashboard() {
               {/* Logo - Like pre-login */}
               <div className="flex items-center space-x-3">
                 <Rocket className="w-8 h-8 text-purple-600" />
-                <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                <span className="text-2xl font-bold text-violet-600">
                   SkyHit
                 </span>
               </div>
@@ -471,7 +471,7 @@ export default function Dashboard() {
                           <div className={`w-3 h-3 rounded-full ${campaign.isActive ? 'bg-violet-500 animate-pulse' : 'bg-gray-400'}`}></div>
                           <span className="font-bold text-gray-800 text-lg">{campaign.website}</span>
                         </div>
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-4">
                           <Button 
                             size="sm" 
                             variant="outline" 
@@ -482,28 +482,24 @@ export default function Dashboard() {
                             Visit
                           </Button>
                           
-                          <div className="flex items-center space-x-3">
-                            <Switch
-                              checked={campaign.isActive}
-                              onCheckedChange={(checked) => {
-                                if (checked) {
-                                  handleRunCampaign(campaign.id);
-                                } else {
-                                  handlePauseCampaign(campaign.id);
-                                }
-                              }}
-                              className="data-[state=checked]:bg-violet-600 data-[state=unchecked]:bg-gray-300"
-                            />
-                          </div>
+                          <Switch
+                            checked={campaign.isActive}
+                            onCheckedChange={(checked) => {
+                              if (checked) {
+                                handleRunCampaign(campaign.id);
+                              } else {
+                                handlePauseCampaign(campaign.id);
+                              }
+                            }}
+                            className="data-[state=checked]:bg-violet-600 data-[state=unchecked]:bg-gray-300"
+                          />
                           
-                          <Button 
-                            size="sm" 
-                            variant="outline" 
-                            className="border-violet-300 text-violet-600 hover:bg-violet-50 rounded-full px-3 py-2 text-sm font-medium"
+                          <button 
+                            className="text-violet-600 hover:text-violet-800 p-2"
                             onClick={() => handleDeleteCampaign(campaign.id)}
                           >
                             <Trash2 className="w-4 h-4" />
-                          </Button>
+                          </button>
                         </div>
                       </div>
                       
