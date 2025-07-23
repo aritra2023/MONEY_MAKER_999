@@ -195,35 +195,7 @@ export default function Dashboard() {
         </nav>
       </div>
 
-      {/* Dashboard Navigation Tabs with curved container design */}
-      <div className="sticky top-24 z-40 px-8 py-2">
-        <nav className="bg-white/95 backdrop-blur-sm border border-gray-200 shadow-lg rounded-2xl">
-          <div className="max-w-7xl mx-auto px-6 py-3">
-            <div className="flex items-center space-x-3">
-              <a href="#" className="flex items-center space-x-2 px-4 py-2 bg-purple-600 text-white font-medium text-sm rounded-lg shadow-sm">
-                <BarChart3 className="w-4 h-4" />
-                <span>Dashboard</span>
-              </a>
-              <a href="#" className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-lg">
-                <Download className="w-4 h-4" />
-                <span>Download & Earn Hits</span>
-              </a>
-              <a href="#" className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-lg">
-                <Globe className="w-4 h-4" />
-                <span>Websites</span>
-              </a>
-              <a href="#" className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-lg">
-                <Users className="w-4 h-4" />
-                <span>My Referrals</span>
-              </a>
-              <a href="#" className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-lg">
-                <Settings className="w-4 h-4" />
-                <span>My Settings</span>
-              </a>
-            </div>
-          </div>
-        </nav>
-      </div>
+      
 
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
