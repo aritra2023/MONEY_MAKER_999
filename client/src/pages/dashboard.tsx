@@ -138,6 +138,36 @@ export default function Dashboard() {
     }
   };
 
+  const handleRunCampaign = async (campaignId: string) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      const response = await fetch(`/api/campaigns/${campaignId}/start`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        // Reload campaigns to get updated state
+        const updatedResponse = await fetch('/api/campaigns', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+        
+        if (updatedResponse.ok) {
+          const data = await updatedResponse.json();
+          setCampaigns(data);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to start campaign:', error);
+    }
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -438,7 +468,7 @@ export default function Dashboard() {
                               size="sm" 
                               variant="outline" 
                               className="border-green-300 text-green-600 hover:bg-green-50 rounded-full px-4 py-2 text-sm font-medium"
-                              onClick={() => {/* Add run functionality here */}}
+                              onClick={() => handleRunCampaign(campaign.id)}
                             >
                               <Play className="w-4 h-4 mr-2" />
                               Run
@@ -467,7 +497,7 @@ export default function Dashboard() {
                           className={`h-3 rounded-full transition-all duration-500 ${
                             campaign.isActive 
                               ? 'bg-gradient-to-r from-violet-500 to-purple-600 animate-pulse' 
-                              : 'bg-gradient-to-r from-gray-400 to-gray-500'
+                              : 'bg-gradient-to-r from-violet-400 to-purple-500'
                           }`}
                           style={{ width: `${Math.min((campaign.currentHits / campaign.targetHits) * 100, 100)}%` }}
                         ></div>

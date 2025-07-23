@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { Rocket, Eye, EyeOff } from "lucide-react";
 import { useLocation } from "wouter";
@@ -236,18 +237,17 @@ export default function LoginPage() {
                     )}
                   />
                   
-                  {/* Remember Me Checkbox */}
-                  <div className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      id="remember"
-                      checked={rememberMe}
-                      onChange={(e) => setRememberMe(e.target.checked)}
-                      className="w-4 h-4 bg-gray-800 border-gray-600 rounded focus:ring-purple-400 focus:ring-2 accent-purple-500"
-                    />
+                  {/* Remember Me Toggle Switch */}
+                  <div className="flex items-center justify-between">
                     <label htmlFor="remember" className="text-sm text-white">
                       Remember me
                     </label>
+                    <Switch
+                      id="remember"
+                      checked={rememberMe}
+                      onCheckedChange={setRememberMe}
+                      className="data-[state=checked]:bg-purple-600 data-[state=unchecked]:bg-gray-600"
+                    />
                   </div>
                   
                   <Button
