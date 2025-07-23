@@ -59,7 +59,34 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-purple-800 via-purple-900 to-indigo-900 text-white min-h-screen font-poppins">
+    <div className="bg-gradient-to-br from-purple-800 via-purple-900 to-indigo-900 text-white min-h-screen font-poppins relative overflow-hidden">
+      {/* Enhanced Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Large floating orbs */}
+        <div className="absolute top-32 left-20 w-64 h-64 bg-purple-400/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-64 right-32 w-80 h-80 bg-indigo-400/10 rounded-full blur-3xl animate-bounce-slow"></div>
+        <div className="absolute bottom-64 left-64 w-72 h-72 bg-pink-400/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-32 right-48 w-56 h-56 bg-purple-300/15 rounded-full blur-2xl animate-bounce-slow" style={{animationDelay: '2s'}}></div>
+        
+        {/* Medium orbs */}
+        <div className="absolute top-96 left-1/3 w-40 h-40 bg-violet-400/8 rounded-full blur-xl animate-pulse" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute top-20 right-1/4 w-32 h-32 bg-indigo-300/12 rounded-full blur-lg animate-bounce-slow" style={{animationDelay: '1.5s'}}></div>
+        
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDYwIDAgTCAwIDAgMCA2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
+        
+        {/* Floating particles */}
+        <div className="absolute top-1/4 left-1/6 w-3 h-3 bg-white/30 rounded-full animate-ping"></div>
+        <div className="absolute top-1/3 right-1/5 w-2 h-2 bg-purple-300/40 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-2/3 left-1/4 w-2.5 h-2.5 bg-indigo-300/35 rounded-full animate-ping" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-1/3 right-1/6 w-2 h-2 bg-pink-300/40 rounded-full animate-ping" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute top-1/2 left-1/2 w-1.5 h-1.5 bg-violet-300/45 rounded-full animate-ping" style={{animationDelay: '1.5s'}}></div>
+        <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-white/25 rounded-full animate-ping" style={{animationDelay: '2.5s'}}></div>
+        
+        {/* Subtle light rays */}
+        <div className="absolute top-0 left-1/4 w-px h-64 bg-gradient-to-b from-white/20 to-transparent rotate-12 animate-pulse"></div>
+        <div className="absolute top-0 right-1/3 w-px h-48 bg-gradient-to-b from-purple-300/20 to-transparent -rotate-12 animate-pulse" style={{animationDelay: '1s'}}></div>
+      </div>
       {/* Navigation */}
       <nav 
         className={`fixed top-0 w-full z-50 transition-transform duration-300 ${
