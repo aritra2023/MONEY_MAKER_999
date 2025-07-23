@@ -25,14 +25,15 @@ const signupSchema = z.object({
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const { toast } = useToast();
   const [, setLocation] = useLocation();
 
   const loginForm = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: localStorage.getItem("rememberedEmail") || "",
+      password: localStorage.getItem("rememberedPassword") || "",
     },
   });
 
@@ -63,6 +64,16 @@ export default function LoginPage() {
     onSuccess: (data) => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
+      
+      // Handle Remember Me functionality
+      if (rememberMe) {
+        localStorage.setItem("rememberedEmail", loginForm.getValues("email"));
+        localStorage.setItem("rememberedPassword", loginForm.getValues("password"));
+      } else {
+        localStorage.removeItem("rememberedEmail");
+        localStorage.removeItem("rememberedPassword");
+      }
+      
       toast({
         title: "Login successful!",
         description: "Welcome back to SkyHit.",
@@ -230,6 +241,8 @@ export default function LoginPage() {
                     <input
                       type="checkbox"
                       id="remember"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
                       className="w-4 h-4 bg-gray-800 border-gray-600 rounded focus:ring-purple-400 focus:ring-2 accent-purple-500"
                     />
                     <label htmlFor="remember" className="text-sm text-white">
