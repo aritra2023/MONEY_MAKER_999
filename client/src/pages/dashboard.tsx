@@ -23,7 +23,8 @@ import {
   BarChart3,
   RefreshCw,
   Eye,
-  MousePointer
+  MousePointer,
+  Rocket
 } from "lucide-react";
 
 interface Campaign {
@@ -101,60 +102,16 @@ export default function Dashboard() {
 
       if (response.ok) {
         const newCampaign = await response.json();
-        setCampaigns([...campaigns, newCampaign]);
+        setCampaigns(prev => [...prev, newCampaign]);
         setNewWebsite("");
         setTargetHits(100);
         setDuration(1);
         setHitType('page-view');
+      } else {
+        console.error('Failed to create campaign');
       }
     } catch (error) {
       console.error('Failed to create campaign:', error);
-    }
-  };
-
-  const handleStartCampaign = async (campaignId: string) => {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
-      const response = await fetch(`/api/campaigns/${campaignId}/start`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const updatedCampaign = await response.json();
-        setCampaigns(campaigns.map(campaign => 
-          campaign.id === campaignId ? updatedCampaign : campaign
-        ));
-      }
-    } catch (error) {
-      console.error('Failed to start campaign:', error);
-    }
-  };
-
-  const handleStopCampaign = async (campaignId: string) => {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
-      const response = await fetch(`/api/campaigns/${campaignId}/stop`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const updatedCampaign = await response.json();
-        setCampaigns(campaigns.map(campaign => 
-          campaign.id === campaignId ? updatedCampaign : campaign
-        ));
-      }
-    } catch (error) {
-      console.error('Failed to stop campaign:', error);
     }
   };
 
@@ -171,7 +128,9 @@ export default function Dashboard() {
       });
 
       if (response.ok) {
-        setCampaigns(campaigns.filter(campaign => campaign.id !== campaignId));
+        setCampaigns(prev => prev.filter(c => c.id !== campaignId));
+      } else {
+        console.error('Failed to delete campaign');
       }
     } catch (error) {
       console.error('Failed to delete campaign:', error);
@@ -216,6 +175,7 @@ export default function Dashboard() {
         <div className="absolute top-0 left-1/4 w-px h-64 bg-gradient-to-b from-white/20 to-transparent rotate-12 animate-pulse"></div>
         <div className="absolute top-0 right-1/3 w-px h-48 bg-gradient-to-b from-purple-300/20 to-transparent -rotate-12 animate-pulse" style={{animationDelay: '1s'}}></div>
       </div>
+
       {/* Modern SkyHit Navbar */}
       <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/10 border-b border-white/20 shadow-lg">
         <div className="max-w-7xl mx-auto px-6 py-4">
@@ -259,306 +219,262 @@ export default function Dashboard() {
       </nav>
 
       {/* Main Content */}
-      <div className="relative z-10 px-8 py-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center space-x-3 px-6 py-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-6">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-white/90 font-medium">System Online</span>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
+        {/* Traffic Statistics Section */}
+        <div className="mb-12">
+          <div className="flex items-center space-x-3 mb-8">
+            <TrendingUp className="w-8 h-8 text-white" />
+            <h2 className="text-3xl font-bold text-white font-['Poppins']">Traffic Statistics</h2>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Professional Traffic 
-            <span className="block bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              Exchange Platform
-            </span>
-          </h1>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-            Advanced campaign management system with real-time analytics, 
-            precise targeting controls, and automated traffic distribution
-          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="bg-white/20 backdrop-blur-xl border-white/30 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-3xl font-bold text-white">✨ {totalHitsToday.toLocaleString()}</div>
+                    <div className="text-white/70 font-medium">Hits Available</div>
+                  </div>
+                  <Zap className="w-12 h-12 text-yellow-400" />
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/20 backdrop-blur-xl border-white/30 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-3xl font-bold text-white">📩 {campaigns.reduce((sum, c) => sum + c.currentHits, 0).toLocaleString()}</div>
+                    <div className="text-white/70 font-medium">Hits Received</div>
+                  </div>
+                  <Download className="w-12 h-12 text-green-400" />
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/20 backdrop-blur-xl border-white/30 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-3xl font-bold text-white">🌐 {campaigns.length}</div>
+                    <div className="text-white/70 font-medium">No. of Domains</div>
+                  </div>
+                  <Globe className="w-12 h-12 text-blue-400" />
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/20 backdrop-blur-xl border-white/30 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-3xl font-bold text-white">🔗 {campaigns.length * 2}</div>
+                    <div className="text-white/70 font-medium">No. of Links</div>
+                  </div>
+                  <ExternalLink className="w-12 h-12 text-purple-400" />
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/20 backdrop-blur-xl border-white/30 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-3xl font-bold text-white">👥 12</div>
+                    <div className="text-white/70 font-medium">Referrals</div>
+                  </div>
+                  <Users className="w-12 h-12 text-pink-400" />
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/20 backdrop-blur-xl border-white/30 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-3xl font-bold text-white">🔁 {totalActiveCampaigns}</div>
+                    <div className="text-white/70 font-medium">Active Sessions</div>
+                  </div>
+                  <RefreshCw className="w-12 h-12 text-cyan-400" />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          <Card className="bg-white/95 backdrop-blur-xl text-gray-900 border-0 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1">
+        {/* Campaign Launch Center */}
+        <div className="mb-12">
+          <div className="flex items-center space-x-3 mb-8">
+            <Target className="w-8 h-8 text-white" />
+            <h2 className="text-3xl font-bold text-white font-['Poppins']">Campaign Launch Center</h2>
+          </div>
+          
+          <Card className="bg-white/20 backdrop-blur-xl border-white/30 rounded-2xl">
             <CardContent className="p-8">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                  <Target className="w-6 h-6 text-white" />
-                </div>
-                <div className="text-right">
-                  <div className="text-3xl font-bold text-gray-900 mb-1">{campaigns.length}</div>
-                  <div className="text-sm text-gray-500 uppercase tracking-wider">Total Campaigns</div>
-                </div>
-              </div>
-              <div className="h-2 bg-gray-100 rounded-full">
-                <div className="h-2 bg-gradient-to-r from-purple-400 to-purple-500 rounded-full" style={{ width: `${Math.min((campaigns.length / 10) * 100, 100)}%` }}></div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/95 backdrop-blur-xl text-gray-900 border-0 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1">
-            <CardContent className="p-8">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
-                  <Activity className="w-6 h-6 text-white" />
-                </div>
-                <div className="text-right">
-                  <div className="text-3xl font-bold text-gray-900 mb-1">{totalActiveCampaigns}</div>
-                  <div className="text-sm text-gray-500 uppercase tracking-wider">Active Now</div>
-                </div>
-              </div>
-              <div className="h-2 bg-gray-100 rounded-full">
-                <div className="h-2 bg-gradient-to-r from-green-400 to-green-500 rounded-full" style={{ width: `${campaigns.length > 0 ? (totalActiveCampaigns / campaigns.length) * 100 : 0}%` }}></div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/95 backdrop-blur-xl text-gray-900 border-0 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1">
-            <CardContent className="p-8">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                  <Eye className="w-6 h-6 text-white" />
-                </div>
-                <div className="text-right">
-                  <div className="text-3xl font-bold text-gray-900 mb-1">{totalHitsToday.toLocaleString()}</div>
-                  <div className="text-sm text-gray-500 uppercase tracking-wider">Total Hits</div>
-                </div>
-              </div>
-              <div className="h-2 bg-gray-100 rounded-full">
-                <div className="h-2 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full" style={{ width: `${Math.min((totalHitsToday / 1000) * 100, 100)}%` }}></div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/95 backdrop-blur-xl text-gray-900 border-0 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1">
-            <CardContent className="p-8">
-              <div className="flex items-center justify-between mb-4">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-lg ${totalActiveCampaigns > 0 ? 'bg-gradient-to-br from-orange-500 to-orange-600' : 'bg-gradient-to-br from-gray-400 to-gray-500'}`}>
-                  {totalActiveCampaigns > 0 ? <RefreshCw className="w-6 h-6 text-white animate-spin" /> : <Clock className="w-6 h-6 text-white" />}
-                </div>
-                <div className="text-right">
-                  <div className="text-3xl font-bold text-gray-900 mb-1">{totalActiveCampaigns > 0 ? 'LIVE' : 'IDLE'}</div>
-                  <div className="text-sm text-gray-500 uppercase tracking-wider">System Status</div>
-                </div>
-              </div>
-              <div className="h-2 bg-gray-100 rounded-full">
-                <div className={`h-2 rounded-full ${totalActiveCampaigns > 0 ? 'bg-gradient-to-r from-orange-400 to-orange-500 animate-pulse' : 'bg-gradient-to-r from-gray-300 to-gray-400'}`} style={{ width: totalActiveCampaigns > 0 ? '100%' : '0%' }}></div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Campaign Creation */}
-        <Card className="bg-white/95 backdrop-blur-xl text-gray-900 border-0 shadow-2xl mb-12">
-          <CardHeader className="pb-6">
-            <CardTitle className="flex items-center text-gray-900 text-2xl">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-xl flex items-center justify-center mr-4 shadow-lg">
-                <Plus className="w-5 h-5 text-white" />
-              </div>
-              Campaign Launch Center
-              <Badge className="ml-auto bg-gradient-to-r from-purple-100 to-blue-100 text-purple-700 border-purple-200">
-                Professional
-              </Badge>
-            </CardTitle>
-            <p className="text-gray-600 mt-2">Configure your traffic campaign with precision targeting and advanced controls</p>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-              <div className="space-y-3">
-                <label className="block text-sm font-semibold text-gray-700 uppercase tracking-wider">Target Website</label>
-                <div className="relative">
-                  <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <Input
-                    placeholder="https://example.com"
-                    value={newWebsite}
-                    onChange={(e) => setNewWebsite(e.target.value)}
-                    className="pl-11 h-12 bg-gradient-to-r from-gray-50 to-gray-100 border-gray-200 text-gray-900 placeholder:text-gray-500 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  />
-                </div>
-              </div>
-              <div className="space-y-3">
-                <label className="block text-sm font-semibold text-gray-700 uppercase tracking-wider">Target Volume</label>
-                <div className="relative">
-                  <Target className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <Input
-                    type="number"
-                    min="1"
-                    max="10000"
-                    value={targetHits}
-                    onChange={(e) => setTargetHits(parseInt(e.target.value) || 100)}
-                    className="pl-11 h-12 bg-gradient-to-r from-gray-50 to-gray-100 border-gray-200 text-gray-900 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  />
-                </div>
-                <p className="text-xs text-gray-500">1 - 10,000 hits</p>
-              </div>
-              <div className="space-y-3">
-                <label className="block text-sm font-semibold text-gray-700 uppercase tracking-wider">Campaign Duration</label>
-                <div className="relative">
-                  <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <Input
-                    type="number"
-                    min="0.5"
-                    max="24"
-                    step="0.5"
-                    value={duration}
-                    onChange={(e) => setDuration(parseFloat(e.target.value) || 1)}
-                    className="pl-11 h-12 bg-gradient-to-r from-gray-50 to-gray-100 border-gray-200 text-gray-900 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  />
-                </div>
-                <p className="text-xs text-gray-500">0.5 - 24 hours</p>
-              </div>
-              <div className="space-y-3">
-                <label className="block text-sm font-semibold text-gray-700 uppercase tracking-wider">Traffic Quality</label>
-                <div className="relative">
-                  <MousePointer className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 z-10" />
-                  <Select value={hitType} onValueChange={(value) => setHitType(value as any)}>
-                    <SelectTrigger className="pl-11 h-12 bg-gradient-to-r from-gray-50 to-gray-100 border-gray-200 text-gray-900 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white rounded-xl shadow-2xl border-0">
-                      <SelectItem value="page-view" className="rounded-lg">📄 Page Views</SelectItem>
-                      <SelectItem value="unique-visitor" className="rounded-lg">👤 Unique Visitors</SelectItem>
-                      <SelectItem value="click" className="rounded-lg">🖱️ Direct Clicks</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <p className="text-xs text-gray-500">Select traffic type</p>
-              </div>
-              <div className="flex flex-col justify-end space-y-3">
-                <Button
-                  onClick={handleCreateCampaign}
-                  className="h-12 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-                  disabled={!newWebsite.trim() || targetHits <= 0 || duration <= 0}
-                >
-                  <Zap className="w-5 h-5 mr-2" />
-                  Launch Campaign
-                </Button>
-                <p className="text-xs text-gray-500 text-center">Deploy instantly</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Campaigns List */}
-        <Card className="bg-white/95 backdrop-blur-xl text-gray-900 border-0 shadow-2xl">
-          <CardHeader className="pb-6">
-            <div className="flex items-center justify-between">
-              <CardTitle className="flex items-center text-gray-900 text-2xl">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-blue-500 rounded-xl flex items-center justify-center mr-4 shadow-lg">
-                  <Activity className="w-5 h-5 text-white" />
-                </div>
-                Campaign Control Center
-              </CardTitle>
-              <div className="flex items-center space-x-3">
-                <Badge className={`px-3 py-1 ${totalActiveCampaigns > 0 ? 'bg-green-100 text-green-800 border-green-200' : 'bg-gray-100 text-gray-600 border-gray-200'}`}>
-                  {totalActiveCampaigns} Active
-                </Badge>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-purple-200 text-purple-600 hover:bg-purple-50"
-                >
-                  <RefreshCw className="w-4 h-4 mr-2" />
-                  Refresh
-                </Button>
-              </div>
-            </div>
-            <p className="text-gray-600 mt-2">Monitor and manage your traffic campaigns with real-time analytics</p>
-          </CardHeader>
-          <CardContent>
-            {campaigns.length === 0 ? (
-              <div className="text-center py-12">
-                <Globe className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 text-lg mb-2">No campaigns created yet</p>
-                <p className="text-sm text-gray-500">Create your first traffic campaign above to get started</p>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                {campaigns.map((campaign) => (
-                  <div
-                    key={campaign.id}
-                    className="p-8 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
-                  >
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="flex items-center space-x-5">
-                        <div className={`w-4 h-4 rounded-full shadow-lg ${campaign.isActive ? 'bg-green-500 animate-pulse shadow-green-200' : 'bg-gray-400'}`}></div>
-                        <div>
-                          <h3 className="font-bold text-xl text-gray-900 mb-2">{campaign.website}</h3>
-                          <div className="flex items-center space-x-6 text-sm text-gray-600">
-                            <div className="flex items-center space-x-2">
-                              <Target className="w-4 h-4 text-purple-500" />
-                              <span className="font-medium">{campaign.targetHits.toLocaleString()} {campaign.hitType}s</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <Clock className="w-4 h-4 text-blue-500" />
-                              <span className="font-medium">{campaign.duration}h</span>
-                            </div>
-                            <Badge className={`px-3 py-1 font-semibold ${campaign.isActive ? 'bg-green-100 text-green-800 border-green-200' : 'bg-gray-100 text-gray-800 border-gray-200'}`}>
-                              {campaign.isActive ? '🟢 LIVE' : '⚫ STOPPED'}
-                            </Badge>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Button
-                          onClick={() => window.open(campaign.website, '_blank')}
-                          variant="outline"
-                          size="sm"
-                          className="border-blue-200 text-blue-600 hover:bg-blue-50 px-4 py-2"
-                        >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Visit
-                        </Button>
-                        {campaign.isActive ? (
-                          <Button
-                            onClick={() => handleStopCampaign(campaign.id)}
-                            className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-2 shadow-lg"
-                            size="sm"
-                          >
-                            <Pause className="w-4 h-4 mr-2" />
-                            Stop Campaign
-                          </Button>
-                        ) : (
-                          <Button
-                            onClick={() => handleStartCampaign(campaign.id)}
-                            className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-2 shadow-lg"
-                            size="sm"
-                            disabled={campaign.currentHits >= campaign.targetHits}
-                          >
-                            <Play className="w-4 h-4 mr-2" />
-                            Start Campaign
-                          </Button>
-                        )}
-                        <Button
-                          onClick={() => handleDeleteCampaign(campaign.id)}
-                          variant="outline"
-                          size="sm"
-                          className="border-red-200 text-red-600 hover:bg-red-50 px-3 py-2"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-white font-medium mb-2">Target Website</label>
+                    <Input
+                      value={newWebsite}
+                      onChange={(e) => setNewWebsite(e.target.value)}
+                      placeholder="Enter your website URL..."
+                      className="bg-white/10 border-white/30 text-white placeholder:text-white/50 rounded-xl"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-white font-medium mb-2">Target Volume: {targetHits} hits</label>
+                    <input
+                      type="range"
+                      min="1"
+                      max="10000"
+                      value={targetHits}
+                      onChange={(e) => setTargetHits(Number(e.target.value))}
+                      className="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer slider"
+                    />
+                    <div className="flex justify-between text-white/70 text-sm mt-1">
+                      <span>1</span>
+                      <span>10,000</span>
                     </div>
-                    
-                    {/* Progress Section */}
-                    <div className="bg-gray-50 rounded-xl p-6 space-y-4">
+                  </div>
+                  
+                  <div>
+                    <label className="block text-white font-medium mb-2">Duration</label>
+                    <Select value={duration.toString()} onValueChange={(value) => setDuration(Number(value))}>
+                      <SelectTrigger className="bg-white/10 border-white/30 text-white rounded-xl">
+                        <SelectValue placeholder="Select duration" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="0.5">30 minutes</SelectItem>
+                        <SelectItem value="1">1 hour</SelectItem>
+                        <SelectItem value="2">2 hours</SelectItem>
+                        <SelectItem value="6">6 hours</SelectItem>
+                        <SelectItem value="12">12 hours</SelectItem>
+                        <SelectItem value="24">24 hours</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-white font-medium mb-2">Traffic Quality</label>
+                    <Select value={hitType} onValueChange={(value: any) => setHitType(value)}>
+                      <SelectTrigger className="bg-white/10 border-white/30 text-white rounded-xl">
+                        <SelectValue placeholder="Select traffic type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="page-view">Page Views</SelectItem>
+                        <SelectItem value="click">Clicks</SelectItem>
+                        <SelectItem value="unique-visitor">Unique Visitors</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col justify-center items-center space-y-6">
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-white mb-2">Ready to Launch?</h3>
+                    <p className="text-white/70">Start driving quality traffic to your website</p>
+                  </div>
+                  
+                  <Button
+                    onClick={handleCreateCampaign}
+                    disabled={!newWebsite.trim() || targetHits <= 0 || duration <= 0}
+                    className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-12 py-4 rounded-full text-lg font-bold shadow-2xl hover:shadow-pink-500/25 transition-all duration-300 transform hover:scale-105"
+                  >
+                    <Zap className="w-6 h-6 mr-3" />
+                    Launch Campaign
+                  </Button>
+                  
+                  <div className="flex items-center space-x-4 text-white/60 text-sm">
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                      <span>Instant Start</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                      <span>Real-time Analytics</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Campaign Control Panel */}
+        <div className="mb-12">
+          <div className="flex items-center space-x-3 mb-8">
+            <Activity className="w-8 h-8 text-white" />
+            <h2 className="text-3xl font-bold text-white font-['Poppins']">Campaign Control Panel</h2>
+          </div>
+          
+          <Card className="bg-white/20 backdrop-blur-xl border-white/30 rounded-2xl">
+            <CardContent className="p-8">
+              {campaigns.length === 0 ? (
+                <div className="text-center py-16">
+                  <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Target className="w-12 h-12 text-white/70" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">No campaigns running</h3>
+                  <p className="text-white/70 max-w-md mx-auto">
+                    Launch your first traffic campaign to start driving visitors to your website.
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {campaigns.map((campaign) => (
+                    <div key={campaign.id} className="bg-white/10 rounded-xl p-6 space-y-4 border border-white/20">
                       <div className="flex justify-between items-center">
                         <div className="flex items-center space-x-3">
-                          <Activity className="w-5 h-5 text-purple-500" />
-                          <span className="font-semibold text-gray-800">Campaign Progress</span>
+                          <div className={`w-3 h-3 rounded-full ${campaign.isActive ? 'bg-green-400 animate-pulse' : 'bg-red-400'}`}></div>
+                          <span className="font-bold text-white text-lg">{campaign.website}</span>
+                          <Badge className={`${campaign.isActive ? 'bg-green-500' : 'bg-gray-500'} text-white`}>
+                            {campaign.isActive ? 'LIVE' : 'STOPPED'}
+                          </Badge>
                         </div>
-                        <div className="text-right">
-                          <div className="text-2xl font-bold text-gray-900">{Math.round((campaign.currentHits / campaign.targetHits) * 100)}%</div>
-                          <div className="text-sm text-gray-600">{campaign.currentHits.toLocaleString()}/{campaign.targetHits.toLocaleString()} hits</div>
+                        <div className="flex items-center space-x-3">
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="border-white/30 text-white hover:bg-white/10"
+                            onClick={() => window.open(campaign.website, '_blank')}
+                          >
+                            <ExternalLink className="w-4 h-4 mr-2" />
+                            Visit
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="border-red-300 text-red-300 hover:bg-red-500/20"
+                            onClick={() => handleDeleteCampaign(campaign.id)}
+                          >
+                            <Trash2 className="w-4 h-4 mr-2" />
+                            Stop
+                          </Button>
                         </div>
                       </div>
                       
-                      <div className="w-full bg-gray-300 rounded-full h-4 shadow-inner">
+                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-white">{campaign.currentHits.toLocaleString()}</div>
+                          <div className="text-white/70 text-sm">Hits Received</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-white">{campaign.targetHits.toLocaleString()}</div>
+                          <div className="text-white/70 text-sm">Target Hits</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-white">{Math.round((campaign.currentHits / campaign.targetHits) * 100)}%</div>
+                          <div className="text-white/70 text-sm">Progress</div>
+                        </div>
+                      </div>
+                      
+                      <div className="w-full bg-white/20 rounded-full h-3">
                         <div 
-                          className={`h-4 rounded-full transition-all duration-500 shadow-lg ${
+                          className={`h-3 rounded-full transition-all duration-500 ${
                             campaign.isActive 
-                              ? 'bg-gradient-to-r from-green-400 to-green-500 animate-pulse' 
+                              ? 'bg-gradient-to-r from-green-400 to-blue-400 animate-pulse' 
                               : 'bg-gradient-to-r from-gray-400 to-gray-500'
                           }`}
                           style={{ width: `${Math.min((campaign.currentHits / campaign.targetHits) * 100, 100)}%` }}
@@ -566,34 +482,32 @@ export default function Dashboard() {
                       </div>
 
                       {campaign.isActive && campaign.startTime && (
-                        <div className="grid grid-cols-2 gap-4 text-sm">
-                          <div className="flex items-center space-x-2 text-blue-600">
-                            <Clock className="w-4 h-4" />
-                            <span>Started: {campaign.startTime ? new Date(campaign.startTime).toLocaleTimeString() : 'Not started'}</span>
-                          </div>
+                        <div className="flex justify-between text-sm text-white/70">
+                          <span>Started: {campaign.startTime ? new Date(campaign.startTime).toLocaleTimeString() : 'Not started'}</span>
                           {campaign.duration && (
-                            <div className="flex items-center space-x-2 text-orange-600">
-                              <Target className="w-4 h-4" />
-                              <span>
-                                Remaining: {campaign.startTime ? Math.max(0, campaign.duration - ((new Date().getTime() - new Date(campaign.startTime).getTime()) / (1000 * 60 * 60))).toFixed(1) : campaign.duration}h
-                              </span>
-                            </div>
+                            <span>
+                              Remaining: {campaign.startTime ? Math.max(0, campaign.duration - ((new Date().getTime() - new Date(campaign.startTime).getTime()) / (1000 * 60 * 60))).toFixed(1) : campaign.duration}h
+                            </span>
                           )}
                         </div>
                       )}
-
-                      {!campaign.isActive && campaign.currentHits > 0 && (
-                        <div className="text-center py-2 bg-blue-50 rounded-lg border border-blue-200">
-                          <span className="text-blue-700 font-medium">Campaign Completed</span>
-                        </div>
-                      )}
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </CardContent>
-        </Card>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Footer */}
+        <footer className="text-center py-8 border-t border-white/20">
+          <div className="flex items-center justify-center space-x-8 mb-4">
+            <a href="#" className="text-white/70 hover:text-white transition-colors">Twitter</a>
+            <a href="#" className="text-white/70 hover:text-white transition-colors">Telegram</a>
+            <a href="#" className="text-white/70 hover:text-white transition-colors">GitHub</a>
+          </div>
+          <p className="text-white/60 text-sm">© 2025 SkyHit - Built on Replit</p>
+        </footer>
       </div>
     </div>
   );
