@@ -176,41 +176,43 @@ export default function Dashboard() {
         <div className="absolute top-0 right-1/3 w-px h-48 bg-gradient-to-b from-purple-300/20 to-transparent -rotate-12 animate-pulse" style={{animationDelay: '1s'}}></div>
       </div>
 
-      {/* Modern SkyHit Navbar */}
-      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/10 border-b border-white/20 shadow-lg">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+      {/* Transparent Navbar */}
+      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <Rocket className="w-8 h-8 text-white" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent font-['Poppins']">
+              <Rocket className="w-7 h-7 text-purple-600" />
+              <span className="text-xl font-bold text-gray-800">
                 SkyHit
               </span>
             </div>
 
             {/* Navigation Links */}
-            <div className="hidden lg:flex items-center space-x-8">
-              <a href="#" className="flex items-center space-x-2 px-4 py-2 rounded-full bg-white/20 text-white font-medium backdrop-blur-sm border border-white/30">
+            <div className="hidden lg:flex items-center space-x-6">
+              <a href="#" className="flex items-center space-x-2 px-3 py-1.5 rounded-md bg-purple-600 text-white font-medium text-sm">
                 <BarChart3 className="w-4 h-4" />
                 <span>Dashboard</span>
               </a>
-              <a href="#" className="text-white/80 hover:text-white transition-all duration-300 font-medium">Download & Earn Hits</a>
-              <a href="#" className="text-white/80 hover:text-white transition-all duration-300 font-medium">Websites</a>
-              <a href="#" className="text-white/80 hover:text-white transition-all duration-300 font-medium">My Referrals</a>
-              <a href="#" className="text-white/80 hover:text-white transition-all duration-300 font-medium">Settings</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors font-medium text-sm">Download & Earn Hits</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors font-medium text-sm">Websites</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors font-medium text-sm">My Referrals</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors font-medium text-sm">My Settings</a>
             </div>
 
             {/* User Info & Sign Out */}
             <div className="flex items-center space-x-4">
-              <div className="hidden md:flex items-center space-x-3">
-                <Users className="w-5 h-5 text-white" />
-                <span className="text-white font-medium">Hello, Aritra Mahatma</span>
+              <div className="hidden md:flex items-center text-sm">
+                <span className="text-gray-700">Hello, </span>
+                <span className="text-purple-600 font-medium ml-1">
+                  {JSON.parse(localStorage.getItem("user") || '{"username":"Aritra Mahatma"}').username}
+                </span>
               </div>
               <Button 
                 onClick={handleLogout}
-                className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-1.5 rounded-md text-sm font-medium transition-colors"
               >
-                <LogOut className="w-4 h-4 mr-2" />
+                <LogOut className="w-4 h-4 mr-1" />
                 Sign Out
               </Button>
             </div>
@@ -228,74 +230,74 @@ export default function Dashboard() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="bg-white border-gray-200 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+            <Card className="bg-gradient-to-br from-pink-500 to-purple-600 border-0 hover:shadow-2xl transition-all duration-300 rounded-2xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">✨ {totalHitsToday.toLocaleString()}</div>
-                    <div className="text-gray-600 font-medium">Hits Available</div>
+                    <div className="text-3xl font-bold text-white">{totalHitsToday.toLocaleString()}</div>
+                    <div className="text-white/80 font-medium">Hits Available</div>
                   </div>
-                  <Zap className="w-12 h-12 text-yellow-500" />
+                  <Zap className="w-12 h-12 text-white/90" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border-gray-200 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+            <Card className="bg-gradient-to-br from-green-500 to-emerald-600 border-0 hover:shadow-2xl transition-all duration-300 rounded-2xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">📩 {campaigns.reduce((sum, c) => sum + c.currentHits, 0).toLocaleString()}</div>
-                    <div className="text-gray-600 font-medium">Hits Received</div>
+                    <div className="text-3xl font-bold text-white">{campaigns.reduce((sum, c) => sum + c.currentHits, 0).toLocaleString()}</div>
+                    <div className="text-white/80 font-medium">Hits Received</div>
                   </div>
-                  <Download className="w-12 h-12 text-green-500" />
+                  <Download className="w-12 h-12 text-white/90" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border-gray-200 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+            <Card className="bg-gradient-to-br from-blue-500 to-indigo-600 border-0 hover:shadow-2xl transition-all duration-300 rounded-2xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">🌐 {campaigns.length}</div>
-                    <div className="text-gray-600 font-medium">No. of Domains</div>
+                    <div className="text-3xl font-bold text-white">{campaigns.length}</div>
+                    <div className="text-white/80 font-medium">No. of Domains</div>
                   </div>
-                  <Globe className="w-12 h-12 text-blue-500" />
+                  <Globe className="w-12 h-12 text-white/90" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border-gray-200 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+            <Card className="bg-gradient-to-br from-orange-500 to-red-600 border-0 hover:shadow-2xl transition-all duration-300 rounded-2xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">🔗 {campaigns.length * 2}</div>
-                    <div className="text-gray-600 font-medium">No. of Links</div>
+                    <div className="text-3xl font-bold text-white">{campaigns.length * 2}</div>
+                    <div className="text-white/80 font-medium">No. of Links</div>
                   </div>
-                  <ExternalLink className="w-12 h-12 text-purple-500" />
+                  <ExternalLink className="w-12 h-12 text-white/90" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border-gray-200 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+            <Card className="bg-gradient-to-br from-teal-500 to-cyan-600 border-0 hover:shadow-2xl transition-all duration-300 rounded-2xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">👥 12</div>
-                    <div className="text-gray-600 font-medium">Referrals</div>
+                    <div className="text-3xl font-bold text-white">12</div>
+                    <div className="text-white/80 font-medium">Referrals</div>
                   </div>
-                  <Users className="w-12 h-12 text-pink-500" />
+                  <Users className="w-12 h-12 text-white/90" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border-gray-200 hover:shadow-2xl transition-all duration-300 rounded-2xl">
+            <Card className="bg-gradient-to-br from-violet-500 to-purple-600 border-0 hover:shadow-2xl transition-all duration-300 rounded-2xl">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">🔁 {totalActiveCampaigns}</div>
-                    <div className="text-gray-600 font-medium">Active Sessions</div>
+                    <div className="text-3xl font-bold text-white">{totalActiveCampaigns}</div>
+                    <div className="text-white/80 font-medium">Active Sessions</div>
                   </div>
-                  <RefreshCw className="w-12 h-12 text-cyan-500" />
+                  <RefreshCw className="w-12 h-12 text-white/90" />
                 </div>
               </CardContent>
             </Card>
