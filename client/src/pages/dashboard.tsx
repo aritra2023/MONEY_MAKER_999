@@ -150,38 +150,42 @@ export default function Dashboard() {
     <div className="min-h-screen bg-white relative overflow-hidden">
 
 
-      {/* Top Website Navbar - Exactly like reference */}
-      <nav className="bg-white border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-3">
+      {/* Sticky Top Website Navbar with rounded design */}
+      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-lg rounded-b-2xl">
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
+            {/* Logo - Like pre-login */}
             <div className="flex items-center space-x-3">
-              <span className="text-xl font-bold text-gray-800">SkyHit</span>
+              <Rocket className="w-8 h-8 text-purple-600" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                SkyHit
+              </span>
             </div>
 
             {/* Navigation Links */}
             <div className="hidden lg:flex items-center space-x-8">
-              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">How It Works?</a>
-              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">FAQ</a>
-              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Menu ▾</a>
-              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Pages ▾</a>
-              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Legal ▾</a>
-              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">Media ▾</a>
-              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm">SEO Tools ▾</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">How It Works?</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">FAQ</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">Menu ▾</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">Pages ▾</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">Legal ▾</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">Media ▾</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">SEO Tools ▾</a>
             </div>
 
             {/* User Info & Sign Out */}
             <div className="flex items-center space-x-4">
               <div className="hidden md:flex items-center text-sm">
                 <span className="text-gray-700">Hello, </span>
-                <span className="text-gray-800 font-medium ml-1">
+                <span className="text-purple-600 font-medium ml-1">
                   {JSON.parse(localStorage.getItem("user") || '{"username":"Aritra Mahatma"}').username}
                 </span>
               </div>
               <Button 
                 onClick={handleLogout}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm"
+                className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
+                <LogOut className="w-4 h-4 mr-2" />
                 Sign Out
               </Button>
             </div>
@@ -189,7 +193,33 @@ export default function Dashboard() {
         </div>
       </nav>
 
-      
+      {/* Dashboard Navigation Tabs with rounded design */}
+      <nav className="sticky top-20 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-lg rounded-b-2xl">
+        <div className="max-w-7xl mx-auto px-6 py-3">
+          <div className="flex items-center space-x-3">
+            <a href="#" className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-bold text-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <BarChart3 className="w-4 h-4" />
+              <span>Dashboard</span>
+            </a>
+            <a href="#" className="flex items-center space-x-2 px-6 py-3 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-full shadow-sm hover:shadow-md">
+              <Download className="w-4 h-4" />
+              <span>Download & Earn Hits</span>
+            </a>
+            <a href="#" className="flex items-center space-x-2 px-6 py-3 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-full shadow-sm hover:shadow-md">
+              <Globe className="w-4 h-4" />
+              <span>Websites</span>
+            </a>
+            <a href="#" className="flex items-center space-x-2 px-6 py-3 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-full shadow-sm hover:shadow-md">
+              <Users className="w-4 h-4" />
+              <span>My Referrals</span>
+            </a>
+            <a href="#" className="flex items-center space-x-2 px-6 py-3 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-full shadow-sm hover:shadow-md">
+              <Settings className="w-4 h-4" />
+              <span>My Settings</span>
+            </a>
+          </div>
+        </div>
+      </nav>
 
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
