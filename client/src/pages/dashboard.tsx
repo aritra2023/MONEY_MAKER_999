@@ -150,7 +150,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-white relative overflow-hidden">
 
 
-      {/* Top Website Navbar */}
+      {/* Top Website Navbar - Exactly like reference */}
       <nav className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
@@ -180,7 +180,7 @@ export default function Dashboard() {
               </div>
               <Button 
                 onClick={handleLogout}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm"
               >
                 Sign Out
               </Button>
@@ -189,27 +189,27 @@ export default function Dashboard() {
         </div>
       </nav>
 
-      {/* Dashboard Navigation Tabs */}
-      <nav className="bg-white border-b border-gray-200">
+      {/* Dashboard Navigation Tabs - Integrated in main navbar */}
+      <nav className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center space-x-1">
-            <a href="#" className="flex items-center space-x-2 px-4 py-3 bg-purple-600 text-white font-medium text-sm rounded-t-lg">
+          <div className="flex items-center space-x-2">
+            <a href="#" className="flex items-center space-x-2 px-4 py-3 bg-purple-600 text-white font-medium text-sm rounded-lg shadow-sm">
               <BarChart3 className="w-4 h-4" />
               <span>Dashboard</span>
             </a>
-            <a href="#" className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-purple-600 transition-colors font-medium text-sm">
+            <a href="#" className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-lg">
               <Download className="w-4 h-4" />
               <span>Download & Earn Hits</span>
             </a>
-            <a href="#" className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-purple-600 transition-colors font-medium text-sm">
+            <a href="#" className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-lg">
               <Globe className="w-4 h-4" />
               <span>Websites</span>
             </a>
-            <a href="#" className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-purple-600 transition-colors font-medium text-sm">
+            <a href="#" className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-lg">
               <Users className="w-4 h-4" />
               <span>My Referrals</span>
             </a>
-            <a href="#" className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-purple-600 transition-colors font-medium text-sm">
+            <a href="#" className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-purple-600 hover:bg-gray-50 transition-all font-medium text-sm rounded-lg">
               <Settings className="w-4 h-4" />
               <span>My Settings</span>
             </a>
@@ -499,13 +499,13 @@ export default function Dashboard() {
         </div>
 
         {/* Footer */}
-        <footer className="text-center py-8 border-t border-white/20">
+        <footer className="text-center py-8 border-t border-gray-200">
           <div className="flex items-center justify-center space-x-8 mb-4">
-            <a href="#" className="text-white/70 hover:text-white transition-colors">Twitter</a>
-            <a href="#" className="text-white/70 hover:text-white transition-colors">Telegram</a>
-            <a href="#" className="text-white/70 hover:text-white transition-colors">GitHub</a>
+            <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">Twitter</a>
+            <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">Telegram</a>
+            <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">GitHub</a>
           </div>
-          <p className="text-white/60 text-sm">© 2025 SkyHit - Built on Replit</p>
+          <p className="text-gray-500 text-sm">© 2025 GetHIT.com - Built on Replit</p>
         </footer>
       </div>
     </div>
