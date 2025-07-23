@@ -24,7 +24,8 @@ import {
   RefreshCw,
   Eye,
   MousePointer,
-  Rocket
+  Rocket,
+  Square
 } from "lucide-react";
 
 interface Campaign {
@@ -416,21 +417,33 @@ export default function Dashboard() {
                           <Button 
                             size="sm" 
                             variant="outline" 
-                            className="border-gray-300 text-gray-700 hover:bg-gray-100"
+                            className="border-violet-300 text-violet-600 hover:bg-violet-50 rounded-full px-4 py-2 text-sm font-medium"
                             onClick={() => window.open(campaign.website, '_blank')}
                           >
                             <ExternalLink className="w-4 h-4 mr-2" />
                             Visit
                           </Button>
-                          <Button 
-                            size="sm" 
-                            variant="outline" 
-                            className="border-red-300 text-red-600 hover:bg-red-50"
-                            onClick={() => handleDeleteCampaign(campaign.id)}
-                          >
-                            <Trash2 className="w-4 h-4 mr-2" />
-                            Stop
-                          </Button>
+                          {campaign.isActive ? (
+                            <Button 
+                              size="sm" 
+                              variant="outline" 
+                              className="border-red-300 text-red-600 hover:bg-red-50 rounded-full px-4 py-2 text-sm font-medium"
+                              onClick={() => handleDeleteCampaign(campaign.id)}
+                            >
+                              <Square className="w-4 h-4 mr-2" />
+                              Stop
+                            </Button>
+                          ) : (
+                            <Button 
+                              size="sm" 
+                              variant="outline" 
+                              className="border-green-300 text-green-600 hover:bg-green-50 rounded-full px-4 py-2 text-sm font-medium"
+                              onClick={() => {/* Add run functionality here */}}
+                            >
+                              <Play className="w-4 h-4 mr-2" />
+                              Run
+                            </Button>
+                          )}
                         </div>
                       </div>
                       
@@ -453,7 +466,7 @@ export default function Dashboard() {
                         <div 
                           className={`h-3 rounded-full transition-all duration-500 ${
                             campaign.isActive 
-                              ? 'bg-gradient-to-r from-green-500 to-blue-500 animate-pulse' 
+                              ? 'bg-gradient-to-r from-violet-500 to-purple-600 animate-pulse' 
                               : 'bg-gradient-to-r from-gray-400 to-gray-500'
                           }`}
                           style={{ width: `${Math.min((campaign.currentHits / campaign.targetHits) * 100, 100)}%` }}
