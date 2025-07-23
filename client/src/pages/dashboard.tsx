@@ -470,9 +470,6 @@ export default function Dashboard() {
                         <div className="flex items-center space-x-3">
                           <div className={`w-3 h-3 rounded-full ${campaign.isActive ? 'bg-violet-500 animate-pulse' : 'bg-gray-400'}`}></div>
                           <span className="font-bold text-gray-800 text-lg">{campaign.website}</span>
-                          <Badge className={`${campaign.isActive ? 'bg-violet-500' : 'bg-gray-500'} text-white`}>
-                            {campaign.isActive ? 'LIVE' : 'PAUSED'}
-                          </Badge>
                         </div>
                         <div className="flex items-center justify-between">
                           <Button 
@@ -486,9 +483,6 @@ export default function Dashboard() {
                           </Button>
                           
                           <div className="flex items-center space-x-3">
-                            <span className="text-sm text-gray-600">
-                              {campaign.isActive ? 'Running' : 'Paused'}
-                            </span>
                             <Switch
                               checked={campaign.isActive}
                               onCheckedChange={(checked) => {
