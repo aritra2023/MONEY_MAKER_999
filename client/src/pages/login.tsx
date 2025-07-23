@@ -185,7 +185,21 @@ export default function LoginPage() {
                     name="password"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Password</FormLabel>
+                        <div className="flex justify-between items-center mb-2">
+                          <FormLabel className="text-white">Password</FormLabel>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              toast({
+                                title: "Password Reset",
+                                description: "Password reset feature coming soon!",
+                              });
+                            }}
+                            className="text-purple-300 hover:text-white text-sm transition-colors duration-300"
+                          >
+                            Forgot Password?
+                          </button>
+                        </div>
                         <FormControl>
                           <div className="relative">
                             <Input
@@ -210,6 +224,19 @@ export default function LoginPage() {
                       </FormItem>
                     )}
                   />
+                  
+                  {/* Remember Me Checkbox */}
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      id="remember"
+                      className="w-4 h-4 text-purple-600 bg-gray-800 border-gray-600 rounded focus:ring-purple-500 focus:ring-2"
+                    />
+                    <label htmlFor="remember" className="text-sm text-white">
+                      Remember me
+                    </label>
+                  </div>
+                  
                   <Button
                     type="submit"
                     className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 rounded-xl h-12 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
@@ -217,22 +244,6 @@ export default function LoginPage() {
                   >
                     {loginMutation.isPending ? "Signing in..." : "Sign In"}
                   </Button>
-                  
-                  {/* Forgot Password Button */}
-                  <div className="text-center mt-4">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        toast({
-                          title: "Password Reset",
-                          description: "Password reset feature coming soon!",
-                        });
-                      }}
-                      className="text-purple-300 hover:text-white text-sm transition-colors duration-300 underline"
-                    >
-                      Forgot your password?
-                    </button>
-                  </div>
                 </form>
               </Form>
             ) : (
