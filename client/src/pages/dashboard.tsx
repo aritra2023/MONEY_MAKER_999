@@ -156,7 +156,7 @@ export default function Dashboard() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <span className="text-xl font-bold text-gray-800">GetHIT.com</span>
+              <span className="text-xl font-bold text-gray-800">SkyHit</span>
             </div>
 
             {/* Navigation Links */}
@@ -505,7 +505,7 @@ export default function Dashboard() {
             <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">Telegram</a>
             <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">GitHub</a>
           </div>
-          <p className="text-gray-500 text-sm">© 2025 GetHIT.com - Built on Replit</p>
+          <p className="text-gray-500 text-sm">© 2025 SkyHit - Built on Replit</p>
         </footer>
       </div>
     </div>
