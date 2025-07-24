@@ -457,6 +457,112 @@ export default function Dashboard() {
           </Card>
         </div>
 
+        {/* Analytics Charts Section */}
+        <div className="mb-12">
+          <div className="flex items-center space-x-3 mb-8">
+            <BarChart3 className="w-8 h-8 text-purple-600" />
+            <h2 className="text-3xl font-bold text-gray-800">Analytics Dashboard</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Hits Received Chart */}
+            <Card className="bg-white border-gray-200 rounded-2xl shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-xl font-bold text-gray-800">Hits Received</CardTitle>
+                <p className="text-gray-600 text-sm">Real Time</p>
+              </CardHeader>
+              <CardContent>
+                <div className="h-64">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={[
+                      { time: '10 Jul', hits: campaigns.reduce((sum, c) => sum + Math.floor(c.currentHits * 0.1), 0) },
+                      { time: '15 Jul', hits: campaigns.reduce((sum, c) => sum + Math.floor(c.currentHits * 0.3), 0) },
+                      { time: '20 Jul', hits: campaigns.reduce((sum, c) => sum + Math.floor(c.currentHits * 0.5), 0) },
+                      { time: '25 Jul', hits: campaigns.reduce((sum, c) => sum + Math.floor(c.currentHits * 0.8), 0) },
+                      { time: 'Today', hits: campaigns.reduce((sum, c) => sum + c.currentHits, 0) }
+                    ]}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                      <XAxis dataKey="time" stroke="#6b7280" fontSize={12} />
+                      <YAxis stroke="#6b7280" fontSize={12} />
+                      <Tooltip 
+                        contentStyle={{ 
+                          backgroundColor: 'white', 
+                          border: '1px solid #e5e7eb',
+                          borderRadius: '8px',
+                          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                        }} 
+                      />
+                      <Area 
+                        type="monotone" 
+                        dataKey="hits" 
+                        stroke="#8b5cf6" 
+                        fill="url(#colorHits)"
+                        strokeWidth={2}
+                      />
+                      <defs>
+                        <linearGradient id="colorHits" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3}/>
+                          <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
+                        </linearGradient>
+                      </defs>
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Referral Source Chart */}
+            <Card className="bg-white border-gray-200 rounded-2xl shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-xl font-bold text-gray-800">Traffic Sources</CardTitle>
+                <p className="text-gray-600 text-sm">Real Time</p>
+              </CardHeader>
+              <CardContent>
+                <div className="h-64">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={[
+                      { time: '10 Jul', organic: Math.floor(totalHitsToday * 0.4), social: Math.floor(totalHitsToday * 0.3), direct: Math.floor(totalHitsToday * 0.3) },
+                      { time: '15 Jul', organic: Math.floor(totalHitsToday * 0.5), social: Math.floor(totalHitsToday * 0.25), direct: Math.floor(totalHitsToday * 0.25) },
+                      { time: '20 Jul', organic: Math.floor(totalHitsToday * 0.45), social: Math.floor(totalHitsToday * 0.35), direct: Math.floor(totalHitsToday * 0.2) },
+                      { time: '25 Jul', organic: Math.floor(totalHitsToday * 0.6), social: Math.floor(totalHitsToday * 0.25), direct: Math.floor(totalHitsToday * 0.15) },
+                      { time: 'Today', organic: Math.floor(totalHitsToday * 0.55), social: Math.floor(totalHitsToday * 0.3), direct: Math.floor(totalHitsToday * 0.15) }
+                    ]}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                      <XAxis dataKey="time" stroke="#6b7280" fontSize={12} />
+                      <YAxis stroke="#6b7280" fontSize={12} />
+                      <Tooltip 
+                        contentStyle={{ 
+                          backgroundColor: 'white', 
+                          border: '1px solid #e5e7eb',
+                          borderRadius: '8px',
+                          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                        }} 
+                      />
+                      <Line type="monotone" dataKey="organic" stroke="#10b981" strokeWidth={2} dot={{ fill: '#10b981', strokeWidth: 2, r: 4 }} />
+                      <Line type="monotone" dataKey="social" stroke="#3b82f6" strokeWidth={2} dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }} />
+                      <Line type="monotone" dataKey="direct" stroke="#f59e0b" strokeWidth={2} dot={{ fill: '#f59e0b', strokeWidth: 2, r: 4 }} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="mt-4 flex justify-center space-x-6">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <span className="text-sm text-gray-600">Organic</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="text-sm text-gray-600">Social</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <span className="text-sm text-gray-600">Direct</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
         {/* Campaign Control Panel */}
         <div className="mb-12">
           <div className="flex items-center space-x-3 mb-8">
@@ -561,112 +667,6 @@ export default function Dashboard() {
               )}
             </CardContent>
           </Card>
-        </div>
-
-        {/* Analytics Charts Section */}
-        <div className="mb-12">
-          <div className="flex items-center space-x-3 mb-8">
-            <BarChart3 className="w-8 h-8 text-purple-600" />
-            <h2 className="text-3xl font-bold text-gray-800">Analytics Dashboard</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Hits Received Chart */}
-            <Card className="bg-white border-gray-200 rounded-2xl shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-gray-800">Hits Received</CardTitle>
-                <p className="text-gray-600 text-sm">Real Time</p>
-              </CardHeader>
-              <CardContent>
-                <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={[
-                      { time: '10 Jul', hits: campaigns.reduce((sum, c) => sum + Math.floor(c.currentHits * 0.1), 0) },
-                      { time: '15 Jul', hits: campaigns.reduce((sum, c) => sum + Math.floor(c.currentHits * 0.3), 0) },
-                      { time: '20 Jul', hits: campaigns.reduce((sum, c) => sum + Math.floor(c.currentHits * 0.5), 0) },
-                      { time: '25 Jul', hits: campaigns.reduce((sum, c) => sum + Math.floor(c.currentHits * 0.8), 0) },
-                      { time: 'Today', hits: campaigns.reduce((sum, c) => sum + c.currentHits, 0) }
-                    ]}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                      <XAxis dataKey="time" stroke="#6b7280" fontSize={12} />
-                      <YAxis stroke="#6b7280" fontSize={12} />
-                      <Tooltip 
-                        contentStyle={{ 
-                          backgroundColor: 'white', 
-                          border: '1px solid #e5e7eb',
-                          borderRadius: '8px',
-                          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-                        }} 
-                      />
-                      <Area 
-                        type="monotone" 
-                        dataKey="hits" 
-                        stroke="#8b5cf6" 
-                        fill="url(#colorHits)"
-                        strokeWidth={2}
-                      />
-                      <defs>
-                        <linearGradient id="colorHits" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3}/>
-                          <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
-                        </linearGradient>
-                      </defs>
-                    </AreaChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Referral Source Chart */}
-            <Card className="bg-white border-gray-200 rounded-2xl shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-gray-800">Referral Sources</CardTitle>
-                <p className="text-gray-600 text-sm">Real Time</p>
-              </CardHeader>
-              <CardContent>
-                <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={[
-                      { time: '10 Jul', organic: Math.floor(totalHitsToday * 0.4), social: Math.floor(totalHitsToday * 0.3), direct: Math.floor(totalHitsToday * 0.3) },
-                      { time: '15 Jul', organic: Math.floor(totalHitsToday * 0.5), social: Math.floor(totalHitsToday * 0.25), direct: Math.floor(totalHitsToday * 0.25) },
-                      { time: '20 Jul', organic: Math.floor(totalHitsToday * 0.45), social: Math.floor(totalHitsToday * 0.35), direct: Math.floor(totalHitsToday * 0.2) },
-                      { time: '25 Jul', organic: Math.floor(totalHitsToday * 0.6), social: Math.floor(totalHitsToday * 0.25), direct: Math.floor(totalHitsToday * 0.15) },
-                      { time: 'Today', organic: Math.floor(totalHitsToday * 0.55), social: Math.floor(totalHitsToday * 0.3), direct: Math.floor(totalHitsToday * 0.15) }
-                    ]}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                      <XAxis dataKey="time" stroke="#6b7280" fontSize={12} />
-                      <YAxis stroke="#6b7280" fontSize={12} />
-                      <Tooltip 
-                        contentStyle={{ 
-                          backgroundColor: 'white', 
-                          border: '1px solid #e5e7eb',
-                          borderRadius: '8px',
-                          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-                        }} 
-                      />
-                      <Line type="monotone" dataKey="organic" stroke="#10b981" strokeWidth={2} dot={{ fill: '#10b981', strokeWidth: 2, r: 4 }} />
-                      <Line type="monotone" dataKey="social" stroke="#3b82f6" strokeWidth={2} dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }} />
-                      <Line type="monotone" dataKey="direct" stroke="#f59e0b" strokeWidth={2} dot={{ fill: '#f59e0b', strokeWidth: 2, r: 4 }} />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
-                <div className="mt-4 flex justify-center space-x-6">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <span className="text-sm text-gray-600">Organic</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="text-sm text-gray-600">Social</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <span className="text-sm text-gray-600">Direct</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </div>
 
         {/* Footer */}
