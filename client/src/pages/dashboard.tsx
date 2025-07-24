@@ -454,7 +454,7 @@ export default function Dashboard() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">{campaigns.length * 2}</div>
+                    <div className="text-3xl font-bold text-purple-600">{campaigns.length}</div>
                     <div className="text-gray-600 font-medium">No. of Links</div>
                   </div>
                   <ExternalLink className="w-12 h-12 text-purple-600" />
@@ -466,7 +466,7 @@ export default function Dashboard() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">12</div>
+                    <div className="text-3xl font-bold text-purple-600">{Math.floor(campaigns.reduce((sum, c) => sum + c.currentHits, 0) * 0.08)}</div>
                     <div className="text-gray-600 font-medium">Referrals</div>
                   </div>
                   <Users className="w-12 h-12 text-purple-600" />
