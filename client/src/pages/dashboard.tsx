@@ -807,7 +807,7 @@ export default function Dashboard() {
               {/* SkyHit Brand */}
               <div className="space-y-4">
                 <div className="flex items-center space-x-2">
-                  <Rocket className="w-8 h-8 text-gray-800" />
+                  <Rocket className="w-8 h-8 text-violet-600" />
                   <span className="text-2xl font-bold text-violet-600">SkyHit</span>
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed">
