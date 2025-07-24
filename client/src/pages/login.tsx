@@ -155,7 +155,7 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="w-20 h-20 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full flex items-center justify-center shadow-2xl mx-auto mb-4 transform hover:scale-110 transition-all duration-300">
-            <Rocket className="w-10 h-10 text-white" />
+            <Rocket className="w-10 h-10 text-white transform rotate-45 translate-x-1 -translate-y-1" />
           </div>
           <h1 className="text-3xl font-bold text-white bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">SkyHit</h1>
           <p className="text-purple-200 mt-2">
