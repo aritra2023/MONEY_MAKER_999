@@ -808,7 +808,7 @@ export default function Dashboard() {
               <div className="space-y-4">
                 <div className="flex items-center space-x-2">
                   <Rocket className="w-8 h-8 text-gray-800" />
-                  <span className="text-2xl font-bold text-gray-800">SkyHit</span>
+                  <span className="text-2xl font-bold text-violet-600">SkyHit</span>
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Empowering businesses worldwide with innovative solutions for sustainable growth and success.
@@ -817,7 +817,7 @@ export default function Dashboard() {
 
               {/* Product Links */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-800">Product</h3>
+                <h3 className="text-lg font-semibold text-violet-600">Product</h3>
                 <div className="space-y-2">
                   <a href="#" className="block text-gray-600 hover:text-gray-800 transition-colors text-sm">Features</a>
                   <a href="#" className="block text-gray-600 hover:text-gray-800 transition-colors text-sm">Pricing</a>
@@ -828,7 +828,7 @@ export default function Dashboard() {
 
               {/* Company Links */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-800">Company</h3>
+                <h3 className="text-lg font-semibold text-violet-600">Company</h3>
                 <div className="space-y-2">
                   <a href="#" className="block text-gray-600 hover:text-gray-800 transition-colors text-sm">About Us</a>
                   <a href="#" className="block text-gray-600 hover:text-gray-800 transition-colors text-sm">Careers</a>
@@ -839,7 +839,7 @@ export default function Dashboard() {
 
               {/* Support Links */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-800">Support</h3>
+                <h3 className="text-lg font-semibold text-violet-600">Support</h3>
                 <div className="space-y-2">
                   <a href="#" className="block text-gray-600 hover:text-gray-800 transition-colors text-sm">Help Center</a>
                   <a href="#" className="block text-gray-600 hover:text-gray-800 transition-colors text-sm">Documentation</a>
