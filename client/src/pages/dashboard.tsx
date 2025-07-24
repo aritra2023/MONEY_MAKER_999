@@ -721,7 +721,7 @@ export default function Dashboard() {
         </div>
 
         {/* Footer */}
-        <footer className="relative bg-gradient-to-br from-white via-gray-50 to-gray-100 py-16 mt-20 border-t border-gray-200">
+        <footer className="relative bg-gradient-to-br from-white via-gray-50 to-gray-100 py-16 mt-20 border-t border-gray-200 rounded-b-3xl">
           {/* Background decorative elements */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-20 -left-20 w-80 h-80 bg-gray-200/20 rounded-full blur-3xl"></div>
