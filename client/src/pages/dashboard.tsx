@@ -229,33 +229,33 @@ export default function Dashboard() {
 
 
       {/* Sticky Top Website Navbar with curved container design */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-lg">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-sm border-b border-gray-200 shadow-lg">
         <nav className="max-w-7xl mx-auto px-8 py-4">
             <div className="flex items-center justify-between">
               {/* Logo - Like pre-login */}
               <div className="flex items-center space-x-3">
                 <Rocket className="w-8 h-8 text-purple-600" />
-                <span className="text-2xl font-bold text-violet-600">
+                <span className="text-2xl font-bold text-gray-800">
                   SkyHit
                 </span>
               </div>
 
               {/* Navigation Links */}
               <div className="hidden lg:flex items-center space-x-8">
-                <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">How It Works?</a>
-                <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">FAQ</a>
-                <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">Menu ▾</a>
-                <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">Pages ▾</a>
-                <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">Legal ▾</a>
-                <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">Media ▾</a>
-                <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors text-sm font-medium">SEO Tools ▾</a>
+                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">How It Works?</a>
+                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">FAQ</a>
+                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Menu ▾</a>
+                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Pages ▾</a>
+                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Legal ▾</a>
+                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Media ▾</a>
+                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">SEO Tools ▾</a>
               </div>
 
               {/* User Info & Sign Out */}
               <div className="flex items-center space-x-4">
                 <div className="hidden md:flex items-center text-sm">
-                  <span className="text-gray-700">Hello, </span>
-                  <span className="text-purple-600 font-medium ml-1">
+                  <span className="text-gray-800">Hello, </span>
+                  <span className="text-purple-600 font-semibold ml-1">
                     {JSON.parse(localStorage.getItem("user") || '{"username":"Aritra Mahatma"}').username}
                   </span>
                 </div>
