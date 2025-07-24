@@ -208,6 +208,21 @@ export default function Dashboard() {
   const totalActiveCampaigns = campaigns.filter(c => c.isActive).length;
   const totalHitsToday = campaigns.reduce((sum, c) => sum + c.currentHits, 0);
 
+  // Generate order ID in format: HIT00{minutes}YYYYMMDD{hour_letter}
+  const generateOrderId = () => {
+    const now = new Date();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    const hour = now.getHours();
+    
+    // Convert hour to letter: 0=a, 1=b, 2=c, ..., 12=m, 13=n, ..., 23=x
+    const hourLetter = String.fromCharCode(97 + hour); // 97 is 'a' in ASCII
+    
+    return `HIT00${minutes}${year}${month}${day}${hourLetter}`;
+  };
+
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
 
@@ -467,7 +482,10 @@ export default function Dashboard() {
                       <div className="flex justify-between items-center">
                         <div className="flex items-center space-x-3">
                           <div className={`w-3 h-3 rounded-full ${campaign.isActive ? 'bg-violet-500 animate-pulse' : 'bg-gray-400'}`}></div>
-                          <span className="font-bold text-gray-800 text-lg">{campaign.website}</span>
+                          <div className="flex flex-col">
+                            <span className="font-bold text-gray-800 text-lg">{generateOrderId()}</span>
+                            <span className="text-sm text-gray-500">{campaign.website}</span>
+                          </div>
                         </div>
                         <div className="flex items-center space-x-4">
                           <Button 
