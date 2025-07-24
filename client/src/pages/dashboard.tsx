@@ -853,7 +853,7 @@ export default function Dashboard() {
             <div className="border-t border-gray-300 mt-12 pt-8">
               <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                 <p className="text-gray-600 text-sm">
-                  © 2024 SkyHit. All rights reserved. Designed with <span className="text-red-400">♥</span>
+                  © 2024 <span className="text-violet-600 font-semibold">SkyHit</span>. All rights reserved. Designed with <span className="text-red-400">♥</span>
                 </p>
                 <div className="flex items-center space-x-6">
                   <a href="#" className="text-gray-600 hover:text-gray-800 transition-colors">
