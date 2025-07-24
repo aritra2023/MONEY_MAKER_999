@@ -226,7 +226,62 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
-
+      {/* Background Doodles and Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Floating geometric shapes */}
+        <div className="absolute top-20 left-10 w-8 h-8 border-2 border-purple-200 rounded-full opacity-30 animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-6 h-6 bg-violet-100 rounded-full opacity-40 animate-bounce"></div>
+        <div className="absolute top-60 left-1/4 w-4 h-4 border-2 border-pink-200 rotate-45 opacity-30"></div>
+        <div className="absolute top-80 right-1/3 w-10 h-10 border-2 border-purple-200 rounded-full opacity-20"></div>
+        
+        {/* Grid pattern */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-5">
+          <div className="grid grid-cols-12 gap-8 h-full">
+            {Array.from({ length: 144 }).map((_, i) => (
+              <div key={i} className="w-1 h-1 bg-purple-300 rounded-full"></div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Scattered dots */}
+        <div className="absolute top-32 left-1/2 w-2 h-2 bg-violet-200 rounded-full opacity-30"></div>
+        <div className="absolute top-96 left-16 w-3 h-3 bg-purple-200 rounded-full opacity-25"></div>
+        <div className="absolute top-72 right-16 w-2 h-2 bg-pink-200 rounded-full opacity-35"></div>
+        <div className="absolute bottom-40 left-1/3 w-4 h-4 bg-violet-200 rounded-full opacity-20"></div>
+        <div className="absolute bottom-60 right-1/4 w-3 h-3 bg-purple-200 rounded-full opacity-30"></div>
+        
+        {/* Wavy lines */}
+        <svg className="absolute top-28 left-32 opacity-10" width="100" height="40" viewBox="0 0 100 40">
+          <path d="M0,20 Q25,0 50,20 T100,20" stroke="#8b5cf6" strokeWidth="2" fill="none" />
+        </svg>
+        <svg className="absolute top-64 right-24 opacity-10" width="80" height="30" viewBox="0 0 80 30">
+          <path d="M0,15 Q20,0 40,15 T80,15" stroke="#a855f7" strokeWidth="2" fill="none" />
+        </svg>
+        <svg className="absolute bottom-32 left-20 opacity-10" width="120" height="50" viewBox="0 0 120 50">
+          <path d="M0,25 Q30,0 60,25 T120,25" stroke="#8b5cf6" strokeWidth="2" fill="none" />
+        </svg>
+        
+        {/* Stars */}
+        <div className="absolute top-44 left-3/4">
+          <svg className="w-4 h-4 text-purple-200 opacity-30" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+        </div>
+        <div className="absolute top-88 right-32">
+          <svg className="w-3 h-3 text-violet-200 opacity-25" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+        </div>
+        
+        {/* Triangles */}
+        <div className="absolute top-52 right-40 w-0 h-0 border-l-4 border-r-4 border-b-6 border-l-transparent border-r-transparent border-b-purple-200 opacity-20"></div>
+        <div className="absolute bottom-48 left-40 w-0 h-0 border-l-3 border-r-3 border-b-5 border-l-transparent border-r-transparent border-b-violet-200 opacity-25"></div>
+        
+        {/* Large gradient circles */}
+        <div className="absolute top-10 right-10 w-32 h-32 bg-gradient-to-br from-purple-100/20 to-violet-100/20 rounded-full blur-xl"></div>
+        <div className="absolute bottom-20 left-10 w-40 h-40 bg-gradient-to-tr from-pink-100/15 to-purple-100/15 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-violet-50/10 to-purple-50/10 rounded-full blur-3xl"></div>
+      </div>
 
       {/* Sticky Top Website Navbar with curved container design */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-sm border-b border-gray-200 shadow-lg">
