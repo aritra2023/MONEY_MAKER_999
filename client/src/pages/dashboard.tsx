@@ -484,7 +484,6 @@ export default function Dashboard() {
                           
                           <div className="flex flex-col">
                             <span className="font-bold text-gray-800 text-lg">{generateOrderId()}</span>
-                            <span className="text-sm text-gray-500">{campaign.website}</span>
                           </div>
                         </div>
                         <div className="flex items-center space-x-4">
