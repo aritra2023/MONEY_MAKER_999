@@ -234,28 +234,28 @@ export default function Dashboard() {
             <div className="flex items-center justify-between">
               {/* Logo - Like pre-login */}
               <div className="flex items-center space-x-3">
-                <Rocket className="w-8 h-8 text-purple-600" />
-                <span className="text-2xl font-bold text-gray-800">
+                <Rocket className="w-8 h-8 text-black" />
+                <span className="text-2xl font-bold text-black">
                   SkyHit
                 </span>
               </div>
 
               {/* Navigation Links */}
               <div className="hidden lg:flex items-center space-x-8">
-                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">How It Works?</a>
-                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">FAQ</a>
-                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Menu ▾</a>
-                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Pages ▾</a>
-                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Legal ▾</a>
-                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Media ▾</a>
-                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">SEO Tools ▾</a>
+                <a href="#" className="text-black hover:text-gray-600 transition-colors text-sm font-medium">How It Works?</a>
+                <a href="#" className="text-black hover:text-gray-600 transition-colors text-sm font-medium">FAQ</a>
+                <a href="#" className="text-black hover:text-gray-600 transition-colors text-sm font-medium">Menu ▾</a>
+                <a href="#" className="text-black hover:text-gray-600 transition-colors text-sm font-medium">Pages ▾</a>
+                <a href="#" className="text-black hover:text-gray-600 transition-colors text-sm font-medium">Legal ▾</a>
+                <a href="#" className="text-black hover:text-gray-600 transition-colors text-sm font-medium">Media ▾</a>
+                <a href="#" className="text-black hover:text-gray-600 transition-colors text-sm font-medium">SEO Tools ▾</a>
               </div>
 
               {/* User Info & Sign Out */}
               <div className="flex items-center space-x-4">
                 <div className="hidden md:flex items-center text-sm">
-                  <span className="text-gray-800">Hello, </span>
-                  <span className="text-purple-600 font-semibold ml-1">
+                  <span className="text-black">Hello, </span>
+                  <span className="text-black font-semibold ml-1">
                     {JSON.parse(localStorage.getItem("user") || '{"username":"Aritra Mahatma"}').username}
                   </span>
                 </div>
