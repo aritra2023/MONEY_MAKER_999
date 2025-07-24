@@ -459,10 +459,6 @@ export default function Dashboard() {
 
         {/* Analytics Charts Section */}
         <div className="mb-12">
-          <div className="flex items-center space-x-3 mb-8">
-            <BarChart3 className="w-8 h-8 text-purple-600" />
-            <h2 className="text-3xl font-bold text-gray-800">Analytics Dashboard</h2>
-          </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Hits Received Chart */}
