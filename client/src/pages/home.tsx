@@ -89,11 +89,11 @@ export default function Home() {
       </div>
       {/* Navigation */}
       <nav 
-        className={`fixed top-0 w-full z-50 transition-transform duration-300 ${
+        className={`fixed top-4 left-4 right-4 z-50 transition-transform duration-300 ${
           navbarVisible ? 'translate-y-0' : '-translate-y-full'
-        } bg-gradient-to-r from-purple-800/90 to-purple-900/90 backdrop-blur-sm`}
+        } bg-gradient-to-r from-purple-800/90 to-purple-900/90 backdrop-blur-sm rounded-2xl shadow-lg border border-purple-700/50`}
       >
-        <div className="flex justify-between items-center p-6 px-4 md:px-10">
+        <div className="flex justify-between items-center p-4 px-6 md:px-8">
           <div className="animate-fade-in flex items-center space-x-2">
             <Rocket className="w-8 h-8 text-white" />
             <span className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
