@@ -235,7 +235,7 @@ export default function Dashboard() {
               {/* Logo - Like pre-login */}
               <div className="flex items-center space-x-3">
                 <Rocket className="w-8 h-8 text-purple-600" />
-                <span className="text-2xl font-bold text-gray-800">
+                <span className="text-2xl font-bold text-violet-600">
                   SkyHit
                 </span>
               </div>
