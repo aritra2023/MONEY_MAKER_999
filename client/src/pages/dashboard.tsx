@@ -213,7 +213,7 @@ export default function Dashboard() {
 
 
       {/* Sticky Top Website Navbar with curved container design */}
-      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-lg">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-lg">
         <nav className="max-w-7xl mx-auto px-8 py-4">
             <div className="flex items-center justify-between">
               {/* Logo - Like pre-login */}
@@ -258,7 +258,7 @@ export default function Dashboard() {
       
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-8 mt-20">
         {/* Traffic Statistics Section */}
         <div className="mb-12">
           <div className="flex items-center space-x-3 mb-8">
