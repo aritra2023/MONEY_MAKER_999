@@ -374,12 +374,10 @@ export default function Dashboard() {
               {/* Navigation Links */}
               <div className="hidden lg:flex items-center space-x-8">
                 <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">How It Works?</a>
-                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">FAQ</a>
-                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Menu ▾</a>
-                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Pages ▾</a>
-                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Legal ▾</a>
-                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Media ▾</a>
-                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">SEO Tools ▾</a>
+                <a href="#" className="text-purple-600 bg-purple-50 px-3 py-2 rounded-full transition-colors text-sm font-medium">Dashboard</a>
+                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Referrals</a>
+                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Premium</a>
+                <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors text-sm font-medium">Settings</a>
               </div>
 
               {/* User Info & Sign Out */}
