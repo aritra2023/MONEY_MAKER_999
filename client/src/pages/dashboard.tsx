@@ -875,7 +875,7 @@ export default function Dashboard() {
                             }}
                             className={`relative px-8 md:px-12 py-3 md:py-4 rounded-full text-base md:text-lg font-bold shadow-2xl transition-all duration-500 transform hover:scale-105 group overflow-hidden w-full md:w-auto ${
                               campaign.isActive 
-                                ? 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white hover:shadow-red-500/40' 
+                                ? 'bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-500 hover:to-slate-600 text-white hover:shadow-slate-500/40' 
                                 : 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white hover:shadow-purple-500/40'
                             }`}
                           >
