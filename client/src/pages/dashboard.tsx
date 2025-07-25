@@ -28,7 +28,9 @@ import {
   Eye,
   MousePointer,
   Rocket,
-  Square
+  Square,
+  Menu,
+  X
 } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 
@@ -50,6 +52,7 @@ export default function Dashboard() {
   const [duration, setDuration] = useState(1);
   const [hitType, setHitType] = useState<'page-view' | 'unique-visitor' | 'click'>('page-view');
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
@@ -379,8 +382,8 @@ export default function Dashboard() {
             <div className="flex items-center justify-between">
               {/* Logo - Like pre-login */}
               <div className="flex items-center space-x-3">
-                <Rocket className="w-8 h-8 text-purple-600" />
-                <span className="text-2xl font-bold text-violet-600">
+                <Rocket className="w-6 h-6 text-purple-600" />
+                <span className="text-lg font-bold text-violet-600">
                   SkyHit
                 </span>
               </div>
@@ -402,19 +405,89 @@ export default function Dashboard() {
                     {JSON.parse(localStorage.getItem("user") || '{"username":"Aritra Mahatma"}').username}
                   </span>
                 </div>
-                <Button 
-                  onClick={handleLogout}
-                  className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                
+                {/* Desktop: Sign Out Button */}
+                <div className="hidden md:block">
+                  <Button 
+                    onClick={handleLogout}
+                    className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sign Out
+                  </Button>
+                </div>
+                
+                {/* Mobile: Menu Button */}
+                <button
+                  className="md:hidden p-2 rounded-lg text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-all duration-300 backdrop-blur-sm"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Sign Out
-                </Button>
+                  {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                </button>
               </div>
             </div>
         </nav>
       </div>
 
-      
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 bg-white z-40 md:hidden">
+          <div className="flex flex-col h-full">
+            {/* Mobile Header */}
+            <div className="flex items-center justify-between p-6 border-b">
+              <div className="flex items-center space-x-3">
+                <Rocket className="w-6 h-6 text-purple-600" />
+                <span className="text-lg font-bold text-violet-600">SkyHit</span>
+              </div>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 rounded-lg text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-all duration-300"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            
+            {/* Mobile Navigation */}
+            <div className="flex-1 px-6 py-8 space-y-6">
+              <div className="text-center mb-8">
+                <div className="text-gray-800 text-lg">Hello, </div>
+                <div className="text-purple-600 font-semibold text-xl">
+                  {JSON.parse(localStorage.getItem("user") || '{"username":"Aritra Mahatma"}').username}
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
+                  How It Works?
+                </button>
+                <button className="w-full text-left text-purple-600 hover:text-purple-700 transition-colors text-lg font-medium py-3 px-4 rounded-lg bg-purple-50">
+                  Dashboard
+                </button>
+                <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
+                  Referrals
+                </button>
+                <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
+                  Premium
+                </button>
+                <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
+                  Settings
+                </button>
+              </div>
+            </div>
+            
+            {/* Mobile Sign Out */}
+            <div className="p-6 border-t">
+              <Button 
+                onClick={handleLogout}
+                className="w-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white py-3 rounded-full text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                <LogOut className="w-5 h-5 mr-3" />
+                Sign Out
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-8 mt-24">
