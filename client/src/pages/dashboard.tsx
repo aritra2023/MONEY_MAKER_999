@@ -419,7 +419,7 @@ export default function Dashboard() {
                     <div className="text-3xl font-bold text-purple-600">{totalHitsToday.toLocaleString()}</div>
                     <div className="text-gray-600 font-medium">Hits Available</div>
                   </div>
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
                     <Zap className="w-6 h-6 text-white" />
                   </div>
                 </div>
@@ -433,7 +433,7 @@ export default function Dashboard() {
                     <div className="text-3xl font-bold text-purple-600">{campaigns.reduce((sum, c) => sum + c.currentHits, 0).toLocaleString()}</div>
                     <div className="text-gray-600 font-medium">Hits Received</div>
                   </div>
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md">
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
                     <Download className="w-6 h-6 text-white" />
                   </div>
                 </div>
@@ -447,7 +447,7 @@ export default function Dashboard() {
                     <div className="text-3xl font-bold text-purple-600">{campaigns.length}</div>
                     <div className="text-gray-600 font-medium">No. of Domains</div>
                   </div>
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
                     <Globe className="w-6 h-6 text-white" />
                   </div>
                 </div>
@@ -461,7 +461,7 @@ export default function Dashboard() {
                     <div className="text-3xl font-bold text-purple-600">{campaigns.length}</div>
                     <div className="text-gray-600 font-medium">No. of Links</div>
                   </div>
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-md">
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
                     <ExternalLink className="w-6 h-6 text-white" />
                   </div>
                 </div>
@@ -475,7 +475,7 @@ export default function Dashboard() {
                     <div className="text-3xl font-bold text-purple-600">{Math.floor(campaigns.reduce((sum, c) => sum + c.currentHits, 0) * 0.08)}</div>
                     <div className="text-gray-600 font-medium">Referrals</div>
                   </div>
-                  <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md">
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
                     <Users className="w-6 h-6 text-white" />
                   </div>
                 </div>
@@ -489,7 +489,7 @@ export default function Dashboard() {
                     <div className="text-3xl font-bold text-purple-600">{totalActiveCampaigns}</div>
                     <div className="text-gray-600 font-medium">Active Sessions</div>
                   </div>
-                  <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
                     <RefreshCw className="w-6 h-6 text-white" />
                   </div>
                 </div>
