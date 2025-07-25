@@ -743,15 +743,13 @@ export default function Dashboard() {
                               </div>
                               {/* Mobile: Delete Button next to dot */}
                               <div className="block md:hidden">
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  className="border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 rounded-lg px-3 py-1 text-xs font-medium"
+                                <button 
+                                  className="text-red-500 hover:text-red-700 hover:bg-red-50 p-1 rounded transition-all duration-200"
                                   onClick={() => handleDeleteCampaign(campaign.id)}
+                                  title="Delete Campaign"
                                 >
-                                  <Trash2 className="w-3 h-3 mr-1" />
-                                  Delete
-                                </Button>
+                                  <Trash2 className="w-3 h-3" />
+                                </button>
                               </div>
                             </div>
                             <p className="text-xs text-gray-500 break-all truncate max-w-[250px] md:max-w-[300px]">{campaign.website}</p>
