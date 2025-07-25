@@ -287,6 +287,7 @@ export default function Home() {
                     src={rocketImage} 
                     alt="3D Rocket Launch" 
                     className="w-80 h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] drop-shadow-2xl object-contain"
+                    style={{transform: 'rotate(28deg)'}}
                   />
                 </div>
                 
