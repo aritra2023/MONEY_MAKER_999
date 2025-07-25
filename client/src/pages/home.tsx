@@ -94,7 +94,7 @@ export default function Home() {
           navbarVisible ? 'translate-y-0' : '-translate-y-full'
         } bg-gradient-to-r from-purple-800/90 to-purple-900/90 backdrop-blur-sm`}
       >
-        <div className="flex justify-between items-center p-6 px-4 md:px-10">
+        <div className="max-w-7xl mx-auto flex justify-between items-center p-6 px-6 md:px-8 lg:px-12">
           <div className="animate-fade-in flex items-center space-x-2">
             <Rocket className="w-8 h-8 text-white" />
             <span className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
@@ -215,12 +215,12 @@ export default function Home() {
         </div>
       )}
       {/* Hero Section */}
-      <section className="pt-32 md:pt-40 pb-20 md:pb-32 px-6 relative overflow-hidden">
+      <section className="pt-32 md:pt-40 pb-20 md:pb-32 relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute top-32 left-10 w-20 h-20 bg-purple-400 opacity-10 rounded-full animate-bounce-slow"></div>
         <div className="absolute top-52 right-16 w-12 h-12 bg-white opacity-5 rounded-full animate-bounce-slow" style={{animationDelay: '1s'}}></div>
         
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10 px-6 md:px-8 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="text-left">
@@ -303,8 +303,8 @@ export default function Home() {
 
       </section>
       {/* Trust Indicators */}
-      <section className="py-12 px-6 relative">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-12 px-6 md:px-8 lg:px-12 relative">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <div className="flex justify-center items-center space-x-12 opacity-70">
               <div className="flex items-center space-x-2">
@@ -325,8 +325,8 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section id="services" className="py-8 md:py-12 px-6 relative">
-        <div className="max-w-6xl mx-auto">
+      <section id="services" className="py-8 md:py-12 px-6 md:px-8 lg:px-12 relative">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Our Platform?</h2>
             <p className="text-lg opacity-80 max-w-2xl mx-auto">
@@ -362,8 +362,8 @@ export default function Home() {
         </div>
       </section>
       {/* CTA Section */}
-      <section className="py-16 md:py-20 px-6 relative">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="py-16 md:py-20 px-6 md:px-8 lg:px-12 relative">
+        <div className="max-w-7xl mx-auto text-center">
           <div className="bg-gradient-to-r from-purple-700 to-purple-800 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
             {/* Background pattern */}
             <div className="absolute inset-0 opacity-5">
@@ -408,8 +408,8 @@ export default function Home() {
         </div>
       </section>
       {/* Footer */}
-      <footer id="contact" className="py-12 px-6 border-t border-white border-opacity-10">
-        <div className="max-w-6xl mx-auto">
+      <footer id="contact" className="py-12 px-6 md:px-8 lg:px-12 border-t border-white border-opacity-10">
+        <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="text-2xl font-bold mb-4">
