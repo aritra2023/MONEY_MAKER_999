@@ -419,7 +419,7 @@ export default function Dashboard() {
                 
                 {/* Mobile: Menu Button */}
                 <button
-                  className="md:hidden p-2 rounded-lg text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-all duration-300 backdrop-blur-sm"
+                  className="md:hidden p-2 rounded-lg text-violet-600 hover:text-violet-700 hover:bg-violet-50 transition-all duration-300 backdrop-blur-sm"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 >
                   {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -431,55 +431,95 @@ export default function Dashboard() {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-white z-40 md:hidden">
+        <div className="fixed inset-0 bg-gradient-to-br from-violet-50 via-white to-purple-50 z-40 md:hidden">
           <div className="flex flex-col h-full">
-            {/* Mobile Header */}
-            <div className="flex items-center justify-between p-6 border-b">
-              <div className="flex items-center space-x-3">
-                <Rocket className="w-6 h-6 text-purple-600" />
-                <span className="text-lg font-bold text-violet-600">SkyHit</span>
+            {/* Mobile Header with glass effect */}
+            <div className="bg-white/80 backdrop-blur-md border-b border-violet-100 shadow-sm">
+              <div className="flex items-center justify-between p-6">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <Rocket className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">SkyHit</span>
+                </div>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 rounded-xl text-violet-600 hover:text-violet-700 hover:bg-violet-100 transition-all duration-300 shadow-sm"
+                >
+                  <X className="h-6 w-6" />
+                </button>
               </div>
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-2 rounded-lg text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-all duration-300"
-              >
-                <X className="h-6 w-6" />
-              </button>
             </div>
             
-            {/* Mobile Navigation */}
+            {/* Mobile Navigation with modern cards */}
             <div className="flex-1 px-6 py-8 space-y-6">
-              <div className="text-center mb-8">
-                <div className="text-gray-800 text-lg">Hello, </div>
-                <div className="text-purple-600 font-semibold text-xl">
+              {/* User Profile Card */}
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-violet-100 shadow-lg text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <span className="text-white font-bold text-xl">
+                    {JSON.parse(localStorage.getItem("user") || '{"username":"Aritra Mahatma"}').username.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                <div className="text-gray-700 text-lg mb-1">Welcome back,</div>
+                <div className="text-violet-600 font-bold text-xl">
                   {JSON.parse(localStorage.getItem("user") || '{"username":"Aritra Mahatma"}').username}
                 </div>
               </div>
               
-              <div className="space-y-4">
-                <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
-                  How It Works?
+              {/* Navigation Cards */}
+              <div className="space-y-3">
+                <button className="w-full text-left bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-violet-100 shadow-sm hover:shadow-lg hover:bg-white/80 transition-all duration-300 transform hover:scale-[1.02] group">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Activity className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="text-gray-700 font-medium text-lg group-hover:text-violet-600 transition-colors">How It Works?</span>
+                  </div>
                 </button>
-                <button className="w-full text-left text-purple-600 hover:text-purple-700 transition-colors text-lg font-medium py-3 px-4 rounded-lg bg-purple-50">
-                  Dashboard
+                
+                <button className="w-full text-left bg-gradient-to-r from-violet-500 to-purple-600 rounded-2xl p-4 shadow-lg text-white transform scale-[1.02]">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                      <BarChart3 className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="font-bold text-lg">Dashboard</span>
+                  </div>
                 </button>
-                <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
-                  Referrals
+                
+                <button className="w-full text-left bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-violet-100 shadow-sm hover:shadow-lg hover:bg-white/80 transition-all duration-300 transform hover:scale-[1.02] group">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Users className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="text-gray-700 font-medium text-lg group-hover:text-violet-600 transition-colors">Referrals</span>
+                  </div>
                 </button>
-                <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
-                  Premium
+                
+                <button className="w-full text-left bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-violet-100 shadow-sm hover:shadow-lg hover:bg-white/80 transition-all duration-300 transform hover:scale-[1.02] group">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Zap className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="text-gray-700 font-medium text-lg group-hover:text-violet-600 transition-colors">Premium</span>
+                  </div>
                 </button>
-                <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
-                  Settings
+                
+                <button className="w-full text-left bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-violet-100 shadow-sm hover:shadow-lg hover:bg-white/80 transition-all duration-300 transform hover:scale-[1.02] group">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Settings className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="text-gray-700 font-medium text-lg group-hover:text-violet-600 transition-colors">Settings</span>
+                  </div>
                 </button>
               </div>
             </div>
             
             {/* Mobile Sign Out */}
-            <div className="p-6 border-t">
+            <div className="p-6">
               <Button 
                 onClick={handleLogout}
-                className="w-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white py-3 rounded-full text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="w-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white py-4 rounded-2xl text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
               >
                 <LogOut className="w-5 h-5 mr-3" />
                 Sign Out
