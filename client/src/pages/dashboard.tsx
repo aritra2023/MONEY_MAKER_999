@@ -725,19 +725,19 @@ export default function Dashboard() {
                   {campaigns.map((campaign) => (
                     <div key={campaign.id} className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]">
                       {/* Header Section */}
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-4 md:space-y-0">
-                        <div className="flex items-center space-x-4">
-                          <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
-                            <Globe className="w-6 h-6 text-white" />
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 space-y-3 md:space-y-0">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <Globe className="w-5 h-5 text-white" />
                           </div>
                           <div className="min-w-0 flex-1">
-                            <h3 className="font-bold text-gray-800 text-lg">{generateOrderId()}</h3>
-                            <p className="text-sm text-gray-500 break-all">{campaign.website}</p>
+                            <h3 className="font-semibold text-gray-800 text-sm">{generateOrderId()}</h3>
+                            <p className="text-xs text-gray-500 break-all truncate max-w-[250px] md:max-w-[300px]">{campaign.website}</p>
                           </div>
                         </div>
                         
                         <div className="flex justify-start md:justify-end">
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                             campaign.isActive 
                               ? 'bg-green-100 text-green-700' 
                               : 'bg-gray-100 text-gray-600'
@@ -841,9 +841,9 @@ export default function Dashboard() {
                           )}
                         </div>
 
-                        <div className="flex items-center justify-between md:justify-end space-x-3">
-                          <div className="flex items-center space-x-2">
-                            <span className="text-sm text-gray-600">{campaign.isActive ? 'Running' : 'Paused'}</span>
+                        <div className="flex items-center justify-center md:justify-end space-x-4">
+                          <div className="flex items-center space-x-2 bg-gray-50 rounded-lg px-3 py-2">
+                            <span className="text-xs text-gray-600 font-medium">{campaign.isActive ? 'Running' : 'Paused'}</span>
                             <Switch
                               checked={campaign.isActive}
                               onCheckedChange={(checked) => {
@@ -862,7 +862,7 @@ export default function Dashboard() {
                             onClick={() => handleDeleteCampaign(campaign.id)}
                             title="Delete Campaign"
                           >
-                            <Trash2 className="w-5 h-5" />
+                            <Trash2 className="w-4 h-4" />
                           </button>
                         </div>
                       </div>
