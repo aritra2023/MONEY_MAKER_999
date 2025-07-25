@@ -10,6 +10,8 @@ import {
   Plus, 
   Play,
   Pause,
+  PlayCircle,
+  PauseCircle,
   Settings,
   Globe,
   Target,
@@ -863,20 +865,29 @@ export default function Dashboard() {
                         </div>
 
                         <div className="flex items-center justify-center md:justify-end space-x-4">
-                          <div className="flex items-center space-x-2 bg-gray-50 rounded-lg px-3 py-2">
-                            <span className="text-xs text-gray-600 font-medium">{campaign.isActive ? 'Running' : 'Paused'}</span>
-                            <Switch
-                              checked={campaign.isActive}
-                              onCheckedChange={(checked) => {
-                                if (checked) {
-                                  handleRunCampaign(campaign.id);
-                                } else {
-                                  handlePauseCampaign(campaign.id);
-                                }
-                              }}
-                              className="data-[state=checked]:bg-violet-600 data-[state=unchecked]:bg-gray-300"
-                            />
-                          </div>
+                          <Button
+                            onClick={() => {
+                              if (campaign.isActive) {
+                                handlePauseCampaign(campaign.id);
+                              } else {
+                                handleRunCampaign(campaign.id);
+                              }
+                            }}
+                            className={`relative px-8 md:px-12 py-3 md:py-4 rounded-full text-base md:text-lg font-bold shadow-2xl transition-all duration-500 transform hover:scale-105 group overflow-hidden w-full md:w-auto ${
+                              campaign.isActive 
+                                ? 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white hover:shadow-red-500/40' 
+                                : 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white hover:shadow-purple-500/40'
+                            }`}
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            {campaign.isActive ? (
+                              <><PauseCircle className="w-5 h-5 md:w-6 md:h-6 mr-2 md:mr-3 group-hover:rotate-12 transition-transform duration-300" />
+                              <span className="relative z-10">Pause Campaign</span></>
+                            ) : (
+                              <><PlayCircle className="w-5 h-5 md:w-6 md:h-6 mr-2 md:mr-3 group-hover:rotate-12 transition-transform duration-300" />
+                              <span className="relative z-10">Run Campaign</span></>
+                            )}
+                          </Button>
                           
                           {/* Desktop: Delete Button */}
                           <button 
