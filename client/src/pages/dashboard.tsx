@@ -466,51 +466,21 @@ export default function Dashboard() {
                 </div>
               </div>
               
-              {/* Navigation Cards */}
-              <div className="space-y-3">
-                <button className="w-full text-left bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-violet-100 shadow-sm hover:shadow-lg hover:bg-white/80 transition-all duration-300 transform hover:scale-[1.02] group">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Activity className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-gray-700 font-medium text-lg group-hover:text-violet-600 transition-colors">How It Works?</span>
-                  </div>
+              <div className="space-y-4">
+                <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
+                  How It Works?
                 </button>
-                
-                <button className="w-full text-left bg-gradient-to-r from-violet-500 to-purple-600 rounded-2xl p-4 shadow-lg text-white transform scale-[1.02]">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-                      <BarChart3 className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="font-bold text-lg">Dashboard</span>
-                  </div>
+                <button className="w-full text-left text-purple-600 hover:text-purple-700 transition-colors text-lg font-medium py-3 px-4 rounded-lg bg-purple-50">
+                  Dashboard
                 </button>
-                
-                <button className="w-full text-left bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-violet-100 shadow-sm hover:shadow-lg hover:bg-white/80 transition-all duration-300 transform hover:scale-[1.02] group">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Users className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-gray-700 font-medium text-lg group-hover:text-violet-600 transition-colors">Referrals</span>
-                  </div>
+                <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
+                  Referrals
                 </button>
-                
-                <button className="w-full text-left bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-violet-100 shadow-sm hover:shadow-lg hover:bg-white/80 transition-all duration-300 transform hover:scale-[1.02] group">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Zap className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-gray-700 font-medium text-lg group-hover:text-violet-600 transition-colors">Premium</span>
-                  </div>
+                <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
+                  Premium
                 </button>
-                
-                <button className="w-full text-left bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-violet-100 shadow-sm hover:shadow-lg hover:bg-white/80 transition-all duration-300 transform hover:scale-[1.02] group">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Settings className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-gray-700 font-medium text-lg group-hover:text-violet-600 transition-colors">Settings</span>
-                  </div>
+                <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
+                  Settings
                 </button>
               </div>
             </div>
