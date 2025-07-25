@@ -723,82 +723,115 @@ export default function Dashboard() {
               ) : (
                 <div className="space-y-6">
                   {campaigns.map((campaign) => (
-                    <div key={campaign.id} className="bg-gray-50 rounded-xl p-4 md:p-6 space-y-4 border border-gray-200">
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-center space-y-3 md:space-y-0">
-                        <div className="flex items-center space-x-3">
-                          <div className="flex flex-col">
-                            <span className="font-bold text-gray-800 text-base md:text-lg">{generateOrderId()}</span>
-                            <span className="text-sm text-gray-600 mt-1 break-all">{campaign.website}</span>
+                    <div key={campaign.id} className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]">
+                      {/* Header Section */}
+                      <div className="flex items-center justify-between mb-6">
+                        <div className="flex items-center space-x-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <Globe className="w-6 h-6 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-gray-800 text-lg">{generateOrderId()}</h3>
+                            <p className="text-sm text-gray-500 truncate max-w-[200px] md:max-w-[300px]">{campaign.website}</p>
                           </div>
                         </div>
-                        <div className="flex items-center justify-between md:justify-end space-x-2 md:space-x-4">
+                        
+                        <div className="flex items-center space-x-2">
+                          <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                            campaign.isActive 
+                              ? 'bg-green-100 text-green-700' 
+                              : 'bg-gray-100 text-gray-600'
+                          }`}>
+                            {campaign.isActive ? 'Active' : 'Paused'}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Stats Grid */}
+                      <div className="grid grid-cols-3 gap-4 mb-6">
+                        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 text-center">
+                          <div className="text-2xl font-bold text-blue-600 mb-1">{campaign.currentHits.toLocaleString()}</div>
+                          <div className="text-xs text-blue-600 font-medium">Hits Received</div>
+                        </div>
+                        <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-4 text-center">
+                          <div className="text-2xl font-bold text-purple-600 mb-1">{campaign.targetHits.toLocaleString()}</div>
+                          <div className="text-xs text-purple-600 font-medium">Target Hits</div>
+                        </div>
+                        <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl p-4 text-center">
+                          <div className="text-2xl font-bold text-emerald-600 mb-1">{Math.round((campaign.currentHits / campaign.targetHits) * 100)}%</div>
+                          <div className="text-xs text-emerald-600 font-medium">Progress</div>
+                        </div>
+                      </div>
+
+                      {/* Progress Bar */}
+                      <div className="mb-6">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-sm font-medium text-gray-700">Campaign Progress</span>
+                          <span className="text-sm text-gray-500">
+                            {campaign.currentHits.toLocaleString()} / {campaign.targetHits.toLocaleString()}
+                          </span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                          <div 
+                            className={`h-full rounded-full transition-all duration-700 ease-out ${
+                              campaign.isActive 
+                                ? 'bg-gradient-to-r from-violet-500 via-purple-500 to-purple-600 shadow-lg' 
+                                : 'bg-gradient-to-r from-violet-400 to-purple-500'
+                            }`}
+                            style={{ width: `${Math.min((campaign.currentHits / campaign.targetHits) * 100, 100)}%` }}
+                          >
+                            {campaign.isActive && (
+                              <div className="h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
                           <Button 
-                            size="sm" 
-                            variant="outline" 
-                            className="border-violet-300 text-violet-600 hover:bg-violet-50 rounded-full px-3 py-1.5 text-xs md:text-sm font-medium"
+                            size="sm"
+                            variant="outline"
+                            className="border-violet-200 text-violet-600 hover:bg-violet-50 hover:border-violet-300 rounded-lg px-4 py-2 font-medium"
                             onClick={() => window.open(campaign.website, '_blank')}
                           >
-                            <ExternalLink className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
-                            <span className="hidden sm:inline">Visit</span>
+                            <ExternalLink className="w-4 h-4 mr-2" />
+                            Visit Site
                           </Button>
                           
-                          <Switch
-                            checked={campaign.isActive}
-                            onCheckedChange={(checked) => {
-                              if (checked) {
-                                handleRunCampaign(campaign.id);
-                              } else {
-                                handlePauseCampaign(campaign.id);
-                              }
-                            }}
-                            className="data-[state=checked]:bg-violet-600 data-[state=unchecked]:bg-gray-300"
-                          />
+                          {campaign.isActive && campaign.startTime && (
+                            <div className="text-xs text-gray-500">
+                              Started: {new Date(campaign.startTime).toLocaleTimeString()}
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="flex items-center space-x-3">
+                          <div className="flex items-center space-x-2">
+                            <span className="text-sm text-gray-600">{campaign.isActive ? 'Running' : 'Paused'}</span>
+                            <Switch
+                              checked={campaign.isActive}
+                              onCheckedChange={(checked) => {
+                                if (checked) {
+                                  handleRunCampaign(campaign.id);
+                                } else {
+                                  handlePauseCampaign(campaign.id);
+                                }
+                              }}
+                              className="data-[state=checked]:bg-violet-600 data-[state=unchecked]:bg-gray-300"
+                            />
+                          </div>
                           
                           <button 
-                            className="text-violet-600 hover:text-violet-800 p-2 md:p-3 hover:bg-violet-50 rounded-full transition-colors"
+                            className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition-all duration-200"
                             onClick={() => handleDeleteCampaign(campaign.id)}
+                            title="Delete Campaign"
                           >
-                            <Trash2 className="w-4 h-4 md:w-5 md:h-5" />
+                            <Trash2 className="w-5 h-5" />
                           </button>
                         </div>
                       </div>
-                      
-                      <div className="grid grid-cols-3 gap-2 md:gap-4">
-                        <div className="text-center">
-                          <div className="text-lg md:text-2xl font-bold text-purple-600">{campaign.currentHits.toLocaleString()}</div>
-                          <div className="text-gray-600 text-xs md:text-sm">Hits Received</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-lg md:text-2xl font-bold text-purple-600">{campaign.targetHits.toLocaleString()}</div>
-                          <div className="text-gray-600 text-xs md:text-sm">Target Hits</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-lg md:text-2xl font-bold text-purple-600">{Math.round((campaign.currentHits / campaign.targetHits) * 100)}%</div>
-                          <div className="text-gray-600 text-xs md:text-sm">Progress</div>
-                        </div>
-                      </div>
-                      
-                      <div className="w-full bg-gray-200 rounded-full h-3">
-                        <div 
-                          className={`h-3 rounded-full transition-all duration-500 ${
-                            campaign.isActive 
-                              ? 'bg-gradient-to-r from-violet-500 to-purple-600 animate-pulse' 
-                              : 'bg-gradient-to-r from-violet-400 to-purple-500'
-                          }`}
-                          style={{ width: `${Math.min((campaign.currentHits / campaign.targetHits) * 100, 100)}%` }}
-                        ></div>
-                      </div>
-
-                      {campaign.isActive && campaign.startTime && (
-                        <div className="flex flex-col md:flex-row md:justify-between text-xs md:text-sm text-gray-600 space-y-1 md:space-y-0">
-                          <span>Started: {campaign.startTime ? new Date(campaign.startTime).toLocaleTimeString() : 'Not started'}</span>
-                          {campaign.duration && (
-                            <span>
-                              Remaining: {campaign.startTime ? Math.max(0, campaign.duration - ((new Date().getTime() - new Date(campaign.startTime).getTime()) / (1000 * 60 * 60))).toFixed(1) : campaign.duration}h
-                            </span>
-                          )}
-                        </div>
-                      )}
                     </div>
                   ))}
                 </div>
