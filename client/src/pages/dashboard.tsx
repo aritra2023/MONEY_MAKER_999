@@ -412,85 +412,85 @@ export default function Dashboard() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-lg">
+            <Card className="bg-white border border-gray-200 hover:shadow-xl hover:border-purple-200 transition-all duration-500 rounded-lg group cursor-pointer transform hover:scale-[1.02]">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">{totalHitsToday.toLocaleString()}</div>
-                    <div className="text-gray-600 font-medium">Hits Available</div>
+                    <div className="text-3xl font-bold text-purple-600 group-hover:text-purple-700 transition-colors">{totalHitsToday.toLocaleString()}</div>
+                    <div className="text-gray-600 font-medium group-hover:text-gray-700 transition-colors">Hits Available</div>
                   </div>
-                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
-                    <Zap className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-lg group-hover:bg-purple-700 transition-all duration-300">
+                    <Zap className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-lg">
+            <Card className="bg-white border border-gray-200 hover:shadow-xl hover:border-purple-200 transition-all duration-500 rounded-lg group cursor-pointer transform hover:scale-[1.02]">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">{campaigns.reduce((sum, c) => sum + c.currentHits, 0).toLocaleString()}</div>
-                    <div className="text-gray-600 font-medium">Hits Received</div>
+                    <div className="text-3xl font-bold text-purple-600 group-hover:text-purple-700 transition-colors">{campaigns.reduce((sum, c) => sum + c.currentHits, 0).toLocaleString()}</div>
+                    <div className="text-gray-600 font-medium group-hover:text-gray-700 transition-colors">Hits Received</div>
                   </div>
-                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
-                    <Download className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-lg group-hover:bg-purple-700 transition-all duration-300">
+                    <Download className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-lg">
+            <Card className="bg-white border border-gray-200 hover:shadow-xl hover:border-purple-200 transition-all duration-500 rounded-lg group cursor-pointer transform hover:scale-[1.02]">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">{campaigns.length}</div>
-                    <div className="text-gray-600 font-medium">No. of Domains</div>
+                    <div className="text-3xl font-bold text-purple-600 group-hover:text-purple-700 transition-colors">{campaigns.length}</div>
+                    <div className="text-gray-600 font-medium group-hover:text-gray-700 transition-colors">No. of Domains</div>
                   </div>
-                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
-                    <Globe className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-lg group-hover:bg-purple-700 transition-all duration-300">
+                    <Globe className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-lg">
+            <Card className="bg-white border border-gray-200 hover:shadow-xl hover:border-purple-200 transition-all duration-500 rounded-lg group cursor-pointer transform hover:scale-[1.02]">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">{campaigns.length}</div>
-                    <div className="text-gray-600 font-medium">No. of Links</div>
+                    <div className="text-3xl font-bold text-purple-600 group-hover:text-purple-700 transition-colors">{campaigns.length}</div>
+                    <div className="text-gray-600 font-medium group-hover:text-gray-700 transition-colors">No. of Links</div>
                   </div>
-                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
-                    <ExternalLink className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-lg group-hover:bg-purple-700 transition-all duration-300">
+                    <ExternalLink className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-lg">
+            <Card className="bg-white border border-gray-200 hover:shadow-xl hover:border-purple-200 transition-all duration-500 rounded-lg group cursor-pointer transform hover:scale-[1.02]">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">{Math.floor(campaigns.reduce((sum, c) => sum + c.currentHits, 0) * 0.08)}</div>
-                    <div className="text-gray-600 font-medium">Referrals</div>
+                    <div className="text-3xl font-bold text-purple-600 group-hover:text-purple-700 transition-colors">{Math.floor(campaigns.reduce((sum, c) => sum + c.currentHits, 0) * 0.08)}</div>
+                    <div className="text-gray-600 font-medium group-hover:text-gray-700 transition-colors">Referrals</div>
                   </div>
-                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
-                    <Users className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-lg group-hover:bg-purple-700 transition-all duration-300">
+                    <Users className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-lg">
+            <Card className="bg-white border border-gray-200 hover:shadow-xl hover:border-purple-200 transition-all duration-500 rounded-lg group cursor-pointer transform hover:scale-[1.02]">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-purple-600">{totalActiveCampaigns}</div>
-                    <div className="text-gray-600 font-medium">Active Sessions</div>
+                    <div className="text-3xl font-bold text-purple-600 group-hover:text-purple-700 transition-colors">{totalActiveCampaigns}</div>
+                    <div className="text-gray-600 font-medium group-hover:text-gray-700 transition-colors">Active Sessions</div>
                   </div>
-                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
-                    <RefreshCw className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-lg group-hover:bg-purple-700 transition-all duration-300">
+                    <RefreshCw className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
                   </div>
                 </div>
               </CardContent>
@@ -576,10 +576,11 @@ export default function Dashboard() {
                   <Button
                     onClick={handleCreateCampaign}
                     disabled={!newWebsite.trim() || targetHits <= 0 || duration <= 0}
-                    className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-12 py-4 rounded-full text-lg font-bold shadow-2xl hover:shadow-pink-500/25 transition-all duration-300 transform hover:scale-105"
+                    className="relative bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-12 py-4 rounded-full text-lg font-bold shadow-2xl hover:shadow-purple-500/40 transition-all duration-500 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none group overflow-hidden"
                   >
-                    <Zap className="w-6 h-6 mr-3" />
-                    Launch Campaign
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <Zap className="w-6 h-6 mr-3 group-hover:rotate-12 transition-transform duration-300" />
+                    <span className="relative z-10">Launch Campaign</span>
                   </Button>
                   
                   <div className="flex items-center space-x-4 text-gray-500 text-sm">

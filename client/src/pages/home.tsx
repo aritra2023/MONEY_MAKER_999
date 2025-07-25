@@ -314,28 +314,28 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 md:gap-12">
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <ChartLine className="w-8 h-8 text-white" />
+            <div className="text-center group cursor-pointer">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-xl group-hover:shadow-purple-500/25">
+                <ChartLine className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Growth Analytics</h3>
-              <p className="opacity-80 leading-relaxed">Track your business metrics with advanced analytics and insights that drive informed decisions.</p>
+              <h3 className="text-xl font-semibold mb-3 group-hover:text-purple-200 transition-colors">Growth Analytics</h3>
+              <p className="opacity-80 leading-relaxed group-hover:opacity-100 transition-opacity">Track your business metrics with advanced analytics and insights that drive informed decisions.</p>
             </div>
 
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Shield className="w-8 h-8 text-white" />
+            <div className="text-center group cursor-pointer">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-xl group-hover:shadow-purple-500/25">
+                <Shield className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Enterprise Security</h3>
-              <p className="opacity-80 leading-relaxed">Bank-level security with 256-bit encryption ensures your business data stays protected.</p>
+              <h3 className="text-xl font-semibold mb-3 group-hover:text-purple-200 transition-colors">Enterprise Security</h3>
+              <p className="opacity-80 leading-relaxed group-hover:opacity-100 transition-opacity">Bank-level security with 256-bit encryption ensures your business data stays protected.</p>
             </div>
 
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Users className="w-8 h-8 text-white" />
+            <div className="text-center group cursor-pointer">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-xl group-hover:shadow-purple-500/25">
+                <Users className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Team Collaboration</h3>
-              <p className="opacity-80 leading-relaxed">Seamless collaboration tools that keep your team aligned and productive across all projects.</p>
+              <h3 className="text-xl font-semibold mb-3 group-hover:text-purple-200 transition-colors">Team Collaboration</h3>
+              <p className="opacity-80 leading-relaxed group-hover:opacity-100 transition-opacity">Seamless collaboration tools that keep your team aligned and productive across all projects.</p>
             </div>
           </div>
         </div>
