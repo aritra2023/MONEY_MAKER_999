@@ -704,12 +704,12 @@ export default function Dashboard() {
         {/* Campaign Control Panel */}
         <div className="mb-12">
           <div className="flex items-center space-x-3 mb-8">
-            <Settings className="w-8 h-8 text-purple-600" />
-            <h2 className="text-3xl font-bold text-gray-800">Campaign Control Panel</h2>
+            <Settings className="w-6 h-6 md:w-8 md:h-8 text-purple-600" />
+            <h2 className="text-xl md:text-3xl font-bold text-gray-800">Campaign Control Panel</h2>
           </div>
           
           <Card className="bg-white border-gray-200 rounded-2xl shadow-lg">
-            <CardContent className="p-8">
+            <CardContent className="p-4 md:p-8">
               {campaigns.length === 0 ? (
                 <div className="text-center py-16">
                   <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -723,23 +723,23 @@ export default function Dashboard() {
               ) : (
                 <div className="space-y-6">
                   {campaigns.map((campaign) => (
-                    <div key={campaign.id} className="bg-gray-50 rounded-xl p-6 space-y-4 border border-gray-200">
-                      <div className="flex justify-between items-center">
+                    <div key={campaign.id} className="bg-gray-50 rounded-xl p-4 md:p-6 space-y-4 border border-gray-200">
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-center space-y-3 md:space-y-0">
                         <div className="flex items-center space-x-3">
-                          
                           <div className="flex flex-col">
-                            <span className="font-bold text-gray-800 text-lg">{generateOrderId()}</span>
+                            <span className="font-bold text-gray-800 text-base md:text-lg">{generateOrderId()}</span>
+                            <span className="text-sm text-gray-600 mt-1 break-all">{campaign.website}</span>
                           </div>
                         </div>
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center justify-between md:justify-end space-x-2 md:space-x-4">
                           <Button 
                             size="sm" 
                             variant="outline" 
-                            className="border-violet-300 text-violet-600 hover:bg-violet-50 rounded-full px-4 py-2 text-sm font-medium"
+                            className="border-violet-300 text-violet-600 hover:bg-violet-50 rounded-full px-3 py-1.5 text-xs md:text-sm font-medium"
                             onClick={() => window.open(campaign.website, '_blank')}
                           >
-                            <ExternalLink className="w-4 h-4 mr-2" />
-                            Visit
+                            <ExternalLink className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+                            <span className="hidden sm:inline">Visit</span>
                           </Button>
                           
                           <Switch
@@ -755,26 +755,26 @@ export default function Dashboard() {
                           />
                           
                           <button 
-                            className="text-violet-600 hover:text-violet-800 p-3 hover:bg-violet-50 rounded-full transition-colors"
+                            className="text-violet-600 hover:text-violet-800 p-2 md:p-3 hover:bg-violet-50 rounded-full transition-colors"
                             onClick={() => handleDeleteCampaign(campaign.id)}
                           >
-                            <Trash2 className="w-5 h-5" />
+                            <Trash2 className="w-4 h-4 md:w-5 md:h-5" />
                           </button>
                         </div>
                       </div>
                       
-                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-3 gap-2 md:gap-4">
                         <div className="text-center">
-                          <div className="text-2xl font-bold text-purple-600">{campaign.currentHits.toLocaleString()}</div>
-                          <div className="text-gray-600 text-sm">Hits Received</div>
+                          <div className="text-lg md:text-2xl font-bold text-purple-600">{campaign.currentHits.toLocaleString()}</div>
+                          <div className="text-gray-600 text-xs md:text-sm">Hits Received</div>
                         </div>
                         <div className="text-center">
-                          <div className="text-2xl font-bold text-purple-600">{campaign.targetHits.toLocaleString()}</div>
-                          <div className="text-gray-600 text-sm">Target Hits</div>
+                          <div className="text-lg md:text-2xl font-bold text-purple-600">{campaign.targetHits.toLocaleString()}</div>
+                          <div className="text-gray-600 text-xs md:text-sm">Target Hits</div>
                         </div>
                         <div className="text-center">
-                          <div className="text-2xl font-bold text-purple-600">{Math.round((campaign.currentHits / campaign.targetHits) * 100)}%</div>
-                          <div className="text-gray-600 text-sm">Progress</div>
+                          <div className="text-lg md:text-2xl font-bold text-purple-600">{Math.round((campaign.currentHits / campaign.targetHits) * 100)}%</div>
+                          <div className="text-gray-600 text-xs md:text-sm">Progress</div>
                         </div>
                       </div>
                       
@@ -790,7 +790,7 @@ export default function Dashboard() {
                       </div>
 
                       {campaign.isActive && campaign.startTime && (
-                        <div className="flex justify-between text-sm text-gray-600">
+                        <div className="flex flex-col md:flex-row md:justify-between text-xs md:text-sm text-gray-600 space-y-1 md:space-y-0">
                           <span>Started: {campaign.startTime ? new Date(campaign.startTime).toLocaleTimeString() : 'Not started'}</span>
                           {campaign.duration && (
                             <span>
