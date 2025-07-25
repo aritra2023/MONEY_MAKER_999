@@ -731,12 +731,23 @@ export default function Dashboard() {
                             <Globe className="w-5 h-5 text-white" />
                           </div>
                           <div className="min-w-0 flex-1">
-                            <h3 className="font-semibold text-gray-800 text-sm">{generateOrderId()}</h3>
+                            <div className="flex items-center space-x-2">
+                              <h3 className="font-semibold text-gray-800 text-sm">{generateOrderId()}</h3>
+                              {/* Mobile: Status Dot */}
+                              <div className="block md:hidden">
+                                <div className={`w-2 h-2 rounded-full ${
+                                  campaign.isActive 
+                                    ? 'bg-green-500 animate-pulse' 
+                                    : 'bg-red-500'
+                                }`}></div>
+                              </div>
+                            </div>
                             <p className="text-xs text-gray-500 break-all truncate max-w-[250px] md:max-w-[300px]">{campaign.website}</p>
                           </div>
                         </div>
                         
-                        <div className="flex justify-start md:justify-end">
+                        {/* Desktop: Status Badge */}
+                        <div className="hidden md:flex justify-end">
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                             campaign.isActive 
                               ? 'bg-green-100 text-green-700' 
