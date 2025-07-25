@@ -405,10 +405,10 @@ export default function Dashboard() {
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-8 mt-24">
         {/* Traffic Statistics Section */}
-        <div className="mb-12">
-          <div className="flex items-center space-x-3 mb-8">
-            <TrendingUp className="w-8 h-8 text-purple-600" />
-            <h2 className="text-3xl font-bold text-gray-800">Traffic Statistics</h2>
+        <div className="mb-8 md:mb-12">
+          <div className="flex items-center space-x-2 md:space-x-3 mb-6 md:mb-8">
+            <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-purple-600" />
+            <h2 className="text-xl md:text-3xl font-bold text-gray-800">Traffic Statistics</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -499,18 +499,18 @@ export default function Dashboard() {
         </div>
 
         {/* Campaign Launch Center */}
-        <div className="mb-12">
-          <div className="flex items-center space-x-3 mb-8">
-            <Target className="w-8 h-8 text-purple-600" />
-            <h2 className="text-3xl font-bold text-gray-800">Campaign Launch Center</h2>
+        <div className="mb-8 md:mb-12">
+          <div className="flex items-center space-x-2 md:space-x-3 mb-6 md:mb-8">
+            <Target className="w-6 h-6 md:w-8 md:h-8 text-purple-600" />
+            <h2 className="text-xl md:text-3xl font-bold text-gray-800">Campaign Launch Center</h2>
           </div>
           
           <Card className="bg-white border-gray-200 rounded-2xl shadow-lg">
-            <CardContent className="p-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div className="space-y-6">
+            <CardContent className="p-4 md:p-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                <div className="space-y-4 md:space-y-6">
                   <div>
-                    <label className="block text-gray-700 font-medium mb-2">Target Website</label>
+                    <label className="block text-gray-700 font-medium mb-2 text-sm md:text-base">Target Website</label>
                     <Input
                       value={newWebsite}
                       onChange={(e) => setNewWebsite(e.target.value)}
@@ -520,7 +520,7 @@ export default function Dashboard() {
                   </div>
                   
                   <div>
-                    <label className="block text-gray-700 font-medium mb-2">Target Volume: {targetHits} hits</label>
+                    <label className="block text-gray-700 font-medium mb-2 text-sm md:text-base">Target Volume: {targetHits} hits</label>
                     <input
                       type="range"
                       min="1"
@@ -536,7 +536,7 @@ export default function Dashboard() {
                   </div>
                   
                   <div>
-                    <label className="block text-gray-700 font-medium mb-2">Duration</label>
+                    <label className="block text-gray-700 font-medium mb-2 text-sm md:text-base">Duration</label>
                     <Select value={duration.toString()} onValueChange={(value) => setDuration(Number(value))}>
                       <SelectTrigger className="bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:border-purple-500 focus:ring-purple-500">
                         <SelectValue placeholder="Select duration" />
@@ -553,7 +553,7 @@ export default function Dashboard() {
                   </div>
                   
                   <div>
-                    <label className="block text-gray-700 font-medium mb-2">Traffic Quality</label>
+                    <label className="block text-gray-700 font-medium mb-2 text-sm md:text-base">Traffic Quality</label>
                     <Select value={hitType} onValueChange={(value: any) => setHitType(value)}>
                       <SelectTrigger className="bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:border-purple-500 focus:ring-purple-500">
                         <SelectValue placeholder="Select traffic type" />
@@ -567,19 +567,19 @@ export default function Dashboard() {
                   </div>
                 </div>
                 
-                <div className="flex flex-col justify-center items-center space-y-6">
+                <div className="flex flex-col justify-center items-center space-y-4 md:space-y-6">
                   <div className="text-center">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Ready to Launch?</h3>
-                    <p className="text-gray-600">Start driving quality traffic to your website</p>
+                    <h3 className="text-lg md:text-2xl font-bold text-gray-800 mb-2">Ready to Launch?</h3>
+                    <p className="text-gray-600 text-sm md:text-base">Start driving quality traffic to your website</p>
                   </div>
                   
                   <Button
                     onClick={handleCreateCampaign}
                     disabled={!newWebsite.trim() || targetHits <= 0 || duration <= 0}
-                    className="relative bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-12 py-4 rounded-full text-lg font-bold shadow-2xl hover:shadow-purple-500/40 transition-all duration-500 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none group overflow-hidden"
+                    className="relative bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-8 md:px-12 py-3 md:py-4 rounded-full text-base md:text-lg font-bold shadow-2xl hover:shadow-purple-500/40 transition-all duration-500 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none group overflow-hidden w-full md:w-auto"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <Zap className="w-6 h-6 mr-3 group-hover:rotate-12 transition-transform duration-300" />
+                    <Zap className="w-5 h-5 md:w-6 md:h-6 mr-2 md:mr-3 group-hover:rotate-12 transition-transform duration-300" />
                     <span className="relative z-10">Launch Campaign</span>
                   </Button>
                   
@@ -600,9 +600,9 @@ export default function Dashboard() {
         </div>
 
         {/* Analytics Charts Section */}
-        <div className="mb-12">
+        <div className="mb-8 md:mb-12">
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
             {/* Hits Received Chart */}
             <Card className="bg-white border-gray-200 rounded-2xl shadow-lg">
               <CardHeader>
@@ -702,8 +702,8 @@ export default function Dashboard() {
         </div>
 
         {/* Campaign Control Panel */}
-        <div className="mb-12">
-          <div className="flex items-center space-x-3 mb-8">
+        <div className="mb-8 md:mb-12">
+          <div className="flex items-center space-x-2 md:space-x-3 mb-6 md:mb-8">
             <Settings className="w-6 h-6 md:w-8 md:h-8 text-purple-600" />
             <h2 className="text-xl md:text-3xl font-bold text-gray-800">Campaign Control Panel</h2>
           </div>
@@ -743,13 +743,15 @@ export default function Dashboard() {
                               </div>
                               {/* Mobile: Delete Button next to dot */}
                               <div className="block md:hidden">
-                                <button 
-                                  className="text-red-500 hover:text-red-700 hover:bg-red-50 p-1 rounded transition-all duration-200"
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  className="border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 rounded-lg px-3 py-1 text-xs font-medium"
                                   onClick={() => handleDeleteCampaign(campaign.id)}
-                                  title="Delete Campaign"
                                 >
-                                  <Trash2 className="w-3 h-3" />
-                                </button>
+                                  <Trash2 className="w-3 h-3 mr-1" />
+                                  Delete
+                                </Button>
                               </div>
                             </div>
                             <p className="text-xs text-gray-500 break-all truncate max-w-[250px] md:max-w-[300px]">{campaign.website}</p>
