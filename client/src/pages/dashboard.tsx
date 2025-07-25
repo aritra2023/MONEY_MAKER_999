@@ -515,7 +515,7 @@ export default function Dashboard() {
                       value={newWebsite}
                       onChange={(e) => setNewWebsite(e.target.value)}
                       placeholder="Enter your website URL..."
-                      className="bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                      className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-500 rounded-xl focus:border-purple-500 focus:ring-purple-500 focus:bg-white"
                     />
                   </div>
                   
