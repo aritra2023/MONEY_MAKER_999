@@ -301,12 +301,11 @@ export default function Home() {
           </div>
         </div>
 
-      </section>
-      {/* Trust Indicators */}
-      <section className="py-12 px-6 md:px-8 lg:px-12 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8">
-            <div className="flex justify-center items-center space-x-12 opacity-70">
+        
+        {/* Trust Indicators - Seamlessly integrated */}
+        <div className="max-w-7xl mx-auto relative z-10 px-6 md:px-8 lg:px-12 pt-12">
+          <div className="text-center">
+            <div className="flex justify-center items-center space-x-8 md:space-x-12 opacity-70">
               <div className="flex items-center space-x-2">
                 <Shield className="w-5 h-5 text-green-300" />
                 <span className="text-sm font-medium">SSL Secured</span>
@@ -322,10 +321,11 @@ export default function Home() {
             </div>
           </div>
         </div>
+
       </section>
 
       {/* Features Section */}
-      <section id="services" className="py-8 md:py-12 px-6 md:px-8 lg:px-12 relative">
+      <section id="services" className="py-16 md:py-20 px-6 md:px-8 lg:px-12 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Our Platform?</h2>
