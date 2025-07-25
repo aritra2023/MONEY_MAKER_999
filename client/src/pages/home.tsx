@@ -279,7 +279,7 @@ export default function Home() {
             <div className="flex justify-center lg:justify-end animate-slide-up" style={{animationDelay: '0.8s'}}>
               <div className="relative group">
                 {/* Subtle glow effect */}
-                <div className="absolute inset-0 bg-purple-400 opacity-20 blur-3xl rounded-full transform scale-110 animate-pulse"></div>
+                <div className="absolute inset-0 bg-purple-400 opacity-15 blur-2xl rounded-full transform scale-75 animate-pulse"></div>
                 
                 {/* 3D Rocket Image */}
                 <div className="relative z-10 transform group-hover:scale-105 transition-all duration-500 ease-out">
@@ -300,9 +300,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        
-        
 
       </section>
 

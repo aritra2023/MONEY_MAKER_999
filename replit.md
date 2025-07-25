@@ -109,12 +109,13 @@ Preferred communication style: Simple, everyday language.
 - Applied 28-degree rotation to rocket for dynamic launch appearance
 - Added statistics section with "50K+ Active Users", "2M+ Hits Generated", "99.9% Uptime"
 - Changed button text to "Start Free Trial" and "View Demo" for better traffic exchange branding
-- Merged trust indicators seamlessly into hero section for smooth flow
+- Removed trust indicators section for cleaner layout without duplicated elements
 - Enhanced visual effects with purple glow around rocket and floating particles
 - Fixed consistent padding across all sections (navbar to footer)
 - Applied max-w-7xl container with responsive padding for proper alignment
 - Updated login page Remember Me checkbox to modern violet toggle switch with smooth animations
 - Added gradient background and shadow effects to toggle switch for enhanced visual appeal
+- Reduced rocket background glow size (scale-75, blur-2xl) for more subtle effect
 - Maintained responsive design for mobile and desktop layouts
 - All animations and transitions working smoothly
 
