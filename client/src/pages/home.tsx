@@ -302,25 +302,7 @@ export default function Home() {
         </div>
 
         
-        {/* Trust Indicators - Seamlessly integrated */}
-        <div className="max-w-7xl mx-auto relative z-10 px-6 md:px-8 lg:px-12 pt-8 pb-12">
-          <div className="text-center">
-            <div className="flex justify-center items-center space-x-8 md:space-x-12 opacity-70">
-              <div className="flex items-center space-x-2">
-                <Shield className="w-5 h-5 text-green-300" />
-                <span className="text-sm font-medium">SSL Secured</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Users className="w-5 h-5 text-blue-300" />
-                <span className="text-sm font-medium">24/7 Support</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Check className="w-5 h-5 text-green-300" />
-                <span className="text-sm font-medium">Money Back Guarantee</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
       </section>
 
