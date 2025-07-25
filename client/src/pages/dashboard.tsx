@@ -412,84 +412,84 @@ export default function Dashboard() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-lg">
+            <Card className="bg-white border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-lg">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-3xl font-bold text-purple-600">{totalHitsToday.toLocaleString()}</div>
                     <div className="text-gray-600 font-medium">Hits Available</div>
                   </div>
-                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                     <Zap className="w-6 h-6 text-white" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-lg">
+            <Card className="bg-white border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-lg">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-3xl font-bold text-purple-600">{campaigns.reduce((sum, c) => sum + c.currentHits, 0).toLocaleString()}</div>
                     <div className="text-gray-600 font-medium">Hits Received</div>
                   </div>
-                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                     <Download className="w-6 h-6 text-white" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-lg">
+            <Card className="bg-white border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-lg">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-3xl font-bold text-purple-600">{campaigns.length}</div>
                     <div className="text-gray-600 font-medium">No. of Domains</div>
                   </div>
-                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                     <Globe className="w-6 h-6 text-white" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-lg">
+            <Card className="bg-white border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-lg">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-3xl font-bold text-purple-600">{campaigns.length}</div>
                     <div className="text-gray-600 font-medium">No. of Links</div>
                   </div>
-                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                     <ExternalLink className="w-6 h-6 text-white" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-lg">
+            <Card className="bg-white border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-lg">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-3xl font-bold text-purple-600">{Math.floor(campaigns.reduce((sum, c) => sum + c.currentHits, 0) * 0.08)}</div>
                     <div className="text-gray-600 font-medium">Referrals</div>
                   </div>
-                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                     <Users className="w-6 h-6 text-white" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-lg">
+            <Card className="bg-white border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-lg">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-3xl font-bold text-purple-600">{totalActiveCampaigns}</div>
                     <div className="text-gray-600 font-medium">Active Sessions</div>
                   </div>
-                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-sm">
+                  <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                     <RefreshCw className="w-6 h-6 text-white" />
                   </div>
                 </div>
