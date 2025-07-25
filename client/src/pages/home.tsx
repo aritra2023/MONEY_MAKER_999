@@ -215,7 +215,7 @@ export default function Home() {
         </div>
       )}
       {/* Hero Section */}
-      <section className="pt-32 md:pt-40 pb-20 md:pb-32 relative overflow-hidden">
+      <section className="pt-32 md:pt-40 pb-8 md:pb-12 relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute top-32 left-10 w-20 h-20 bg-purple-400 opacity-10 rounded-full animate-bounce-slow"></div>
         <div className="absolute top-52 right-16 w-12 h-12 bg-white opacity-5 rounded-full animate-bounce-slow" style={{animationDelay: '1s'}}></div>
@@ -303,7 +303,7 @@ export default function Home() {
 
         
         {/* Trust Indicators - Seamlessly integrated */}
-        <div className="max-w-7xl mx-auto relative z-10 px-6 md:px-8 lg:px-12 pt-12">
+        <div className="max-w-7xl mx-auto relative z-10 px-6 md:px-8 lg:px-12 pt-8 pb-12">
           <div className="text-center">
             <div className="flex justify-center items-center space-x-8 md:space-x-12 opacity-70">
               <div className="flex items-center space-x-2">
@@ -325,7 +325,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section id="services" className="py-16 md:py-20 px-6 md:px-8 lg:px-12 relative">
+      <section id="services" className="py-8 md:py-12 px-6 md:px-8 lg:px-12 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Our Platform?</h2>
