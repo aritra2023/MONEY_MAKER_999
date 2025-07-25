@@ -725,18 +725,18 @@ export default function Dashboard() {
                   {campaigns.map((campaign) => (
                     <div key={campaign.id} className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]">
                       {/* Header Section */}
-                      <div className="flex items-center justify-between mb-6">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-4 md:space-y-0">
                         <div className="flex items-center space-x-4">
                           <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
                             <Globe className="w-6 h-6 text-white" />
                           </div>
-                          <div>
+                          <div className="min-w-0 flex-1">
                             <h3 className="font-bold text-gray-800 text-lg">{generateOrderId()}</h3>
-                            <p className="text-sm text-gray-500 truncate max-w-[200px] md:max-w-[300px]">{campaign.website}</p>
+                            <p className="text-sm text-gray-500 break-all">{campaign.website}</p>
                           </div>
                         </div>
                         
-                        <div className="flex items-center space-x-2">
+                        <div className="flex justify-start md:justify-end">
                           <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                             campaign.isActive 
                               ? 'bg-green-100 text-green-700' 
@@ -747,19 +747,53 @@ export default function Dashboard() {
                         </div>
                       </div>
 
-                      {/* Stats Grid */}
-                      <div className="grid grid-cols-3 gap-4 mb-6">
-                        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 text-center">
-                          <div className="text-2xl font-bold text-blue-600 mb-1">{campaign.currentHits.toLocaleString()}</div>
-                          <div className="text-xs text-blue-600 font-medium">Hits Received</div>
+                      {/* Stats Grid - Mobile Optimized */}
+                      <div className="mb-6">
+                        {/* Mobile: Vertical Stack */}
+                        <div className="block md:hidden space-y-3">
+                          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 flex justify-between items-center">
+                            <div>
+                              <div className="text-lg font-bold text-blue-600">{campaign.currentHits.toLocaleString()}</div>
+                              <div className="text-xs text-blue-600 font-medium">Hits Received</div>
+                            </div>
+                            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                              <Activity className="w-4 h-4 text-white" />
+                            </div>
+                          </div>
+                          <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-4 flex justify-between items-center">
+                            <div>
+                              <div className="text-lg font-bold text-purple-600">{campaign.targetHits.toLocaleString()}</div>
+                              <div className="text-xs text-purple-600 font-medium">Target Hits</div>
+                            </div>
+                            <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+                              <Target className="w-4 h-4 text-white" />
+                            </div>
+                          </div>
+                          <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl p-4 flex justify-between items-center">
+                            <div>
+                              <div className="text-lg font-bold text-emerald-600">{Math.round((campaign.currentHits / campaign.targetHits) * 100)}%</div>
+                              <div className="text-xs text-emerald-600 font-medium">Progress</div>
+                            </div>
+                            <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+                              <TrendingUp className="w-4 h-4 text-white" />
+                            </div>
+                          </div>
                         </div>
-                        <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-4 text-center">
-                          <div className="text-2xl font-bold text-purple-600 mb-1">{campaign.targetHits.toLocaleString()}</div>
-                          <div className="text-xs text-purple-600 font-medium">Target Hits</div>
-                        </div>
-                        <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl p-4 text-center">
-                          <div className="text-2xl font-bold text-emerald-600 mb-1">{Math.round((campaign.currentHits / campaign.targetHits) * 100)}%</div>
-                          <div className="text-xs text-emerald-600 font-medium">Progress</div>
+                        
+                        {/* Desktop: Grid Layout */}
+                        <div className="hidden md:grid grid-cols-3 gap-4">
+                          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 text-center">
+                            <div className="text-2xl font-bold text-blue-600 mb-1">{campaign.currentHits.toLocaleString()}</div>
+                            <div className="text-xs text-blue-600 font-medium">Hits Received</div>
+                          </div>
+                          <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-4 text-center">
+                            <div className="text-2xl font-bold text-purple-600 mb-1">{campaign.targetHits.toLocaleString()}</div>
+                            <div className="text-xs text-purple-600 font-medium">Target Hits</div>
+                          </div>
+                          <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl p-4 text-center">
+                            <div className="text-2xl font-bold text-emerald-600 mb-1">{Math.round((campaign.currentHits / campaign.targetHits) * 100)}%</div>
+                            <div className="text-xs text-emerald-600 font-medium">Progress</div>
+                          </div>
                         </div>
                       </div>
 
@@ -787,13 +821,13 @@ export default function Dashboard() {
                         </div>
                       </div>
 
-                      {/* Action Buttons */}
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
+                      {/* Action Buttons - Mobile Optimized */}
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+                        <div className="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-3">
                           <Button 
                             size="sm"
                             variant="outline"
-                            className="border-violet-200 text-violet-600 hover:bg-violet-50 hover:border-violet-300 rounded-lg px-4 py-2 font-medium"
+                            className="border-violet-200 text-violet-600 hover:bg-violet-50 hover:border-violet-300 rounded-lg px-4 py-2 font-medium w-full md:w-auto"
                             onClick={() => window.open(campaign.website, '_blank')}
                           >
                             <ExternalLink className="w-4 h-4 mr-2" />
@@ -801,13 +835,13 @@ export default function Dashboard() {
                           </Button>
                           
                           {campaign.isActive && campaign.startTime && (
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-gray-500 text-center md:text-left">
                               Started: {new Date(campaign.startTime).toLocaleTimeString()}
                             </div>
                           )}
                         </div>
 
-                        <div className="flex items-center space-x-3">
+                        <div className="flex items-center justify-between md:justify-end space-x-3">
                           <div className="flex items-center space-x-2">
                             <span className="text-sm text-gray-600">{campaign.isActive ? 'Running' : 'Paused'}</span>
                             <Switch
@@ -824,7 +858,7 @@ export default function Dashboard() {
                           </div>
                           
                           <button 
-                            className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition-all duration-200"
+                            className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition-all duration-200 flex-shrink-0"
                             onClick={() => handleDeleteCampaign(campaign.id)}
                             title="Delete Campaign"
                           >
