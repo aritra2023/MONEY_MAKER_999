@@ -875,11 +875,11 @@ export default function Dashboard() {
                             }}
                             className={`relative px-8 md:px-12 py-3 md:py-4 rounded-full text-base md:text-lg font-bold shadow-2xl transition-all duration-500 transform hover:scale-105 group overflow-hidden w-full md:w-auto ${
                               campaign.isActive 
-                                ? 'bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-500 hover:to-slate-600 text-white hover:shadow-slate-500/40' 
-                                : 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white hover:shadow-purple-500/40'
+                                ? 'bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white hover:shadow-red-500/40' 
+                                : 'bg-gradient-to-r from-violet-600 to-purple-700 hover:from-violet-500 hover:to-purple-600 text-white hover:shadow-violet-500/40'
                             }`}
                           >
-                            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             {campaign.isActive ? (
                               <><PauseCircle className="w-5 h-5 md:w-6 md:h-6 mr-2 md:mr-3 group-hover:rotate-12 transition-transform duration-300" />
                               <span className="relative z-10">Pause Campaign</span></>
