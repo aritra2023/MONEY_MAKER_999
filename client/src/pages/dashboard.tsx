@@ -33,6 +33,7 @@ import {
   X
 } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
+import { useLocation } from 'wouter';
 
 interface Campaign {
   id: string;
@@ -46,6 +47,7 @@ interface Campaign {
 }
 
 export default function Dashboard() {
+  const [, setLocation] = useLocation();
   const [campaigns, setCampaigns] = useState<any[]>([]);
   const [newWebsite, setNewWebsite] = useState("");
   const [targetHits, setTargetHits] = useState(100);
@@ -479,7 +481,10 @@ export default function Dashboard() {
                 <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
                   Premium
                 </button>
-                <button className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50">
+                <button 
+                  onClick={() => setLocation('/settings')}
+                  className="w-full text-left text-gray-700 hover:text-purple-600 transition-colors text-lg font-medium py-3 px-4 rounded-lg hover:bg-purple-50"
+                >
                   Settings
                 </button>
               </div>
