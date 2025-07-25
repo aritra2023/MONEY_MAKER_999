@@ -145,8 +145,12 @@ export default function Dashboard() {
   const handleRunCampaign = async (campaignId: string) => {
     try {
       const token = localStorage.getItem('token');
-      if (!token) return;
+      if (!token) {
+        console.error('No token found');
+        return;
+      }
 
+      console.log('Starting campaign:', campaignId);
       const response = await fetch(`/api/campaigns/${campaignId}/start`, {
         method: 'POST',
         headers: {
@@ -154,7 +158,12 @@ export default function Dashboard() {
         },
       });
 
+      console.log('Start campaign response:', response.status);
+      
       if (response.ok) {
+        const result = await response.json();
+        console.log('Campaign started successfully:', result);
+        
         // Reload campaigns to get updated state
         const updatedResponse = await fetch('/api/campaigns', {
           headers: {
@@ -166,6 +175,9 @@ export default function Dashboard() {
           const data = await updatedResponse.json();
           setCampaigns(data);
         }
+      } else {
+        const error = await response.json();
+        console.error('Failed to start campaign:', error);
       }
     } catch (error) {
       console.error('Failed to start campaign:', error);

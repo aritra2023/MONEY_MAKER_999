@@ -136,17 +136,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/campaigns/:id/start", authenticateToken, async (req: any, res) => {
     try {
+      console.log(`Starting campaign ${req.params.id} for user ${req.userId}`);
       const campaign = await mongoStorage.getCampaign(req.params.id);
+      console.log('Found campaign:', campaign);
+      
       if (!campaign || campaign.userId !== req.userId) {
+        console.log('Campaign not found or user mismatch');
         return res.status(404).json({ error: "Campaign not found" });
       }
 
+      console.log('Updating campaign to active...');
       const updatedCampaign = await mongoStorage.updateCampaign(req.params.id, {
         isActive: true,
         startTime: new Date(),
       });
 
+      console.log('Updated campaign:', updatedCampaign);
+      
       if (updatedCampaign) {
+        console.log('Starting traffic generator...');
         trafficGenerator.startCampaign(req.params.id);
       }
 
