@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useLocation } from "wouter";
 import { Menu, X, Rocket, Play, ChartLine, Shield, Users, Phone, Check } from "lucide-react";
+import rocketImage from "../assets/3d-rocket.png";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -214,80 +215,114 @@ export default function Home() {
         </div>
       )}
       {/* Hero Section */}
-      <section className="text-center pt-32 md:pt-40 pb-20 md:pb-32 px-6 relative overflow-hidden">
+      <section className="pt-32 md:pt-40 pb-20 md:pb-32 px-6 relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute top-32 left-10 w-20 h-20 bg-purple-400 opacity-10 rounded-full animate-bounce-slow"></div>
         <div className="absolute top-52 right-16 w-12 h-12 bg-white opacity-5 rounded-full animate-bounce-slow" style={{animationDelay: '1s'}}></div>
         
-        <div className="max-w-4xl mx-auto relative z-10">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in">
-            Get Your Business<br />
-            <span className="bg-gradient-to-r from-white via-purple-100 to-purple-200 bg-clip-text text-transparent">
-              Growing
-            </span>
-          </h1>
-          
-          <p className="max-w-2xl mx-auto text-base md:text-lg opacity-90 mb-8 leading-relaxed animate-slide-up" style={{animationDelay: '0.2s'}}>
-            Transform your business with our cutting-edge solutions. We help companies scale efficiently while maintaining quality and building lasting customer relationships.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up" style={{animationDelay: '0.4s'}}>
-            <Button 
-              className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-3.5 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 min-w-[160px] relative overflow-hidden"
-              onClick={(e) => {
-                createRippleEffect(e);
-                setLocation("/login");
-              }}
-            >
-              <Rocket className="w-4 h-4 mr-2" />
-              GET STARTED
-            </Button>
-            
-            <Button 
-              variant="outline"
-              className="border-2 border-white border-opacity-30 text-white px-8 py-3.5 rounded-full font-medium hover:bg-white hover:bg-opacity-10 hover:border-opacity-50 transition-all duration-300 min-w-[160px] bg-transparent"
-              onClick={createRippleEffect}
-            >
-              <Play className="w-4 h-4 mr-2" />
-              Watch Demo
-            </Button>
-          </div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="text-left">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in">
+                Boost Your<br />
+                Website Traffic<br />
+                <span className="bg-gradient-to-r from-white via-purple-100 to-purple-200 bg-clip-text text-transparent">
+                  Instantly
+                </span>
+              </h1>
+              
+              <p className="max-w-lg text-base md:text-lg opacity-90 mb-8 leading-relaxed animate-slide-up" style={{animationDelay: '0.2s'}}>
+                Join thousands of businesses using our advanced traffic exchange to drive real visitors and grow your online presence with proven results.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-slide-up" style={{animationDelay: '0.4s'}}>
+                <Button 
+                  className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-3.5 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 min-w-[160px] relative overflow-hidden"
+                  onClick={(e) => {
+                    createRippleEffect(e);
+                    setLocation("/login");
+                  }}
+                >
+                  <Rocket className="w-4 h-4 mr-2" />
+                  Start Free Trial
+                </Button>
+                
+                <Button 
+                  variant="outline"
+                  className="border-2 border-white border-opacity-30 text-white px-8 py-3.5 rounded-full font-medium hover:bg-white hover:bg-opacity-10 hover:border-opacity-50 transition-all duration-300 min-w-[160px] bg-transparent"
+                  onClick={createRippleEffect}
+                >
+                  <Play className="w-4 h-4 mr-2" />
+                  View Demo
+                </Button>
+              </div>
 
-          {/* Trust indicators */}
-          <div className="mt-12 animate-slide-up" style={{animationDelay: '0.6s'}}>
-            <p className="text-sm opacity-70 mb-4">Trusted by 10,000+ businesses worldwide</p>
-            <div className="flex justify-center items-center space-x-8 opacity-60">
-              <div className="text-xs font-medium bg-white bg-opacity-10 px-4 py-2 rounded-full hover:bg-opacity-20 transition-all duration-300">Company A</div>
-              <div className="text-xs font-medium bg-white bg-opacity-10 px-4 py-2 rounded-full hover:bg-opacity-20 transition-all duration-300">Company B</div>
-              <div className="text-xs font-medium bg-white bg-opacity-10 px-4 py-2 rounded-full hover:bg-opacity-20 transition-all duration-300">Company C</div>
+              {/* Statistics */}
+              <div className="grid grid-cols-3 gap-8 animate-slide-up" style={{animationDelay: '0.6s'}}>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-white mb-1">50K+</div>
+                  <div className="text-sm opacity-70">Active Users</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-white mb-1">2M+</div>
+                  <div className="text-sm opacity-70">Hits Generated</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-white mb-1">99.9%</div>
+                  <div className="text-sm opacity-70">Uptime</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        {/* Rocket Illustration */}
-<div className="mt-12 md:mt-16 flex justify-center animate-slide-up" style={{animationDelay: '0.8s'}}>
-          <div className="relative group">
-            {/* Subtle glow effect */}
-            <div className="absolute inset-0 bg-white opacity-15 blur-xl rounded-full transform scale-110 animate-pulse"></div>
-            
-            {/* Custom Tilted Rocket Image */}
-            <div className="relative z-10 transform group-hover:scale-110 transition-all duration-500 ease-out mt-8">
-              <img 
-                src="https://files.catbox.moe/63yqwo.png" 
-                alt="Rocket Launch" 
-                className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 drop-shadow-2xl object-contain"
-                style={{transform: 'rotate(30deg)'}}
-              />
+            {/* Right Rocket Image */}
+            <div className="flex justify-center lg:justify-end animate-slide-up" style={{animationDelay: '0.8s'}}>
+              <div className="relative group">
+                {/* Subtle glow effect */}
+                <div className="absolute inset-0 bg-purple-400 opacity-20 blur-3xl rounded-full transform scale-110 animate-pulse"></div>
+                
+                {/* 3D Rocket Image */}
+                <div className="relative z-10 transform group-hover:scale-105 transition-all duration-500 ease-out">
+                  <img 
+                    src={rocketImage} 
+                    alt="3D Rocket Launch" 
+                    className="w-80 h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] drop-shadow-2xl object-contain"
+                  />
+                </div>
+                
+                {/* Floating particles around rocket */}
+                <div className="absolute top-12 -left-6 w-2 h-2 bg-white rounded-full opacity-60 animate-ping" style={{animationDelay: '1s'}}></div>
+                <div className="absolute top-20 -right-8 w-1.5 h-1.5 bg-purple-200 rounded-full opacity-70 animate-ping" style={{animationDelay: '1.8s'}}></div>
+                <div className="absolute bottom-16 -left-4 w-1 h-1 bg-cyan-300 rounded-full opacity-80 animate-ping" style={{animationDelay: '2.5s'}}></div>
+                <div className="absolute bottom-24 -right-6 w-1.5 h-1.5 bg-white rounded-full opacity-50 animate-ping" style={{animationDelay: '0.5s'}}></div>
+              </div>
             </div>
-            
-            {/* Subtle floating particles */}
-            <div className="absolute top-12 -left-6 w-1 h-1 bg-white rounded-full opacity-40 animate-ping" style={{animationDelay: '1s'}}></div>
-            <div className="absolute top-16 -right-8 w-1 h-1 bg-purple-200 rounded-full opacity-50 animate-ping" style={{animationDelay: '1.8s'}}></div>
-            <div className="absolute top-8 right-12 w-1 h-1 bg-white rounded-full opacity-30 animate-ping" style={{animationDelay: '2.5s'}}></div>
           </div>
         </div>
 
       </section>
+      {/* Trust Indicators */}
+      <section className="py-12 px-6 relative">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <div className="flex justify-center items-center space-x-12 opacity-70">
+              <div className="flex items-center space-x-2">
+                <Shield className="w-5 h-5 text-green-300" />
+                <span className="text-sm font-medium">SSL Secured</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Users className="w-5 h-5 text-blue-300" />
+                <span className="text-sm font-medium">24/7 Support</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Check className="w-5 h-5 text-green-300" />
+                <span className="text-sm font-medium">Money Back Guarantee</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section id="services" className="py-8 md:py-12 px-6 relative">
         <div className="max-w-6xl mx-auto">
