@@ -118,8 +118,7 @@ Preferred communication style: Simple, everyday language.
 - Reduced rocket background glow size (scale-75, blur-2xl) for more subtle effect
 - Updated dashboard card icons to simple purple containers with rounded corners
 - Applied consistent purple-600 background color to all stat card icons
-- Enhanced icons and cards with stronger shadow effects (shadow-lg for icons, shadow-xl for cards)
-- Added hover shadow effects (hover:shadow-2xl) for better visual depth
+- Enhanced icons with subtle shadow effects and white icons inside containers
 - Maintained responsive design for mobile and desktop layouts
 - All animations and transitions working smoothly
 
