@@ -238,7 +238,7 @@ export default function Home() {
               
               <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-slide-up" style={{animationDelay: '0.4s'}}>
                 <Button 
-                  className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-3.5 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 min-w-[160px] relative overflow-hidden"
+                  className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-3.5 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 min-w-[160px] h-[52px] relative overflow-hidden"
                   onClick={(e) => {
                     createRippleEffect(e);
                     setLocation("/login");
@@ -250,7 +250,7 @@ export default function Home() {
                 
                 <Button 
                   variant="outline"
-                  className="border-2 border-white border-opacity-30 text-white px-8 py-3.5 rounded-full font-medium hover:bg-white hover:bg-opacity-10 hover:border-opacity-50 transition-all duration-300 min-w-[160px] bg-transparent"
+                  className="border-2 border-white border-opacity-30 text-white px-8 py-3.5 rounded-full font-semibold hover:bg-white hover:bg-opacity-10 hover:border-opacity-50 transition-all duration-300 min-w-[160px] h-[52px] bg-transparent"
                   onClick={createRippleEffect}
                 >
                   <Play className="w-4 h-4 mr-2" />
@@ -359,7 +359,7 @@ export default function Home() {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
-                  className="bg-white text-purple-800 px-8 py-4 rounded-full font-semibold hover:bg-purple-50 hover:scale-105 transition-all duration-300 shadow-lg min-w-[180px] relative overflow-hidden"
+                  className="bg-white text-purple-800 px-8 py-4 rounded-full font-semibold hover:bg-purple-50 hover:scale-105 transition-all duration-300 shadow-lg min-w-[180px] h-[56px] relative overflow-hidden"
                   onClick={(e) => {
                     createRippleEffect(e);
                     setLocation("/login");
@@ -370,7 +370,7 @@ export default function Home() {
                 </Button>
                 <Button 
                   variant="outline"
-                  className="border-2 border-white text-white px-8 py-4 rounded-full font-medium hover:bg-white hover:bg-opacity-10 transition-all duration-300 min-w-[180px] bg-transparent"
+                  className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:bg-opacity-10 transition-all duration-300 min-w-[180px] h-[56px] bg-transparent"
                   onClick={createRippleEffect}
                 >
                   <Phone className="w-4 h-4 mr-2" />
