@@ -237,18 +237,34 @@ export default function LoginPage() {
                     )}
                   />
                   
-                  {/* Remember Me Checkbox */}
+                  {/* Remember Me Modern Switch */}
                   <div className="flex items-center space-x-3">
-                    <input
-                      id="remember"
-                      type="checkbox"
-                      checked={rememberMe}
-                      onChange={(e) => setRememberMe(e.target.checked)}
-                      className="w-4 h-4 text-purple-600 bg-gray-800 border-gray-600 rounded focus:ring-purple-500 focus:ring-2"
-                    />
-                    <label htmlFor="remember" className="text-sm text-white">
-                      Remember me
-                    </label>
+                    <div className="relative">
+                      <input
+                        id="remember"
+                        type="checkbox"
+                        checked={rememberMe}
+                        onChange={(e) => setRememberMe(e.target.checked)}
+                        className="sr-only"
+                      />
+                      <label
+                        htmlFor="remember"
+                        className={`flex items-center cursor-pointer transition-all duration-300 ${
+                          rememberMe ? 'text-violet-300' : 'text-white'
+                        }`}
+                      >
+                        <div className={`relative w-11 h-6 rounded-full transition-all duration-300 ${
+                          rememberMe 
+                            ? 'bg-gradient-to-r from-violet-500 to-purple-600 shadow-lg shadow-violet-500/30' 
+                            : 'bg-gray-600'
+                        }`}>
+                          <div className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-all duration-300 transform ${
+                            rememberMe ? 'translate-x-5 shadow-sm' : 'translate-x-0'
+                          }`}></div>
+                        </div>
+                        <span className="ml-3 text-sm font-medium">Remember me</span>
+                      </label>
+                    </div>
                   </div>
                   
                   <Button
